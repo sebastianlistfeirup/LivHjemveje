@@ -1,6 +1,6 @@
 # Liv og de ti hjemveje · Kapitel 1
 
-**[Hent den færdige spilpakke](https://github.com/sebastianlistfeirup/LivHjemveje/raw/refs/heads/gh-pages/LivHjemveje-Kapitel-1-Web.zip)** · **[Udgivelse og vejledning](https://github.com/sebastianlistfeirup/LivHjemveje/releases/tag/kapitel-1-v1.0)**
+**[Spil kapitel 1](https://sebastianlistfeirup.github.io/LivHjemveje/)** · **[Hent spilpakken](https://github.com/sebastianlistfeirup/LivHjemveje/raw/refs/heads/gh-pages/LivHjemveje-Kapitel-1-Web.zip)**
 
 Et dansk, illustreret eventyr til Liv: Find kompasset, udforsk lunden med Noor, befri skovdragen Mos og byg hans hjem. Når kapitlet er slut, kan I blive på farmen, indrette Rodhytten og lege i Mos’ levende have.
 
@@ -10,7 +10,7 @@ Kapitel 1 indeholder 40 scener, fire mulige gennemløb, 30 originale illustratio
 
 ## Spil
 
-Den verificerede webudgave ligger på grenen `gh-pages`. For at åbne den direkte på telefonen skal repositoryets **Settings → Pages** bruge **Deploy from a branch → gh-pages → / (root)**. Spiladressen bliver [sebastianlistfeirup.github.io/LivHjemveje](https://sebastianlistfeirup.github.io/LivHjemveje/). GitHub-integrationen kan uploade spillet, men kan ikke aktivere denne indstilling (HTTP 403).
+Åbn [spillet](https://sebastianlistfeirup.github.io/LivHjemveje/) på telefonen. Den verificerede udgave udgives fra grenen `gh-pages`.
 
 Tryk på tingene i billedet. Genstande kan enten trækkes til et mål eller vælges med ét tryk og placeres med det næste. Læs i dit eget tempo. Kompasset åbner rejsekortet, dagbogen gemmer fund og replikker, og menuen har tekststørrelse, rolig bevægelse, lyd og sikkerhedskopier.
 
