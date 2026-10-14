@@ -1,5 +1,5 @@
 /* Generated: one complete, versioned game. Player saves are never cached here. */
-const CACHE='liv-hjemveje-a3fad62b5c022ec6';
+const CACHE='liv-hjemveje-da45b7390ebc062e';
 const FILES=["app-icon-192.png", "app-icon.png", "index.apple-touch-icon.png", "index.audio.position.worklet.js", "index.audio.worklet.js", "index.html", "index.icon.png", "index.js", "index.pck", "index.png", "index.wasm", "manifest.webmanifest"];
 const base=new URL('./',self.location).href;
 const urls=FILES.map(name=>new URL(name,base).href);
