@@ -44,7 +44,7 @@ Musik og effekter kan indstilles hver for sig. Musikken looper; den starter efte
 
 ## Byg og kontrollér
 
-`tools/prepare_pwa.py` tilføjer manifest, Mos-ikon og en versionsbestemt service worker. Hele eksporten lægges i én cache, før offline-udgaven aktiveres. Nye versioner venter, til åbne spilvinduer er lukket, så motor og indhold ikke blandes. Spillerens gemmefil ligger separat og slettes aldrig af cacheopdatering. Installation er en hjemmeskærmsapp, ikke en udgivelse i App Store/Google Play. Safari/iOS' installations- og lageradfærd skal stadig prøves på fysisk enhed.
+`tools/prepare_pwa.py` tilføjer manifest, Mos-ikon og en versionsbestemt service worker. Hele eksporten lægges i én cache, før offline-udgaven aktiveres. Installationen genhenter filerne fra nettet, så browserens almindelige HTTP-cache ikke kan indsætte en ældre fil i den nye udgave. Ændringer i selve service workeren indgår også i versionsnøglen. Nye versioner venter, til åbne spilvinduer er lukket, så motor og indhold ikke blandes. Spillerens gemmefil ligger separat og slettes aldrig af cacheopdatering. Installation er en hjemmeskærmsapp, ikke en udgivelse i App Store/Google Play. Safari/iOS' installations- og lageradfærd skal stadig prøves på fysisk enhed.
 
 Den kompakte have bruger hele den ledige bredde og en separat vandret opsætning på lave skærme. Alle 16 jordfelter og hver frøtype kontrolleres med berøringshændelser i `tests/mobile.cjs`; prøven slår derefter nettet fra og genåbner spillet med det gemte bed.
 
@@ -69,5 +69,7 @@ GAME_URL=http://127.0.0.1:8080 node tests/mobile.cjs
 ```
 
 Efter `./tools/export_web.sh` kontrollerer `node tests/release.cjs` den faktiske release-udgave med berøringer, gemning midt i første gåde og en fuld offline-genstart. Den sikrer også, at diagnosefladen er fjernet. `tests/release-controls.json` indeholder de registrerede trykpunkter til den faste 390 × 844-prøve.
+
+`node tests/pwa-update.cjs` prøver den eksporterede service worker mod en HTTP-server med frisk langtids-cache: den nye udgave skal hente nye filer, den åbne gamle udgave skal beholde sine filer, og gemning samt offline-genstart skal overleve skiftet. Små erstatningsfiler isolerer opdateringsforløbet fra spillets rendering.
 
 Installér Playwright lokalt, eller sæt `PLAYWRIGHT_PATH` til dets modul. `CHROMIUM_PATH` kan angive en installeret Chromium. Slutleverancen er en release-eksport uden diagnosefladen.

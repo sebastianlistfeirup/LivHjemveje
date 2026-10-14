@@ -23,7 +23,9 @@ manifest = {
 }
 (web / 'manifest.webmanifest').write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
 files = sorted(p.name for p in web.iterdir() if p.is_file() and not p.name.startswith('.') and p.name != 'sw.js')
-digest = hashlib.sha256()
+# Worker changes also get a separate cache; an installation must never mutate
+# the cache used by an older game that is still open.
+digest = hashlib.sha256(Path(__file__).read_bytes())
 for name in files:
     digest.update(name.encode())
     digest.update((web / name).read_bytes())
@@ -35,7 +37,7 @@ const base=new URL('./',self.location).href;
 const urls=FILES.map(name=>new URL(name,base).href);
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(CACHE);
-  await cache.addAll(urls);
+  await cache.addAll(urls.map(url=>new Request(url,{cache:'reload'})));
   // A new game waits until all open windows close, so engine and art stay in sync.
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
