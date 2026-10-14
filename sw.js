@@ -1,11 +1,11 @@
 /* Generated: one complete, versioned game. Player saves are never cached here. */
-const CACHE='liv-hjemveje-0825e57f92557e18';
+const CACHE='liv-hjemveje-0f82304c642924de';
 const FILES=["app-icon-192.png", "app-icon.png", "index.apple-touch-icon.png", "index.audio.position.worklet.js", "index.audio.worklet.js", "index.html", "index.icon.png", "index.js", "index.pck", "index.png", "index.wasm", "manifest.webmanifest"];
 const base=new URL('./',self.location).href;
 const urls=FILES.map(name=>new URL(name,base).href);
 self.addEventListener('install',event=>event.waitUntil((async()=>{
   const cache=await caches.open(CACHE);
-  await cache.addAll(urls);
+  await cache.addAll(urls.map(url=>new Request(url,{cache:'reload'})));
   // A new game waits until all open windows close, so engine and art stay in sync.
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
