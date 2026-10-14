@@ -12,6 +12,18 @@ static var symbols: Font = preload("res://assets/fonts/Symbols.ttf")
 static var icons: Dictionary = {}
 static var dragon_frames: Dictionary = {}
 static var farm_frames: Dictionary = {}
+static var treasure_frames: Dictionary = {}
+static var prop_frames: Dictionary = {}
+static var garden_frames: Dictionary = {}
+const TREASURES=["cauldron","bottle","dew","flower","bag","rope","lantern","spoon","fire","water","leaf","stone","comb","key","moon","rune"]
+
+static func treasure(name: String) -> Texture2D:
+	if not treasure_frames.has(name):
+		var atlas=AtlasTexture.new();atlas.atlas=load("res://assets/adventure/treasures.png")
+		var cell=atlas.atlas.get_size()/4.0;var index=TREASURES.find(name)
+		atlas.region=Rect2(Vector2(index%4,int(index/4))*cell,cell)
+		treasure_frames[name]=atlas
+	return treasure_frames[name]
 
 static func farm_art(name: String) -> Texture2D:
 	if not farm_frames.has(name):
@@ -35,12 +47,36 @@ static func init_fonts():
 	serif.fallbacks = [symbols]
 
 static func icon(name: String) -> Texture2D:
+	if name.begins_with("garden_seed_") or name.begins_with("garden_flower_"):
+		if not garden_frames.has(name):
+			var atlas=AtlasTexture.new();atlas.atlas=load("res://assets/adventure/garden-treasures.png")
+			var cell=atlas.atlas.get_size()/Vector2(3,2)
+			atlas.region=Rect2(Vector2(int(name.get_slice("_",2)),1 if name.begins_with("garden_flower_") else 0)*cell,cell)
+			garden_frames[name]=atlas
+		return garden_frames[name]
+	if name in ["lens","book","compass","root"] and ResourceLoader.exists("res://assets/adventure/props.png"):
+		if not prop_frames.has(name):
+			var atlas=AtlasTexture.new();atlas.atlas=load("res://assets/adventure/props.png")
+			var cell=atlas.atlas.get_size()/2;var index=["lens","book","compass","root"].find(name)
+			atlas.region=Rect2(Vector2(index%2,int(index/2))*cell,cell);prop_frames[name]=atlas
+		return prop_frames[name]
+	if name in TREASURES:return treasure(name)
 	if name == "mos": return dragon()
 	if name in ["house", "pond", "moss_garden", "garden_bed"]: return farm_art(name)
 	var file = "res://assets/ui/" + name + ".svg"
 	if not ResourceLoader.exists(file): file = "res://assets/ui/leaf.svg"
 	if not icons.has(file): icons[file] = load(file)
 	return icons[file]
+
+static func quiet_scroll(bar: ScrollBar):
+	var track=box(Color(1,.88,.6,.06),3)
+	track.content_margin_left=2;track.content_margin_right=2;track.content_margin_top=0;track.content_margin_bottom=0
+	bar.add_theme_stylebox_override("scroll",track)
+	for state in ["grabber","grabber_highlight","grabber_pressed"]:
+		var style=box(Color(.75,.60,.36,.55),3)
+		style.content_margin_left=2;style.content_margin_right=2;style.content_margin_top=0;style.content_margin_bottom=0
+		bar.add_theme_stylebox_override(state,style)
+	bar.custom_minimum_size.x=4
 
 static func box(color: Color, radius: int = 18, border: Color = Color.TRANSPARENT, width: int = 1) -> StyleBoxFlat:
 	var style = StyleBoxFlat.new()
@@ -71,7 +107,7 @@ static func label(parent: Node, text: String, rect: Rect2, font_size: int = 18, 
 	return node
 
 static func button(parent: Node, text: String, rect: Rect2, callback: Callable, primary: bool = false, small: bool = false) -> Button:
-	var node = Button.new()
+	var node = GameButton.new()
 	node.name = "Button_" + text.validate_node_name()
 	node.text = text
 	node.position = rect.position
@@ -79,11 +115,16 @@ static func button(parent: Node, text: String, rect: Rect2, callback: Callable, 
 	node.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	node.add_theme_font_override("font", bold)
 	node.add_theme_font_size_override("font_size", 14 if small else 16)
-	var bg = GOLD if primary else Color("173a30")
+	var bg = Color("deb973") if primary else Color(.04,.15,.13,.86)
 	node.add_theme_stylebox_override("normal", box(bg, 12, Color("8e8059") if primary else Color("49634e")))
 	node.add_theme_stylebox_override("hover", box(bg.lightened(0.12), 12, CREAM))
 	node.add_theme_stylebox_override("pressed", box(bg.darkened(0.1), 12, GOLD))
 	node.add_theme_stylebox_override("focus", box(Color.TRANSPARENT, 12, Color("fff1be"), 3))
+	for state in ["normal","hover"]:
+		var style=node.get_theme_stylebox(state)
+		style.shadow_color=Color(0,.025,.02,.35);style.shadow_size=7;style.shadow_offset=Vector2(0,3)
+	var pressed_style=node.get_theme_stylebox("pressed")
+	pressed_style.content_margin_top=14;pressed_style.content_margin_bottom=10
 	if small:
 		for state in ["normal", "hover", "pressed", "focus"]:
 			var style=node.get_theme_stylebox(state)

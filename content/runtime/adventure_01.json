@@ -1,0 +1,1889 @@
+{
+  "revision": 2,
+  "patches": {
+    "K01_S01": {
+      "wide_image": "kitchen",
+      "presentation": {
+        "anchor": "left",
+        "focus": [
+          0.5,
+          0.4
+        ]
+      },
+      "narrator": "Tre små bank. Så ét til. Jeg lagde hånden på gulvet. Noget dernede bankede tilbage.",
+      "dialogue": [
+        {
+          "speaker": "Liv",
+          "text": "Edda? Hvis det her er en kat, har den lært et meget mærkeligt trick."
+        },
+        {
+          "speaker": "Edda",
+          "text": "Lyt godt efter, Liv. Nogle døre åbner kun for den, der svarer."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Så svarede jeg. Og et sted under mine fingre begyndte noget at lyse."
+        }
+      ]
+    },
+    "K01_S02": {
+      "append_stages": [
+        {
+          "kind": "choice",
+          "prompt": "Edda bliver pludselig stille. Hvad vil du vide?",
+          "items": [
+            {
+              "id": "owner",
+              "label": "Hvem havde det?",
+              "icon": "key",
+              "response": "Edda: Iben. Hun kunne finde en vej, selv når alle andre kun så en mur.",
+              "pos": [
+                0.2,
+                0.5
+              ]
+            },
+            {
+              "id": "magic",
+              "label": "Hvor fører det hen?",
+              "icon": "moon",
+              "response": "Edda: Til nogen, der savner et hjem. Kompasset kender dem før os.",
+              "pos": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "id": "promise",
+              "label": "Må jeg beholde det?",
+              "icon": "leaf",
+              "response": "Edda: Ja. Hvis du lover at lytte, før du bestemmer, hvor andre hører til.",
+              "pos": [
+                0.8,
+                0.5
+              ]
+            }
+          ],
+          "targets": [],
+          "key": "edda_spoergsmaal"
+        }
+      ]
+    },
+    "K01_S03": {
+      "wide_image": "kitchen",
+      "title": "Kortet i seks stykker",
+      "narrator": "Noor trak kortet frem for at finde porten. Det kom ud i seks stykker. Den gyldne streg glimtede stadig, men nu løb den i seks forskellige retninger.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Jeg ville bare folde det lidt mindre. Det blev meget mindre."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Så samler vi vejen igen. Se — mit navn lyser stadig."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Godt. Jeg ville nødig følge en vej, der ender i min lomme."
+        }
+      ],
+      "stages": [
+        {
+          "kind": "jigsaw",
+          "prompt": "Træk de seks kortbrikker på plads. Se på stierne og billedets kanter.",
+          "items": [],
+          "targets": [],
+          "image": "map",
+          "columns": 3,
+          "rows": 2
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Der var brønden igen. Stjernen. Den lille grønne dør. Kortet var helt, tasken var pakket, og nu vidste vi, hvor vi skulle begynde."
+      }
+    },
+    "K01_S04": {
+      "image_id": "runes",
+      "stages": [
+        {
+          "kind": "runes",
+          "prompt": "Se runerne lyse. Spil derefter deres melodi. Du kan høre den igen.",
+          "items": [
+            {
+              "id": "leaf",
+              "label": "Blad",
+              "icon": "leaf"
+            },
+            {
+              "id": "moon",
+              "label": "Måne",
+              "icon": "moon"
+            },
+            {
+              "id": "fire",
+              "label": "Flamme",
+              "icon": "fire"
+            },
+            {
+              "id": "water",
+              "label": "Vand",
+              "icon": "water"
+            }
+          ],
+          "targets": [],
+          "sequences": [
+            [
+              "leaf",
+              "moon",
+              "water",
+              "fire"
+            ],
+            [
+              "water",
+              "leaf",
+              "fire",
+              "moon",
+              "leaf",
+              "water"
+            ]
+          ]
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Liv",
+          "text": "Fire tegn. Ingen nøgle."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Hør … porten synger! Måske skal vi svare med den samme melodi."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Okay, port. Vi tager den lige én gang til."
+        }
+      ]
+    },
+    "K01_S05": {
+      "next": {
+        "success": "K01_S41"
+      },
+      "stages": [
+        {
+          "kind": "search",
+          "prompt": "Lunden gemmer tre spor. Flyt luppen over billedet, og tryk dér, hvor du finder noget.",
+          "items": [
+            {
+              "id": "scratch",
+              "label": "Et frisk klomærke",
+              "icon": "scratch",
+              "pos": [
+                0.21,
+                0.33
+              ]
+            },
+            {
+              "id": "thread",
+              "label": "En blå tråd i barken",
+              "icon": "thread",
+              "pos": [
+                0.72,
+                0.54
+              ]
+            },
+            {
+              "id": "scale",
+              "label": "Et lille grønt skæl",
+              "icon": "scale",
+              "pos": [
+                0.48,
+                0.79
+              ]
+            }
+          ],
+          "targets": []
+        }
+      ],
+      "success_text": {
+        "speaker": "Noor",
+        "text": "Blå tråd. Grønne skæl. Og spor, som stopper midt på stien. Der er nogen, der har forsøgt at skjule vejen."
+      }
+    },
+    "K01_S06": {
+      "wide_image": "frog",
+      "narrator": "En frø sad højt på en rusten vandkande. Den havde stillet tre skatte foran sig og nægtede at flytte sig.",
+      "dialogue": [
+        {
+          "speaker": "Frø",
+          "text": "Ingen krydser min bæk uden at løse min gåde!"
+        },
+        {
+          "speaker": "Liv",
+          "text": "Der er jo ikke noget vand i den."
+        },
+        {
+          "speaker": "Frø",
+          "text": "Principper, unge menneske. Principper bliver ikke tørre."
+        }
+      ],
+      "stages": [
+        {
+          "kind": "riddle",
+          "prompt": "Jeg har tænder, men bider aldrig. Jeg går gennem hår, men har ingen fødder. Hvad er jeg?",
+          "items": [
+            {
+              "id": "comb",
+              "label": "En gylden kam",
+              "icon": "comb",
+              "response": "Frø: Korrekt. Mine egne krøller er ganske vist usynlige."
+            },
+            {
+              "id": "key",
+              "label": "En gammel nøgle",
+              "icon": "key",
+              "response": "Frø: Den har tænder, ja. Men jeg ville ikke rede hår med den. Prøv igen."
+            },
+            {
+              "id": "moon",
+              "label": "En perlemåne",
+              "icon": "moon",
+              "response": "Frø: Smuk. Men månen lader vist andre om frisurerne."
+            }
+          ],
+          "targets": [],
+          "answer": "comb"
+        }
+      ],
+      "next": {
+        "success": "K01_S42"
+      },
+      "success_text": {
+        "speaker": "Frø",
+        "text": "En kam! Jeg vidste, I havde forstand på noget. Så kan vi tale forretning."
+      }
+    },
+    "K01_S08": {
+      "presentation": {
+        "anchor": "lower",
+        "focus": [
+          0.5,
+          0.4
+        ]
+      }
+    },
+    "K01_S10": {
+      "next": {
+        "success": "K01_S43"
+      }
+    },
+    "K01_S11": {
+      "stages": [
+        {
+          "kind": "labyrinth",
+          "prompt": "Find dugkoppen i rodgangen. Træk langs stierne, eller brug pilene. Der er mange blindgyder.",
+          "items": [],
+          "targets": [],
+          "maze": {
+            "width": 9,
+            "height": 7,
+            "edges": [
+              [
+                0,
+                9
+              ],
+              [
+                9,
+                10
+              ],
+              [
+                10,
+                19
+              ],
+              [
+                19,
+                20
+              ],
+              [
+                20,
+                11
+              ],
+              [
+                11,
+                12
+              ],
+              [
+                12,
+                21
+              ],
+              [
+                21,
+                30
+              ],
+              [
+                30,
+                29
+              ],
+              [
+                29,
+                28
+              ],
+              [
+                28,
+                27
+              ],
+              [
+                27,
+                18
+              ],
+              [
+                27,
+                36
+              ],
+              [
+                36,
+                45
+              ],
+              [
+                45,
+                46
+              ],
+              [
+                46,
+                47
+              ],
+              [
+                47,
+                38
+              ],
+              [
+                38,
+                39
+              ],
+              [
+                39,
+                48
+              ],
+              [
+                48,
+                57
+              ],
+              [
+                57,
+                58
+              ],
+              [
+                58,
+                49
+              ],
+              [
+                49,
+                50
+              ],
+              [
+                50,
+                59
+              ],
+              [
+                59,
+                60
+              ],
+              [
+                60,
+                61
+              ],
+              [
+                61,
+                52
+              ],
+              [
+                52,
+                53
+              ],
+              [
+                53,
+                44
+              ],
+              [
+                44,
+                43
+              ],
+              [
+                43,
+                42
+              ],
+              [
+                42,
+                41
+              ],
+              [
+                41,
+                40
+              ],
+              [
+                40,
+                31
+              ],
+              [
+                31,
+                22
+              ],
+              [
+                22,
+                13
+              ],
+              [
+                13,
+                4
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                7,
+                16
+              ],
+              [
+                16,
+                17
+              ],
+              [
+                17,
+                8
+              ],
+              [
+                17,
+                26
+              ],
+              [
+                26,
+                25
+              ],
+              [
+                25,
+                24
+              ],
+              [
+                24,
+                15
+              ],
+              [
+                15,
+                14
+              ],
+              [
+                14,
+                23
+              ],
+              [
+                23,
+                32
+              ],
+              [
+                32,
+                33
+              ],
+              [
+                33,
+                34
+              ],
+              [
+                34,
+                35
+              ],
+              [
+                42,
+                51
+              ],
+              [
+                53,
+                62
+              ],
+              [
+                57,
+                56
+              ],
+              [
+                56,
+                55
+              ],
+              [
+                55,
+                54
+              ],
+              [
+                38,
+                37
+              ]
+            ],
+            "start": 0,
+            "goal": 62
+          }
+        }
+      ]
+    },
+    "K01_S12": {
+      "next": {
+        "success": "K01_S43"
+      }
+    },
+    "K01_S13": {
+      "wide_image": "well-meeting",
+      "presentation": {
+        "anchor": "left",
+        "focus": [
+          0.5,
+          0.42
+        ]
+      },
+      "narrator": "Vi genkendte brønden fra bogens tegning. På kanten lå noget grønt og sammenkrøllet. Så åbnede to gyldne øjne sig. Bogen havde ikke vist, hvor bange en drage kunne se ud.",
+      "dialogue": [
+        {
+          "speaker": "Liv",
+          "text": "Bladvinger. Barkskæl. Det må være ham."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Sådan så han ikke ud i bogen."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Vi har fundet ham. Nu skal vi finde ud af, hvordan vi hjælper."
+      }
+    },
+    "K01_S15": {
+      "next": {
+        "success": "K01_S44"
+      },
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Renderne passer. Men hvorfor kommer vandet ikke? Se — der sidder en lås under slusen."
+      }
+    },
+    "K01_S16": {
+      "title": "Lad ham fortælle selv",
+      "narrator": "Bogen kaldte ham Mos. Alligevel ville jeg høre det fra ham selv. Noor havde også et navneforslag. Et meget langt et.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Hvad med Sir Grønspids den Tredje?"
+        },
+        {
+          "speaker": "Liv",
+          "text": "Måske kan han bedre lide sit eget navn. Vi spørger."
+        }
+      ],
+      "stages": [
+        {
+          "kind": "choice",
+          "prompt": "Dragen ser på dig. Hvordan vil du begynde?",
+          "items": [
+            {
+              "id": "ask",
+              "label": "Spørg helt stille",
+              "icon": "leaf",
+              "response": "Liv: Du behøver ikke være modig lige nu. Hvad hedder du?",
+              "pos": [
+                0.2,
+                0.5
+              ]
+            },
+            {
+              "id": "wait",
+              "label": "Vent ved dens side",
+              "icon": "moon",
+              "response": "Vi sagde ingenting. For første gang slap dragen øjnene fra den lukkede port.",
+              "pos": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "id": "joke",
+              "label": "Fortæl noget fjollet",
+              "icon": "comb",
+              "response": "Liv: Jeg hedder Liv. Jeg var egentlig på udkig efter en kat. Dragen pustede næsten en latter.",
+              "pos": [
+                0.8,
+                0.5
+              ]
+            }
+          ],
+          "targets": [],
+          "key": "samtaletone"
+        }
+      ]
+    },
+    "K01_S17": {
+      "next": {
+        "success": "K01_S45"
+      }
+    },
+    "K01_S18": {
+      "next": {
+        "success": "K01_S46"
+      },
+      "narrator": "Jeg ville hjælpe så hurtigt, at min hånd allerede var på vej mod vingen. Mos foldede sig sammen. Så huskede jeg bogens advarsel. Jeg standsede og prøvede at se problemet fra hans side af brønden."
+    },
+    "K01_S20": {
+      "next": {
+        "success": "K01_S47"
+      }
+    },
+    "K01_S22": {
+      "narrator": "Vi kunne løfte roden med rebet eller støtte den nedefra med klodser. Mos fulgte vores hænder med blikket. Det vigtigste var, at han kunne se, hvad vi ville gøre."
+    },
+    "K01_S23": {
+      "narrator": "Rebet gled over den tykke gren, og vi prøvede bevægelsen uden at løfte. Mos så fra mine hænder til Noor. Først da han nikkede, trak vi forsigtigt."
+    },
+    "K01_S27": {
+      "next": {
+        "success": "K01_S48"
+      },
+      "narrator": "Mos kunne være fløjet sin vej med det samme, men blev siddende på kanten. Han pegede ned i mørket. Der var åbenbart nogen, som havde brug for hjælp endnu."
+    },
+    "K01_S28": {
+      "next": {
+        "success": "K01_S49"
+      }
+    },
+    "K01_S29": {
+      "narrator": "Bag gitteret sad det sidste frø under en sten, der var tungere, end den så ud. Noor fandt en rund klods til krogen. Pludselig havde vores to små ting en stor virkning."
+    },
+    "K01_S31": {
+      "stages": [
+        {
+          "kind": "choice",
+          "prompt": "Mos har aldrig haft en gæst. Hvad vil du love ham?",
+          "items": [
+            {
+              "id": "hand",
+              "label": "Jeg går ved din side",
+              "icon": "leaf",
+              "response": "Mos lægger forsigtigt sin pote i din hånd. »Også når jeg går langsomt?«",
+              "pos": [
+                0.2,
+                0.5
+              ]
+            },
+            {
+              "id": "space",
+              "label": "Du bestemmer selv",
+              "icon": "moon",
+              "response": "Mos ser tilbage på brønden. »Så vil jeg gerne følges. Bare ikke bæres.«",
+              "pos": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "id": "home",
+              "label": "En dør, der er åben",
+              "icon": "key",
+              "response": "Mos folder vingen en lille smule ud. »Også når jeg vil ud igen?«",
+              "pos": [
+                0.8,
+                0.5
+              ]
+            }
+          ],
+          "targets": [],
+          "key": "kontakt"
+        }
+      ]
+    },
+    "K01_S33": {
+      "append_stages": [
+        {
+          "kind": "choice",
+          "prompt": "Edda smiler. Hvad skal Mos opleve først?",
+          "items": [
+            {
+              "id": "water",
+              "label": "En skål friskt vand",
+              "icon": "water",
+              "response": "Mos drikker med hele snuden. Noor må hente en klud. Og en større skål.",
+              "pos": [
+                0.2,
+                0.5
+              ]
+            },
+            {
+              "id": "garden",
+              "label": "Et sted i solen",
+              "icon": "flower",
+              "response": "Mos lægger sig i solpletten. Tre små blomster springer ud under hans pote.",
+              "pos": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "id": "story",
+              "label": "Fortæl vores historie",
+              "icon": "book",
+              "response": "Edda lytter uden at afbryde. Først da vi nævner det blå kridt, bliver hendes hånd stille.",
+              "pos": [
+                0.8,
+                0.5
+              ]
+            }
+          ],
+          "targets": [],
+          "key": "velkomst"
+        }
+      ]
+    },
+    "K01_S34": {
+      "next": {
+        "success": "K01_S50"
+      }
+    },
+    "K01_S37": {
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Kan du også få en bolle til at gro?"
+        },
+        {
+          "speaker": "Mos",
+          "text": "Den er død dej."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Først får et af de reddede frø lidt jord. Så er det din tur, Mos."
+        }
+      ],
+      "stages": [
+        {
+          "kind": "place",
+          "prompt": "Vælg Mos, og lad ham puste på det nysåede bed.",
+          "items": [
+            {
+              "id": "mos",
+              "label": "Mos’ naturpust",
+              "icon": "mos",
+              "pos": [
+                0.22,
+                0.73
+              ],
+              "target": "garden"
+            }
+          ],
+          "targets": [
+            {
+              "id": "garden",
+              "label": "Det nysåede bed",
+              "icon": "seed",
+              "pos": [
+                0.69,
+                0.52
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "K01_S40": {
+      "append_stages": [
+        {
+          "kind": "choice",
+          "prompt": "Et rødt lys blinker ude fra havet. Hvad hvisker du til kompasset?",
+          "items": [
+            {
+              "id": "follow",
+              "label": "Vi finder dig",
+              "icon": "spark",
+              "response": "Jeg lagde hånden om kompasset. Vi finder dig, tænkte jeg. Også hvis vejen ikke findes endnu.",
+              "pos": [
+                0.2,
+                0.5
+              ]
+            },
+            {
+              "id": "together",
+              "label": "Vi kommer sammen",
+              "icon": "leaf",
+              "response": "Mos lænede sig mod mit ben. Næste gang var vi ikke to. Vi var tre.",
+              "pos": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "id": "home",
+              "label": "Her er også plads til dig",
+              "icon": "house",
+              "response": "Jeg så på den tomme grund ved siden af Rodhytten. Et hjem kan begynde, længe før nogen flytter ind.",
+              "pos": [
+                0.8,
+                0.5
+              ]
+            }
+          ],
+          "targets": [],
+          "key": "loefte"
+        }
+      ]
+    }
+  },
+  "extra": [
+    {
+      "id": "K01_S41",
+      "page": 41,
+      "title": "Kortet, tågen spiser",
+      "image_id": "mist",
+      "narrator": "Tågen gled hen over kortet. Stierne forsvandt én efter én. Kun når kompasset lyste, kunne vi se dem igen.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Jeg husker bollen i min taske. Resten må du hjælpe med."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Vi ser på kortet sammen. Så følger vi lyset, inden tågen tager det."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Og hvis vi går forkert, ser vi bare igen. Aftale?"
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "På den anden side ventede en frø. Den så ud, som om den havde ventet meget længere end os."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "memory_map",
+            "prompt": "Husk lysstien. Når tågen falder, fører du lyset frem. »Se kortet« viser det igen.",
+            "items": [],
+            "targets": [],
+            "route": [
+              "up",
+              "right",
+              "up",
+              "left",
+              "up",
+              "right",
+              "right",
+              "up"
+            ],
+            "width": 5,
+            "height": 5,
+            "start": [
+              0,
+              4
+            ]
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S06"
+      },
+      "music": "wonder",
+      "presentation": {
+        "anchor": "lower",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S42",
+      "page": 42,
+      "title": "En meget rimelig frø",
+      "image_id": "frog",
+      "narrator": "Frøen ville bytte et vådt blad for en historie. Den fandt en lille messingvægt frem. Jeg spurgte ikke, hvor den havde haft den.",
+      "dialogue": [
+        {
+          "speaker": "Frø",
+          "text": "For lidt historie er kedeligt. For meget historie gør mig søvnig."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Så handler vi om en helt tilpas mængde eventyr."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Tre gode sætninger. Du får endda en drage med i den sidste."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Frøen lagde bladet i min hånd. »Det lugter af den lukkede kilde,« hviskede den. »Nogen ønsker, at lunden glemmer sin vej.«"
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "balance",
+            "prompt": "Stop vægtens lys i det gyldne felt. Tre gode handler giver jer det våde blad.",
+            "items": [],
+            "targets": [],
+            "goal": 3
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S07"
+      },
+      "music": "playful",
+      "presentation": {
+        "anchor": "left",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S43",
+      "page": 43,
+      "title": "Rødderne vågner",
+      "image_id": "roots",
+      "narrator": "Først troede jeg, at jorden rystede. Så så jeg roden løfte sig. Hele stien var ved at lukke sig bag os.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Liv. Den her sti har alt for mange ben."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Følg ildfluerne! De ved, hvor der er plads."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Så håber jeg, de ved, at jeg ikke kan flyve!"
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Vi væltede ud i en lysning. Bag os faldt rødderne til ro. Foran os trak nogen vejret, ganske forsigtigt."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "runner",
+            "prompt": "Stryg til siden mellem de tre spor. Undvig rødderne, og saml mindst tre ildfluer.",
+            "items": [],
+            "targets": [],
+            "duration": 16
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S13"
+      },
+      "music": "danger",
+      "presentation": {
+        "anchor": "right",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S44",
+      "page": 44,
+      "title": "Ti nøgler og tre forsøg",
+      "image_id": "key-cabinet",
+      "narrator": "Renderne var åbne, men vandet stod stadig stille. Et nøgleskab hang under slusen. Ti nøgler. Én lås. På låsen lyste tre små stjerner.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Tre stjerner, tre forsøg, før låsen falder i søvn. Vi skal se os godt for."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Se rillerne inde i låsen. Nøglens fire tænder skal have præcis de samme højder."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Du kan undersøge alle nøglerne først. Det tæller kun, når du prøver én i låsen."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Klik. Klik. Klik. Et tyndt bånd af vand fandt vej gennem stenen. Fra brønden lød et lille, lettet suk."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "keymatch",
+            "prompt": "Undersøg låsens fire riller. Vælg blandt ti nøgler. Du har tre forsøg.",
+            "items": [
+              {
+                "id": "key_0",
+                "label": "Nøgle 1",
+                "icon": "key_0",
+                "teeth": [
+                  1,
+                  2,
+                  3,
+                  1
+                ]
+              },
+              {
+                "id": "key_1",
+                "label": "Nøgle 2",
+                "icon": "key_1",
+                "teeth": [
+                  3,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "id": "key_2",
+                "label": "Nøgle 3",
+                "icon": "key_2",
+                "teeth": [
+                  2,
+                  3,
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "key_3",
+                "label": "Nøgle 4",
+                "icon": "key_3",
+                "teeth": [
+                  1,
+                  3,
+                  2,
+                  3
+                ]
+              },
+              {
+                "id": "key_4",
+                "label": "Nøgle 5",
+                "icon": "key_4",
+                "teeth": [
+                  2,
+                  1,
+                  3,
+                  1
+                ]
+              },
+              {
+                "id": "key_5",
+                "label": "Nøgle 6",
+                "icon": "key_5",
+                "teeth": [
+                  3,
+                  2,
+                  1,
+                  3
+                ]
+              },
+              {
+                "id": "key_6",
+                "label": "Nøgle 7",
+                "icon": "key_6",
+                "teeth": [
+                  1,
+                  3,
+                  2,
+                  1
+                ]
+              },
+              {
+                "id": "key_7",
+                "label": "Nøgle 8",
+                "icon": "key_7",
+                "teeth": [
+                  2,
+                  3,
+                  1,
+                  3
+                ]
+              },
+              {
+                "id": "key_8",
+                "label": "Nøgle 9",
+                "icon": "key_8",
+                "teeth": [
+                  3,
+                  1,
+                  3,
+                  2
+                ]
+              },
+              {
+                "id": "key_9",
+                "label": "Nøgle 10",
+                "icon": "key_9",
+                "teeth": [
+                  1,
+                  2,
+                  1,
+                  3
+                ]
+              }
+            ],
+            "targets": [],
+            "answer": "key_6",
+            "attempts": 3
+          },
+          {
+            "kind": "lock",
+            "prompt": "Nøglen passer! Stop lyset i den gyldne åbning for at dreje låsens tre stifter.",
+            "items": [],
+            "targets": [],
+            "goal": 3
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S16"
+      },
+      "music": "danger",
+      "presentation": {
+        "anchor": "lower",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S45",
+      "page": 45,
+      "title": "En skefuld stjernelys",
+      "image_id": "alchemy",
+      "narrator": "Mos skubbede en opskrift hen til os. Under det store træ stod en sort gryde. På siden var den samme stjerne som på mit kompas.",
+      "dialogue": [
+        {
+          "speaker": "Mos",
+          "text": "Rødderne er bange. Giv dem noget, der husker solen."
+        },
+        {
+          "speaker": "Noor",
+          "text": "To dråber dug. En stjerneblomst. Tre rolige omrøringer …"
+        },
+        {
+          "speaker": "Liv",
+          "text": "… og en dråbe månemos. Det er godt, vi tog en ske med!"
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Gryden sendte små lys op mellem bladene. Da de landede på rødderne, blev deres greb en anelse blødere. Mos så på mig, som om jeg havde tændt solen."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "potion",
+            "prompt": "Bryg solminde: 2 dugdråber, 1 stjerneblomst, rør 3 gange, og tilsæt månemos.",
+            "items": [
+              {
+                "id": "dew",
+                "label": "Dugdråbe",
+                "icon": "dew"
+              },
+              {
+                "id": "flower",
+                "label": "Stjerneblomst",
+                "icon": "flower"
+              },
+              {
+                "id": "bottle",
+                "label": "Månemos",
+                "icon": "bottle"
+              }
+            ],
+            "targets": [],
+            "recipe": [
+              "dew",
+              "dew",
+              "flower",
+              "stir",
+              "stir",
+              "stir",
+              "bottle"
+            ]
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S18"
+      },
+      "music": "wonder",
+      "presentation": {
+        "anchor": "left",
+        "focus": [
+          0.76,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S46",
+      "page": 46,
+      "title": "Tre kræfter i én rod",
+      "image_id": "elements",
+      "narrator": "Miksturen havde vækket rodens gamle vogtere: ild, vand og jord. De dansede foran os. Hver kraft ventede på den, der kunne bringe den til ro.",
+      "dialogue": [
+        {
+          "speaker": "Mos",
+          "text": "Vand dæmper ild. Jord samler vand. Ild løsner jord."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Det er sten-saks-papir. Bare med væsentlig mere jord på skoene."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Vi behøver ikke vinde over skoven. Vi skal få den til at lytte."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Den sidste flamme blev til en varm gnist. Vogterne sænkede deres lys. Nu kunne vi komme tæt på roden uden at skade Mos."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "elements",
+            "prompt": "Vælg kraften, der skaber balance. Vand dæmper ild · jord samler vand · ild løsner jord.",
+            "items": [
+              {
+                "id": "fire",
+                "label": "Ild",
+                "icon": "fire"
+              },
+              {
+                "id": "water",
+                "label": "Vand",
+                "icon": "water"
+              },
+              {
+                "id": "stone",
+                "label": "Jord",
+                "icon": "stone"
+              }
+            ],
+            "targets": [],
+            "opponents": [
+              "fire",
+              "water",
+              "stone"
+            ]
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S19"
+      },
+      "music": "danger",
+      "presentation": {
+        "anchor": "right",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S47",
+      "page": 47,
+      "title": "Den, der overstregede stjernen",
+      "image_id": "clues",
+      "narrator": "Under det blå kridt var der ridset noget ganske småt. Tre tegn. Ikke en ordre. En besked til den næste, der ville lede.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Der er et mærke helt inde i revnen. Har du Eddas lup?"
+        },
+        {
+          "speaker": "Liv",
+          "text": "Ja. Og nu vil jeg vide, hvem der har prøvet at viske det væk."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Se langs kanterne. Det er der, hemmeligheder gemmer sig."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "»Lukket er ikke det samme som tryg,« stod der mellem tegnene. Jeg gemte ordene. Jeg havde en fornemmelse af, at Edda ville genkende dem."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "search",
+            "prompt": "Undersøg stenen med luppen. Find den lille stjerne, det blå segl og det skjulte blad.",
+            "items": [
+              {
+                "id": "star",
+                "label": "En stjerne under kridtet",
+                "icon": "rune",
+                "pos": [
+                  0.27,
+                  0.23
+                ]
+              },
+              {
+                "id": "seal",
+                "label": "Et lille blåt segl",
+                "icon": "thread",
+                "pos": [
+                  0.73,
+                  0.62
+                ]
+              },
+              {
+                "id": "hidden_leaf",
+                "label": "Et blad i en revne",
+                "icon": "leaf",
+                "pos": [
+                  0.44,
+                  0.79
+                ]
+              }
+            ],
+            "targets": []
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S21"
+      },
+      "music": "wonder",
+      "presentation": {
+        "anchor": "lower",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S48",
+      "page": 48,
+      "title": "Lys til den nederste hylde",
+      "image_id": "well",
+      "narrator": "Vi kunne se frøene, men ikke den sti, der førte ned til dem. Mos gav mig tre små lysfrø. De var lune og summede i min hånd.",
+      "dialogue": [
+        {
+          "speaker": "Mos",
+          "text": "Send dem til klokkeblomsterne. Så åbner de lyset."
+        },
+        {
+          "speaker": "Noor",
+          "text": "Et kastespil. Med blomster, der klapper, når man rammer."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Det er langt rarere end dem med bamser, man aldrig vinder."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Tre blomster foldede sig ud, og hele brønden glimtede. Selv den nederste hylde havde nu en lille sol."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "aim",
+            "prompt": "Tryk »Send lys«, når ildfluen er inde i blomstens gyldne ring. Tænd alle tre blomster.",
+            "items": [],
+            "targets": [],
+            "goal": 3
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S28"
+      },
+      "music": "playful",
+      "presentation": {
+        "anchor": "left",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S49",
+      "page": 49,
+      "title": "Den sovende rodvogter",
+      "image_id": "guardian",
+      "narrator": "Den sidste vej var spærret af en rodvogter. En lille nøgle hang i dens mos. Den sov med et øje, der af og til glemte at lukke.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Vi kunne vække den og spørge pænt."
+        },
+        {
+          "speaker": "Mos",
+          "text": "Den har sovet i hundrede år. Den er gnaven de første halvtreds minutter."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Så låner vi nøglen. Stille og roligt. Og lægger den tilbage bagefter."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Nøglen gled fri. Jeg åbnede det lille gitter foran den nederste hylde og hængte straks nøglen tilbage i mosset. Rodvogteren mumlede »fem minutter mere« og trak en bregne op over næsen."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "stealth",
+            "prompt": "Hold fingeren på nøglen, mens vogteren sover. Slip, når den begynder at vågne.",
+            "items": [],
+            "targets": [],
+            "goal": 1
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S29"
+      },
+      "music": "danger",
+      "presentation": {
+        "anchor": "right",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S50",
+      "page": 50,
+      "title": "Ibens sidste besked",
+      "image_id": "letter",
+      "narrator": "Edda foldede et gammelt brev ud. Det var fra Iben. Ved underskriften stod en hånd med en stjerne — præcis som på kompasset. Edda så længe på det blå kridt, vi havde taget med.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Så lunden tørrede ikke bare ud?"
+        },
+        {
+          "speaker": "Edda",
+          "text": "Fortæl mig, hvad I så. Hvilken forklaring passer til jeres spor?"
+        },
+        {
+          "speaker": "Liv",
+          "text": "Vand bag en låst sluse. Blåt kridt. Og en stjerne, nogen prøvede at skjule."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Edda læste en linje fra brevet: »Hvis jeg lukker vejene, kan ingen komme til skade.« Så så hun på Mos. »Iben var bange. Måske behøver hun også nogen, der viser hende en vej hjem.« For første gang tænkte jeg på hende som et menneske. Ikke bare et mysterium."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "truth",
+            "prompt": "Hvilken forklaring passer til sporene, I fandt?",
+            "items": [
+              {
+                "id": "weather",
+                "label": "Solen tørrede kilden",
+                "icon": "fire",
+                "response": "Edda: Men I fandt jo vand bag slusen. Solen forklarer ikke låsen."
+              },
+              {
+                "id": "closed",
+                "label": "Nogen lukkede vejen",
+                "icon": "key",
+                "response": "Edda: Ja. Nogen troede, en lukket vej var en sikker vej."
+              },
+              {
+                "id": "mos",
+                "label": "Mos skjulte vandet",
+                "icon": "leaf",
+                "response": "Mos: Jeg sad fast. Edda nikker. Han kunne ikke nå slusen."
+              }
+            ],
+            "targets": [],
+            "answer": "closed"
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S35"
+      },
+      "music": "wonder",
+      "presentation": {
+        "anchor": "lower",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S51",
+      "page": 51,
+      "title": "Bogen, der kendte mit navn",
+      "image_id": "book",
+      "narrator": "På Eddas bord lå en bog i grønt drageskind. Den var varm, som om nogen lige havde læst i den. Da jeg rørte omslaget, åbnede den sig på en drage med blade i vingerne.",
+      "dialogue": [],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Jeg lukkede bogen. Hvis bare halvdelen var sandt, var der nogen derude, der havde ventet alt for længe. Først skulle tasken pakkes."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "book",
+            "prompt": "Læs om Mos, lundens lille vogter.",
+            "items": [],
+            "targets": [],
+            "spreads": [
+              {
+                "title": "Mos · lundens lille vogter",
+                "subtitle": "NATURDRAGE · HJEMVEJ I",
+                "image": "mos",
+                "text": "I de ældste lunde lever en drage, som de fleste går lige forbi. Mos er på størrelse med en stor hund, men han kan rulle sig sammen til noget, der ligner en ganske almindelig mostue. Hans skæl ligner bark, og mellem dem vokser fine blade. Når han ligger stille, kan selv en fugl finde på at lande på hans hoved. Han bor dér, hvor rødder møder rent vand: ved kilder, gamle brønde og skyggefulde piledamme. Han bygger sin rede af blødt mos og tabte fjer. Finder du tre små blomster midt om vinteren, har Mos måske sovet netop dér. Gå langsomt. Han ser dig længe før du ser ham.",
+                "facts": [
+                  "LEVESTED  Kilder, brønde og piledamme",
+                  "KENDTEGN  Barkskæl · bladvinger · gyldne øjne",
+                  "SPOR  Små klomærker og blomster i skyggen"
+                ]
+              },
+              {
+                "title": "Et pust, der vækker livet",
+                "subtitle": "KRÆFTER · FORSVAR · SVAGHEDER",
+                "image": "breath",
+                "text": "Mos spytter ikke ild. Hans naturpust kan vække et frø, få en vissen gren til at blomstre og bøje en rod, der har glemt at give plads. Når han må forsvare sig, sender han en sky af blade mod sin modstander eller kalder på rødderne, så de danner et blødt skjold. Hans styrke vokser nær levende planter og rindende vand. Tørke gør ham træt. Stærk røg forvirrer hans lugtesans. Og bliver hans vinge klemt, kan han ikke flyve fri, selv om han kan høre hele skoven kalde. Træk aldrig i vingen. Hjælp det, der holder ham, med at slippe.",
+                "facts": [
+                  "ANGREB  Bladsky og rodgreb",
+                  "STYRKER  Naturpust · rodskjold · skovens hørelse",
+                  "SVAGHEDER  Tørke, røg og fastklemte vinger"
+                ]
+              },
+              {
+                "title": "Brønden, der holdt vejret",
+                "subtitle": "EN GAMMEL HISTORIE · ET NYT LØFTE",
+                "image": "moon",
+                "text": "Engang viste Mos vandet vej gennem den stille lund. Han kendte hvert frø og hvert lille dyr, der kom for at drikke. Så blev en sluse lukket. De gamle hjemveje forsvandt, og en hånd med en stjerne blev streget over med blåt kridt. Mos fløj ned for at hjælpe de sidste frø. Men i mørket lukkede rødderne sig om hans vinge. Siden har lunden ventet. Bogen fortæller ikke, om han stadig er der. Kun dette: En hjemvej kan ikke låses op med magt. Nogen må lytte, finde sporene og give plads. Da Liv læser den sidste linje, lyser hendes navn i bogens kant.",
+                "facts": [
+                  "MISSION  Find Mos og giv vingen fri",
+                  "MYSTERIET  Hvem lukkede slusen — og hvorfor?",
+                  "HUSK  En ven er noget, man får lov at blive"
+                ]
+              }
+            ]
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented",
+        "direct": true
+      },
+      "next": {
+        "success": "K01_S52"
+      },
+      "music": "wonder",
+      "presentation": {
+        "anchor": "left",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S52",
+      "page": 52,
+      "title": "Alt skal kunne være i tasken",
+      "image_id": "kitchen",
+      "narrator": "Noor fandt den gode taske med de mange lommer. Edda lagde en lup oven på tingene. »Til det, man ikke ser ved første øjekast,« sagde hun og satte en flaske månemos ved siden af.",
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "text": "Reb, lanterne, ske, bog, månemos og lup. Det skal kunne være her. På en eller anden måde."
+        },
+        {
+          "speaker": "Liv",
+          "text": "Så pakker vi klogt. Og holder den store lomme fri for krummer."
+        }
+      ],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Klik. Spændet holdt! Noor løftede tasken. »Vi er klar til alt. Bortset fra måske at løbe op ad bakke.«"
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "packing",
+            "prompt": "Træk tingene ind i taskens rum, så de ikke overlapper. Drej en valgt ting, hvis den ikke passer.",
+            "items": [
+              {
+                "id": "book",
+                "label": "Dragebogen",
+                "icon": "book",
+                "shape": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "id": "spoon",
+                "label": "Træske",
+                "icon": "spoon",
+                "shape": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "id": "lantern",
+                "label": "Lanterne",
+                "icon": "lantern",
+                "shape": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "rope",
+                "label": "Reb",
+                "icon": "rope",
+                "shape": [
+                  2,
+                  1
+                ]
+              },
+              {
+                "id": "bottle",
+                "label": "Månemos",
+                "icon": "bottle",
+                "shape": [
+                  1,
+                  1
+                ]
+              },
+              {
+                "id": "lens",
+                "label": "Lup",
+                "icon": "lens",
+                "shape": [
+                  1,
+                  1
+                ]
+              }
+            ],
+            "targets": [],
+            "width": 4,
+            "height": 4
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented"
+      },
+      "next": {
+        "success": "K01_S53"
+      },
+      "music": "playful",
+      "presentation": {
+        "anchor": "left",
+        "focus": [
+          0.8,
+          0.43
+        ]
+      }
+    },
+    {
+      "id": "K01_S53",
+      "page": 53,
+      "title": "En vej, der endnu ikke findes",
+      "image_id": "map",
+      "narrator": "Edda lagde et kort på bordet. En gylden streg begyndte at bevæge sig gennem skoven. Den tegnede ikke bare steder. Den tegnede alt det, vi endnu ikke vidste, vi turde.",
+      "dialogue": [],
+      "success_text": {
+        "speaker": "Liv",
+        "text": "Stregen sluttede ved en lille grøn dør. Så bankede noget under køkkengulvet. Tre små bank. Som om eventyret allerede vidste, vi var klar."
+      },
+      "runtime": {
+        "stages": [
+          {
+            "kind": "journey",
+            "prompt": "Følg rejsens lys fra farmen gennem lunden — og hjem med en ny ven.",
+            "items": [],
+            "targets": [],
+            "stops": [
+              [
+                "Farmen",
+                0.16,
+                0.68
+              ],
+              [
+                "Porten",
+                0.3,
+                0.57
+              ],
+              [
+                "Tågeskoven",
+                0.45,
+                0.39
+              ],
+              [
+                "Frøens bro",
+                0.55,
+                0.54
+              ],
+              [
+                "To stier",
+                0.6,
+                0.37
+              ],
+              [
+                "Mos’ brønd",
+                0.8,
+                0.25
+              ],
+              [
+                "Miksturen",
+                0.71,
+                0.48
+              ],
+              [
+                "Den frie vinge",
+                0.66,
+                0.64
+              ],
+              [
+                "Et nyt hjem",
+                0.83,
+                0.76
+              ]
+            ]
+          }
+        ],
+        "coordinate_space": "scene",
+        "overlay_status": "implemented",
+        "direct": true
+      },
+      "next": {
+        "success": "K01_S01"
+      },
+      "music": "wonder",
+      "presentation": {
+        "anchor": "lower",
+        "focus": [
+          0.5,
+          0.43
+        ]
+      }
+    }
+  ],
+  "callbacks": {
+    "K01_S17": {
+      "key": "samtaletone",
+      "values": {
+        "ask": "Jeg havde spurgt stille. Nu kom svaret, lige så stille: Mos. Det var navnet fra bogen. Men nu tilhørte det en, der sad lige foran mig og turde svare.",
+        "wait": "Vi havde ventet. Nu løftede Mos selv hovedet. Mos, sagde han. Som om navnet var en gave, han først nu turde række os.",
+        "joke": "Dragen pustede igen. Denne gang lød det som en latter. Så kom et ord, helt tydeligt: Mos. Jeg havde fundet noget meget bedre end en kat."
+      }
+    },
+    "K01_S35": {
+      "key": "kontakt",
+      "values": {
+        "hand": "Jeg havde lovet at gå ved hans side. Nu stod vi på en tom grund sammen. Her kunne Mos få et sted, hvor nogen blev, også når han gik langsomt.",
+        "space": "Mos skulle selv bestemme. Det havde jeg lovet ved brønden. Derfor pegede jeg på de to steder og ventede, til han var klar til at vælge sammen med os.",
+        "home": "En dør, der altid er åben. Det havde jeg lovet. Nu skulle vi bygge den — og et lille hus, der var værd at komme tilbage til."
+      }
+    },
+    "K01_S40": {
+      "key": "velkomst",
+      "values": {
+        "water": "Mos havde drukket det meste af sin nye vandskål. Nu landede en varm rød gnist i det sidste vand. Langt ude på havet stod et fyr uden lys.",
+        "garden": "De blomster, Mos havde vækket, lyste stadig i aftenen. Så landede en rød gnist mellem dem. Ude på havet stod et fyr uden lys.",
+        "story": "Edda havde lyttet til hele vores historie. Netop som jeg troede, den var slut, landede en rød gnist i Mos’ skål. Ude på havet stod et fyr uden lys."
+      }
+    }
+  },
+  "music": {
+    "playful": [
+      3,
+      6,
+      7,
+      9,
+      10,
+      12,
+      27,
+      33,
+      36,
+      37,
+      42,
+      48
+    ],
+    "danger": [
+      14,
+      15,
+      18,
+      22,
+      23,
+      24,
+      25,
+      26,
+      43,
+      44,
+      46,
+      49
+    ],
+    "evening": [
+      30,
+      31,
+      32,
+      34,
+      35,
+      38,
+      39,
+      40,
+      50
+    ]
+  }
+}

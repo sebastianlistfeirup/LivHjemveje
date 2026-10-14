@@ -11,20 +11,23 @@ func check(condition: bool, message: String):
 
 func _initialize():
 	var all_visited = {}
+	DirAccess.make_dir_recursive_absolute("res://test-results/checkpoints")
 	for route in ["AA","AB","BA","BB"]:
 		var save = SaveStore.new(true)
 		var rt = StoryRuntime.new(save)
 		rt.enter()
 		var visited = []
 		var snapshots = {}
-		while rt.state().mode == "STORY" and visited.size() < 41:
+		while rt.state().mode == "STORY" and visited.size() < 56:
 			var page = rt.page()
 			visited.append(page.id);all_visited[page.id]=true
+			var fixture=FileAccess.open("res://test-results/checkpoints/"+page.id+".json",FileAccess.WRITE)
+			fixture.store_string(save.serialize());fixture.close()
 			check(not rt.next_page(), route + ": cannot skip " + page.id)
 			check(not rt.perform("ring_1"), "Reading consumes input")
-			for i in 3: rt.read_next()
+			for i in page.dialogue.size()+1: rt.read_next()
 			var guard=0
-			while not rt.progress().solved and guard < 90:
+			while not rt.progress().solved and guard < 220:
 				guard+=1
 				var c=rt.config()
 				var sp=rt.stage_progress()
@@ -49,10 +52,10 @@ func _initialize():
 				save=copy
 				rt=StoryRuntime.new(save)
 			check(rt.progress().solved,route+": scene solved " + page.id)
-			if guard>=90:break
+			if guard>=220:break
 			if int(page.page) in [32,35,38,40]:snapshots[str(int(page.page))]=save.active().duplicate(true)
 			rt.next_page()
-		check(visited.size()==36,route+": exactly 36 scenes")
+		check(visited.size()==49,route+": exactly 49 scenes")
 		check(rt.state().mode=="FARM_FREE",route+": ends at free farm")
 		check(snapshots.get("32",{}).get("dragons",{}).get("dragon_01",{}).get("rescued",false),route+": Mos rescued before home")
 		check(snapshots.get("35",{}).get("houses",{}).get("house_01",{}).get("built",false),route+": house built at S35")
@@ -92,8 +95,8 @@ func _initialize():
 		var path="res://test-results/"+route+"-complete.json"
 		var file=FileAccess.open(path,FileAccess.WRITE)
 		if file:file.store_string(save.serialize());file.close()
-		print("PASS route "+route+" · 36 scenes · save/replay · permanent farm · 3 garden levels")
-	check(all_visited.size()==40,"All 40 authored nodes are covered")
+		print("PASS route "+route+" · 49 scenes · save/replay · permanent farm · 3 garden levels")
+	check(all_visited.size()==53,"All 53 authored nodes are covered")
 	var invalid=SaveStore.new(true)
 	var initial=invalid.serialize()
 	check(not invalid.import_save('{"data":{}}'),"Reject invalid save")

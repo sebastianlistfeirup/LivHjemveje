@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 p=Path(__file__).resolve().parents[1]/'builds/web'
-for name in ['index.html','index.js','index.pck','index.wasm','index.audio.worklet.js','index.audio.position.worklet.js','manifest.webmanifest','sw.js','app-icon.png']:
+for name in ['index.html','index.js','index.pck','index.wasm','index.audio.worklet.js','index.audio.position.worklet.js','manifest.webmanifest','sw.js','app-icon.png','THIRD-PARTY-LICENSES.txt']:
  assert (p/name).is_file(),f'Missing {name}'
 html=(p/'index.html').read_text()
 assert '$GODOT_' not in html,'Unexpanded Godot template'

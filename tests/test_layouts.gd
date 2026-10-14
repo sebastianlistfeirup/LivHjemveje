@@ -18,13 +18,14 @@ func _initialize():
 		layout.store=save;layout.runtime=rt;layout.screen="story";layout.size=dimensions
 		for id in rt.pages:
 			save.data.current_node=id
-			rt.progress().read=3
+			rt.progress().read=rt.page().dialogue.size()+1
 			layout.viewport_layout()
 			check(layout.portrait==(dimensions.y>=dimensions.x),str(dimensions)+": orientation")
 			for stage in rt.page().runtime.stages.size():
 				rt.progress().stage=stage
-				var puzzle=PuzzleView.new()
-				puzzle.setup(rt,layout.art_rect,dimensions)
+				layout.viewport_layout()
+				var puzzle=GrimoireView.new() if rt.config().kind=="book" else AdventureView.new() if rt.config().kind in AdventureGame.KINDS or rt.config().kind=="choice" else PuzzleView.new()
+				puzzle.setup(rt,layout.play_rect,dimensions)
 				for hit in puzzle.hits:
 					var center=hit.rect.get_center()
 					var label=str(dimensions)+" "+id+" stage "+str(stage)+" "+hit.id

@@ -12,4 +12,14 @@ func _initialize():
 		resized.resize(entry[0],entry[0],Image.INTERPOLATE_LANCZOS)
 		if resized.save_png(destination.path_join(entry[1]))!=OK:
 			quit(1);return
+	var licenses=FileAccess.open(destination.path_join("THIRD-PARTY-LICENSES.txt"),FileAccess.WRITE)
+	if licenses==null:
+		quit(1);return
+	licenses.store_string("GODOT ENGINE\n\n"+Engine.get_license_text())
+	licenses.store_string("\n\nGODOT COMPONENT COPYRIGHT NOTICES\n\n"+JSON.stringify(Engine.get_copyright_info(),"\t"))
+	for name in Engine.get_license_info():
+		licenses.store_string("\n\n"+name+"\n\n"+Engine.get_license_info()[name])
+	for source in ["res://assets/fonts/LICENSE.txt","res://assets/fonts/Symbols-LICENSE.txt"]:
+		licenses.store_string("\n\n"+source.get_file()+"\n\n"+FileAccess.get_file_as_string(source))
+	licenses.close()
 	quit()

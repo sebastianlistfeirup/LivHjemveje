@@ -1,16 +1,18 @@
 class_name SaveStore
 extends RefCounted
 ## Every physical subgoal is committed before its visual response.
-const VERSION = 1
+const VERSION = 2
 const PATH = "user://liv-save.json"
 var data: Dictionary
 var replay: Dictionary = {}
 var last_error = ""
 var memory_only = false
 static var scene_rules: Dictionary = {}
+static var legacy_rules: Dictionary = {}
+static var reading_limits: Dictionary = {}
 
 static func fresh() -> Dictionary:
-	return {"save_version": VERSION, "mode": "STORY", "current_node": "K01_S01", "started": false,
+	return {"save_version": VERSION, "mode": "STORY", "current_node": "K01_S51", "started": false,
 		"choices": {}, "node_progress": {}, "inventory": [], "journal": [], "flags": {},
 		"dragons": {}, "houses": {}, "chapters": {}, "minigames": {"G01": {"level": 0, "plots": {}, "pipes": [1,2,3], "grown": false, "arrangements": []}},
 		"settings": {"text_scale": 1.0, "reduced_motion": false, "music": true, "effects": true, "vibration": false, "narration": false}, "visited": []}
@@ -27,9 +29,13 @@ func active() -> Dictionary:
 static func valid_state(value: Variant) -> bool:
 	if scene_rules.is_empty():
 		var source=JSON.parse_string(FileAccess.get_file_as_string("res://content/runtime/chapter_01.json"))
-		for page in source.chapter.pages:scene_rules[page.id]=page.runtime.stages
-	if not value is Dictionary or value.get("save_version") != VERSION:
+		for page in source.chapter.pages:legacy_rules[page.id]=page.runtime.stages.duplicate(true)
+		for page in AdventureBook.enrich(source).chapter.pages:
+			scene_rules[page.id]=page.runtime.stages
+			reading_limits[page.id]=page.dialogue.size()+1
+	if not value is Dictionary or (value.get("save_version") != 1 and value.get("save_version") != VERSION):
 		return false
+	var rules=legacy_rules if int(value.save_version)==1 else scene_rules
 	for key in ["choices", "node_progress", "flags", "dragons", "houses", "chapters", "minigames", "settings"]:
 		if not value.get(key) is Dictionary:
 			return false
@@ -58,16 +64,18 @@ static func valid_state(value: Variant) -> bool:
 		var progress = value.node_progress[id]
 		if not progress is Dictionary or not progress.get("stages", {}) is Dictionary:
 			return false
-		if not whole_number(progress.get("stage"), 0, 2) or not whole_number(progress.get("read"), 0, 3):
+		if not rules.has(id):return false
+		if not whole_number(progress.get("stage"), 0, rules[id].size()-1) or not whole_number(progress.get("read"), 0, 3 if int(value.save_version)==1 else reading_limits[id]):
 			return false
 		if not progress.get("solved") is bool or not whole_number(progress.get("hint"), 0, 3):
 			return false
-		if int(progress.stage)>=scene_rules[id].size(): return false
+		if progress.has("response") and not progress.response is String:return false
+		if int(progress.stage)>=rules[id].size(): return false
 		if progress.solved and (not value.flags.get(id) is bool or not value.flags[id]): return false
 		for key in progress.stages:
-			if not key in ["0", "1", "2"]: return false
-			if int(key)>=scene_rules[id].size(): return false
-			var config=scene_rules[id][int(key)]
+			if not key is String or not key.is_valid_int() or str(int(key))!=key or int(key)<0:return false
+			if int(key)>=rules[id].size(): return false
+			var config=rules[id][int(key)]
 			var stage = progress.stages[key]
 			if not stage is Dictionary or not stage.get("done", []) is Array or not stage.get("placed", {}) is Dictionary:
 				return false
@@ -78,6 +86,7 @@ static func valid_state(value: Variant) -> bool:
 			if stage.rotations.size()!=config.get("initial",[]).size():return false
 			for rotation in stage.rotations:
 				if not whole_number(rotation, 0, 3): return false
+			if not valid_challenge_progress(stage,config):return false
 			for done in stage.done:
 				if not done is String: return false
 			for pos in stage.placed.values():
@@ -121,19 +130,86 @@ static func valid_state(value: Variant) -> bool:
 	if value.started:
 		if not value.current_node in value.visited or not value.node_progress.has(value.current_node):return false
 		var page_number=int(value.current_node.substr(5))
-		if page_number>=9 and not value.choices.has("k01_rute"):return false
-		if page_number>=23 and not value.choices.has("k01_redning"):return false
-		if page_number>=33 and not value.dragons.get("dragon_01",{}) is Dictionary:return false
-		if page_number>=33 and not value.dragons.get("dragon_01",{}).get("rescued",false):return false
-		if page_number>=36 and not value.houses.has("house_01"):return false
-		if page_number>=37 and not value.houses.house_01.decoration is Dictionary:return false
+		if page_number<=40 and page_number>=9 and not value.choices.has("k01_rute"):return false
+		if page_number<=40 and page_number>=23 and not value.choices.has("k01_redning"):return false
+		if page_number<=40 and page_number>=33 and not value.dragons.get("dragon_01",{}) is Dictionary:return false
+		if page_number<=40 and page_number>=33 and not value.dragons.get("dragon_01",{}).get("rescued",false):return false
+		if page_number<=40 and page_number>=36 and not value.houses.has("house_01"):return false
+		if page_number<=40 and page_number>=37 and not value.houses.house_01.decoration is Dictionary:return false
 	return true
+
+
+static func valid_challenge_progress(p: Dictionary, c: Dictionary) -> bool:
+	if not c.kind in AdventureGame.KINDS:return true
+	for key in ["round","index","lane","cell","mistakes"]:
+		if p.has(key) and not whole_number(p[key],0,10000):return false
+	for key in ["elapsed","meter"]:
+		if p.has(key) and (not (p[key] is int or p[key] is float) or not is_finite(float(p[key])) or p[key]<0 or p[key]>100000):return false
+	if p.has("held") and not p.held is bool:return false
+	for key in ["wrong","steps","stars"]:
+		if p.has(key) and (not p[key] is Array or p[key].size()>4096):return false
+	if int(p.get("lane",1))>2:return false
+	if c.kind=="labyrinth" and int(p.get("cell",0))>=int(c.maze.width)*int(c.maze.height):return false
+	if c.kind=="runes":
+		if int(p.get("round",0))>c.sequences.size():return false
+		if int(p.get("round",0))<c.sequences.size() and int(p.get("index",0))>=c.sequences[int(p.get("round",0))].size():return false
+	if c.kind=="memory_map":
+		if p.get("steps",[]).size()>c.route.size():return false
+		for i in p.get("steps",[]).size():
+			if p.steps[i]!=c.route[i]:return false
+	if c.kind=="keymatch":
+		if not whole_number(p.get("attempts",0),0,3):return false
+		if p.get("wrong",[]).size()>int(p.get("attempts",0)):return false
+	if c.kind=="book":
+		if p.done.size()>c.spreads.size():return false
+		var words=c.spreads[mini(p.done.size(),c.spreads.size()-1)].text.split(" ").size()
+		if not whole_number(p.get("book_word",0),0,words):return false
+	if c.kind=="packing":
+		if not p.get("bag",{}) is Dictionary or not whole_number(p.get("turn",0),0,1):return false
+		var ids=[];var occupied=[]
+		for item in c.items:ids.append(item.id)
+		if p.selected!="" and not p.selected in ids:return false
+		if p.get("bag",{}).size()!=p.done.size():return false
+		for id in p.get("bag",{}):
+			if not id in ids or not id in p.done:return false
+			var place=p.bag[id]
+			if not place is Dictionary:return false
+			if not whole_number(place.get("x"),0,3) or not whole_number(place.get("y"),0,3) or not whole_number(place.get("turn"),0,1):return false
+			var shape=AdventureGame.packing_shape(c,id,int(place.turn))
+			if place.x+shape.x>4 or place.y+shape.y>4:return false
+			for y in shape.y:
+				for x in shape.x:
+					var cell=Vector2i(place.x+x,place.y+y)
+					if cell in occupied:return false
+					occupied.append(cell)
+	for wrong in p.get("wrong",[]):
+		if not wrong is String:return false
+	for star in p.get("stars",[]):
+		if not whole_number(star,0,4):return false
+	if c.kind=="labyrinth":
+		for cell in p.get("steps",[]):
+			if not whole_number(cell,0,62):return false
+	if c.kind=="potion" and p.done.size()>c.recipe.size():return false
+	return true
+
+static func migrate(value: Dictionary) -> Dictionary:
+	var updated=value.duplicate(true)
+	if int(updated.save_version)==VERSION:return updated
+	updated.save_version=VERSION
+	if not updated.started:updated.current_node="K01_S51"
+	for id in updated.node_progress:
+		var p=updated.node_progress[id]
+		if AdventureBook.altered(id):
+			# Keep every earned reward and completed scene. Only a changed, unfinished
+			# challenge restarts; its old input layout no longer describes the puzzle.
+			p.stage=0;p.stages={};p.read=0;p.hint=0
+	return updated
 
 static func whole_number(value: Variant, low: int, high: int) -> bool:
 	return (value is int or value is float) and is_finite(float(value)) and float(value) == floorf(float(value)) and value >= low and value <= high
 
 static func valid_node(value: Variant) -> bool:
-	return value is String and value.length() == 7 and value.begins_with("K01_S") and value.substr(5).is_valid_int() and int(value.substr(5)) >= 1 and int(value.substr(5)) <= 40 and value == "K01_S%02d" % int(value.substr(5))
+	return value is String and value.length() == 7 and value.begins_with("K01_S") and value.substr(5).is_valid_int() and int(value.substr(5)) >= 1 and int(value.substr(5)) <= 53 and value == "K01_S%02d" % int(value.substr(5))
 
 static func normalized_pair(value: Variant) -> bool:
 	if not value is Array or value.size() != 2: return false
@@ -160,8 +236,8 @@ func accept_envelope(parsed: Variant) -> bool:
 	var saved_replay = parsed.get("replay", {})
 	if not saved_replay is Dictionary or (not saved_replay.is_empty() and not valid_state(saved_replay)):
 		return false
-	data = parsed.data
-	replay = saved_replay
+	data = migrate(parsed.data)
+	replay = migrate(saved_replay) if not saved_replay.is_empty() else {}
 	return true
 
 func serialize() -> String:
@@ -199,9 +275,16 @@ func persist() -> bool:
 func import_save(raw: String) -> bool:
 	if raw.length() > 2000000:
 		return false
+	var previous_data=data
+	var previous_replay=replay
 	if not accept_envelope(JSON.parse_string(raw)):
 		return false
-	return persist()
+	if persist():return true
+	var error=last_error
+	data=previous_data;replay=previous_replay
+	persist()
+	last_error=error
+	return false
 
 func start_replay() -> void:
 	replay = fresh()

@@ -11,11 +11,11 @@ var changed = false
 
 func _init(save: SaveStore):
 	store = save
-	source = JSON.parse_string(FileAccess.get_file_as_string(CONTENT))
+	source = AdventureBook.enrich(JSON.parse_string(FileAccess.get_file_as_string(CONTENT)))
 	for page in source.chapter.pages:
 		pages[page.id] = page
 		for config in page.runtime.stages:
-			assert(config.kind in KINDS, "Unknown interaction: " + config.kind)
+			assert(config.kind in KINDS or config.kind in AdventureGame.KINDS, "Unknown interaction: " + config.kind)
 
 func state() -> Dictionary:
 	return store.active()
@@ -54,7 +54,7 @@ func read_next() -> void:
 	store.persist()
 
 func ready_for_action() -> bool:
-	return int(progress().read) > page().dialogue.size() and not progress().solved
+	return (page().runtime.get("direct",false) or int(progress().read) > page().dialogue.size()) and not progress().solved
 
 func perform(id: String, pos: Vector2 = Vector2(-1, -1)) -> bool:
 	feedback = ""
@@ -63,6 +63,13 @@ func perform(id: String, pos: Vector2 = Vector2(-1, -1)) -> bool:
 		return false
 	var c = config()
 	var p = stage_progress()
+	if c.kind in AdventureGame.KINDS:
+		var result=AdventureGame.apply(c,p,id,pos,state().choices)
+		feedback=result.feedback;changed=result.changed
+		if changed:
+			if stage_complete():finish_stage()
+			store.persist()
+		return changed
 	var item: Dictionary = {}
 	for candidate in c.items + c.targets:
 		if candidate.id == id:
@@ -122,7 +129,8 @@ func perform(id: String, pos: Vector2 = Vector2(-1, -1)) -> bool:
 			state().choices[c.key] = id
 			p.done = [id]
 			changed = true
-			if c.key == "samtaletone":
+			feedback=item.get("response","")
+			if feedback.is_empty() and c.key == "samtaletone":
 				feedback = "Mos løfter øret og lytter." if id == "ask" else "Mos slapper af, mens I venter sammen."
 		"maze":
 			if not source.maze.nodes.has(id):
@@ -186,6 +194,7 @@ func find_item(id: String) -> Dictionary:
 func stage_complete() -> bool:
 	var c = config()
 	var p = stage_progress()
+	if c.kind in AdventureGame.KINDS:return AdventureGame.complete(c,p)
 	match c.kind:
 		"rotate", "pipes":
 			for i in c.goal.size():
@@ -222,7 +231,7 @@ func commit_page() -> void:
 	s.flags[page().id] = true
 	match n:
 		1: add_unique("inventory", "compass")
-		3:
+		3,52:
 			for item in ["rope", "spoon", "lantern"]: add_unique("inventory", item)
 		5: s.flags.arrival_frozen = true
 		6: add_unique("journal", "vaadt_blad")
@@ -281,6 +290,9 @@ func next_page() -> bool:
 func demonstrate() -> bool:
 	var c = config()
 	var p = stage_progress()
+	if c.kind in AdventureGame.KINDS:
+		var step=AdventureGame.hint_step(c,p)
+		return perform(step.id,step.get("pos",Vector2.ZERO)) if not step.is_empty() else false
 	match c.kind:
 		"choice", "album":
 			feedback = "Det er dit valg. Begge muligheder giver plads til historien."

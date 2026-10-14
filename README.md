@@ -4,9 +4,12 @@
 
 Et dansk, illustreret eventyr til Liv: Find kompasset, udforsk lunden med Noor, befri skovdragen Mos og byg hans hjem. Når kapitlet er slut, kan I blive på farmen, indrette Rodhytten og lege i Mos’ levende have.
 
-Kapitel 1 indeholder 40 scener, fire mulige gennemløb, 30 originale illustrationer, interaktive gåder, musik, animationer, automatisk gemning, en vedvarende farm og en haveleg med tre niveauer. De oprindelige replikker og valg er bevaret. Der er ingen pointquiz, tidsfrist, køb eller konto.
+Kapitel 1 har **53 scener og fire historieruter** med 49 scener i hvert gennemløb. Eventyret begynder i en gammel dragebog, fortsætter med at pakke tasken og viser rejsen som en lysende streg på kortet. Undervejs vælger Liv sine svar og sin vej, lærer Mos at kende og opdager, hvorfor lunden er blevet lukket.
 
-<p><img src="docs/screenshots/titel.png" width="220" alt="Spillets titelskærm på telefon"><img src="docs/screenshots/broen.png" width="220" alt="Byg en bro med planker"><img src="docs/screenshots/farmen.png" width="220" alt="Mos hjemme på Livs dragefarm"><img src="docs/screenshots/haven.png" width="220" alt="Et blomstrende bed med 16 felter"></p>
+Billederne fylder skærmen med langsom kamerabevægelse, lys, ildfluer, damp og bløde overgange. Replikker skrives frem, og dragebogens ord lyser i læseretningen. Puslespil, rodlabyrint, rune-melodier, lup, mikstur, ti nøgler med tre forsøg og andre små udfordringer er en del af historien. Fire musikstemninger følger rejsen. Der er ingen køb, konto, reklamer eller daglige pligter.
+
+<p><img src="docs/screenshots/dragebogen.png" width="480" alt="Den magiske dragebog med Mos og ord, der lyser i læseretningen"><img src="docs/screenshots/miksturen.png" width="480" alt="Liv og Noor brygger en mikstur i skovens værksted"></p>
+<p><img src="docs/screenshots/haven.png" width="480" alt="Mos’ have med tre slags illustrerede blomster"><img src="docs/screenshots/farmen.png" width="220" alt="Mos hjemme på Livs dragefarm i stående telefonformat"></p>
 
 ## Spil
 
@@ -14,7 +17,7 @@ Kapitel 1 indeholder 40 scener, fire mulige gennemløb, 30 originale illustratio
 
 Spillet er indrettet til **liggende telefon og iPad**. Telefonen kan også holdes stående; billeder, gåder og tekst flytter sig automatisk, og du kan dreje skærmen midt i spillet. Hjemmeskærmsudgaven følger enhedens orientering. Slå enhedens rotationslås fra, hvis den skal kunne dreje.
 
-Tryk på tingene i billedet. Genstande kan enten trækkes til et mål eller vælges med ét tryk og placeres med det næste. Læs i dit eget tempo. Kompasset åbner rejsekortet, dagbogen gemmer fund og replikker, og menuen har tekststørrelse, rolig bevægelse, lyd og sikkerhedskopier.
+Tryk på tingene i billedet. Genstande kan enten trækkes til et mål eller vælges med ét tryk og placeres med det næste. Læs i dit eget tempo. Kompasset åbner rejsekortet, dagbogen gemmer fund og replikker og kan åbne dragebogen igen, og menuen har tekststørrelse, rolig bevægelse, lyd og sikkerhedskopier.
 
 Fremgangen gemmes på den enhed og i den browser, du spiller i. Brug **Indstillinger → Eksportér mit eventyr** for at flytte den eller bevare en ekstra kopi. Genbesøg overskriver ikke farmen.
 
@@ -39,14 +42,15 @@ python3 -m http.server 8080 --directory builds/web
 
 ## Udvikling og kvalitet
 
+- [Kontroller af udgave 2.0.0](docs/VERIFIKATION.md)
 - [Teknisk opbygning, gemning og testkommandoer](docs/TEKNIK.md)
 - [Færdige dele og konkrete afgrænsninger](docs/STATUS.md)
 - [Grafik, lyd og skrifternes oprindelse](assets/PROVENANCE.md)
 - [Den oprindelige produktionsbibel](docs/Produktionsbibel-original.md)
 
-`content/source/Spildata.json` er den uændrede fortællingskilde. Runtime-data og præcise handlinger genereres af `tools/make_runtime.py`. `tests/test_chapter.gd` gennemfører alle fire ruter med genindlæsning efter hvert deltrin og kontrollerer farm, genbesøg og alle haveniveauer. `tests/browser.cjs` spiller med rigtige mus-/touchhændelser i en debug-webeksport.
+`content/source/Spildata.json` er den uændrede fortællingskilde. Den oprindelige runtime genereres af `tools/make_runtime.py`; `tools/make_adventure.py` tilføjer den nye åbning, udvidede replikker, valg og udfordringer i et separat indholdslag. `tests/test_chapter.gd` gennemfører alle fire ruter med genindlæsning efter hvert deltrin og kontrollerer farm, genbesøg og alle haveniveauer. `tests/adventure-play.cjs` gennemspiller eventyret med rigtige touchhændelser, og `tests/adventure-mobile.cjs` kontrollerer rotation og mobilstyring.
 
-De 30 sceneillustrationer ligger i projektet som WebP. De store originalfiler og produktionsmaterialet kan fortsat hentes fra udviklingspakken nedenfor. Kapitel 2–10 er ikke spilbare i denne udgave.
+De 30 originale sceneillustrationer er suppleret med nye landskaber, minispilsscener, en magisk bog og transparente genstande. Baggrundene ligger i projektet som WebP. De store originalfiler og produktionsmaterialet kan fortsat hentes fra udviklingspakken nedenfor. Kapitel 2–10 er ikke spilbare i denne udgave.
 
 ---
 
@@ -101,4 +105,4 @@ Læs derefter:
 
 Begynd med en spilbar udgave af kapitel 1 med de medfølgende replikker, valg, visuelle gåder og hjemkomst til dragefarmen. Følg biblen for mobilbetjening, animationer og progression.
 
-Dette er udviklingsmaterialet. Et færdigt spil, separate animationslag og indtalt lyd er endnu ikke inkluderet. Bevar originalmaterialet som reference; læg implementeringen i projektets egne filer. Den store PDF skal fortsat ligge som releasefil frem for at blive committed til almindelig Git.
+Den oprindelige PDF er udviklingsmateriale; det spilbare kapitel findes via linkene øverst. Indtalte skuespillerstemmer følger ikke med. Bevar originalmaterialet som reference; læg implementeringen i projektets egne filer. Den store PDF skal fortsat ligge som releasefil frem for at blive committed til almindelig Git.

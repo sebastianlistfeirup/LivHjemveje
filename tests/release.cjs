@@ -20,16 +20,16 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
  if(process.env.CAPTURE_CONTROLS==='1'){
   const q=()=>page.evaluate(()=>__livQA);const controls={};
   controls.begin=(await q()).buttons.find(b=>b.text.includes('Begynd')).rect;await tap(controls.begin);
-  controls.read=[];
-  for(let i=0;i<3;i++){const r=(await q()).buttons.find(b=>b.text.includes('Læs videre')||b.text.includes('Se, hvad')).rect;controls.read.push(r);await tap(r);}
-  controls.rings=[1,2].map(i=>null);const state=await q();controls.rings=state.actions.filter(a=>['ring_1','ring_2'].includes(a.id)).map(a=>a.rect);
+  await page.waitForFunction(()=>__livQA.actions.some(a=>a.id==='turn'));
+  controls.turn=(await q()).actions.find(a=>a.id==='turn').rect;
   fs.writeFileSync(controlsFile,JSON.stringify(controls,null,2)+'\n');console.log('Recorded touch controls for release check');
  }else{
   assert.equal(await page.evaluate(()=>typeof window.__livQA),'undefined','Release must not expose diagnostics');
   const c=JSON.parse(fs.readFileSync(controlsFile));
-  await tap(c.begin);for(const rect of c.read)await tap(rect);for(const rect of c.rings)await tap(rect);
+  await tap(c.begin);await tap(c.turn);
+  await page.waitForFunction(()=>JSON.parse(localStorage.getItem('liv-hjemveje-v1'))?.data.node_progress.K01_S51?.stages['0']?.done.length===1,null,{timeout:15000});
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('liv-hjemveje-v1')));
-  assert(saved.data.started);assert.equal(saved.data.node_progress.K01_S01.stages['0'].done.length,2);
+  assert(saved.data.started);assert.equal(saved.data.node_progress.K01_S51.stages['0'].done.length,1);
   await page.waitForFunction(()=>!!navigator.serviceWorker?.controller,null,{timeout:120000});
   const cdp=await context.newCDPSession(page);
   assert.equal(await page.evaluate(async()=> (await (await fetch('manifest.webmanifest')).json()).orientation),'any');
@@ -42,8 +42,8 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
   await context.setOffline(true);await page.reload({waitUntil:'networkidle'});
   await page.waitForFunction(()=>!document.getElementById('loading'),null,{timeout:60000});await page.waitForTimeout(800);await tap(c.begin);
   const restored=await page.evaluate(()=>JSON.parse(localStorage.getItem('liv-hjemveje-v1')));
-  assert.equal(restored.data.node_progress.K01_S01.stages['0'].done.length,2);
-  assert.deepEqual(errors,[]);console.log('PASS release: no debug API · real touch input · partial-scene save · full offline restart · zero browser errors');
+  assert.equal(restored.data.node_progress.K01_S51.stages['0'].done.length,1);
+  assert.deepEqual(errors,[]);console.log('PASS release: no debug API · real touch input · partial-book save · full offline restart · zero browser errors');
  }
  await context.close();fs.rmSync(profile,{recursive:true,force:true});
 })().catch(e=>{console.error(e);process.exit(1)});

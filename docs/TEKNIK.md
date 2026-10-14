@@ -1,79 +1,72 @@
-# Kapitel 1 — teknisk overblik
+# Teknisk overblik
 
-Motoren er **Godot 4.6.3 stable**, GDScript og Compatibility-rendering. Webeksporten bruger én tråd og kræver derfor ikke COOP/COEP-headere. Der er ingen backend, konti, telemetri eller køb. Indholdet kan også køres direkte i Godot på en computer.
+Spillet bruger **Godot 4.6.3**, GDScript og Compatibility-rendering. Webeksporten bruger én tråd og WebGL 2, uden krav om COOP/COEP. Der er ingen backend, konto eller telemetri.
 
-## Fortælling og controllere
+## Indhold og progression
 
-`content/source/Spildata.json` er den uændrede kilde med alle 400 scenenoder. `tools/make_runtime.py` udleder kapitel 1 og tilføjer **40 konkrete scenekonfigurationer og 53 handlingstrin** i `content/runtime/chapter_01.json`. Fortæller, replikker, slutreplikker, side-ID'er, billed-ID'er og `next` bevares fra kilden.
+`content/source/Spildata.json` er den uændrede produktionskilde. `tools/make_runtime.py` udleder den oprindelige kapitelkonfiguration. `tools/make_adventure.py` skriver udvidelsen til `content/runtime/adventure_01.json`; `AdventureBook` sammenfletter dem ved indlæsning. Udvidelsen indeholder 13 nye scener, reviderede replikker, valg og minispil. Senere replikker afhænger blandt andet af Livs samtale med Mos og løftet ved brønden.
 
-`StoryRuntime` er tilstandsmaskinen; den bruges både af spillet og rutetesten. De eksplicitte controllere er undersøg, sekvens, placer, drej, render, valg, graf-labyrint, rens, fem forskelle, fri placering og album. Ukendte controllere udløser en udviklerfejl. Der findes ingen generisk Fortsæt-erstatning for en uløst handling.
+`StoryRuntime` ejer sceneskift, læsning, deltrin og belønninger. Der er 53 noder og 49 noder pr. rute. Åbningen er S51 (dragebog), S52 (taske), S53 (rejsekort), derefter S01. S08 og S22 gemmer de to A/B-valg før overgangen. S32 redder Mos, S35 bygger huset, S38 gemmer eksklusiv rutegave og redningsdetalje, og S40 åbner farmen. Kapitel 2 bliver opdaget, men kan ikke startes.
 
-Læsning består af fortæller, to oprindelige replikker, handling og oprindelig slutreplik. Læsning har ingen tidsfrist. Figurernes små reaktioner og hint er supplerende; de oprindelige replikker er ikke omskrevet. Taleboblerne kan genlæses, og tidligere besøgte sider findes i dagbogen.
+`AdventureGame` indeholder deterministiske regler for de nye udfordringer, adskilt fra tegning og input. Pakning kontrollerer form, drejning, overlap og taskens grænser. Labyrinten er en reproducerbar 9 × 7-graf med blindgyder. Nøglerne har ti forskellige firetandsprofiler; kun afprøvning bruger et af tre forsøg. Efter tre fejl kræves fornyet undersøgelse, før tre nye forsøg åbnes. Runer, potion og hukommelsessti gemmer deres rækkefølge; løb og rodvogter gemmer fremgangen i små tidsskridt.
 
-S08 og S22 gemmer A/B før overgangen. Begge grene samles ved henholdsvis S13 og S27. Et gennemløb har 36 noder, og de fire kombinationer dækker alle 40. S32 registrerer Mos og hjemvejen, S35 huset, S38 gaven og redningsdetaljen, S40 kapitelafslutning og fri farm. Kapitel 2 markeres som opdaget, men er ikke implementeret og starter aldrig automatisk.
+Der findes ingen generisk fortsætknap til en uløst opgave. Hints har tre trin; det sidste viser ét korrekt deltrin. Læsning har ingen tidsfrist. De nye spil med timing kan gentages og bliver langsommere med rolig bevægelse.
 
-## Grafik og input
+## Grafik og mobilinput
 
-De oprindelige illustrationer vises ubeskåret i 2:3. Liggende telefoner og iPads får tekst ved siden af billedet; stående skærme får et tekstfelt under billedet, som tilpasses den aktuelle replik. Ved 125/150 % tekst kan feltet rulles. Alle nødvendige mål har mindst 48 logiske pixels. På meget små eller lave skærme udvides de præcise gådeudsnit, så genstandene fortsat kan betjenes.
+`WorldView` fylder hele skærmen med sceneillustrationen og bruger langsom zoom/panorering, krydsfade, lys, ildfluer, sommerfugle og damp. `living_picture.gdshader` flytter blikket ganske lidt i specifikt markerede øjenområder i udvalgte illustrationer. Disse effekter slås fra ved rolig bevægelse; søgebilleder og forskelsgåder fryses under undersøgelsen.
 
-Webversionen tegner ved skærmens fulde pixeltæthed, men bruger CSS-pixels til layout og input via Godots canvas-skalering. Derfor har en iPhone med DPR 3 samme 390-pixel brede betjening som en 390-pixel browserprøve, samtidig med at billeder og tekst tegnes skarpt. Skift af orientering genberegner størrelsen. Layoutet følger forholdet mellem højde og bredde, også på en lille liggende telefon på 568 × 320. PWA-manifestet bruger `orientation: any`, og Godot bruger sensororientering: ingen af udgaverne låser spillet til stående format. Liggende format anbefales på titelskærmen, mens stående telefon og iPad fortsat er fuldt betjenelige. Enhedens egen rotationslås respekteres.
+`GrimoireView` viser tre illustrerede opslag med faktalister. Hele teksten er tilgængelig, og et ord ad gangen får gyldent lys i læseretningen. Læseren kan pause, starte forfra, rulle eller bladre videre. Læsepositionen gemmes løbende. Dagbogen kan åbne bogen i en separat runtime med et hukommelsesbaseret SaveStore; læsning dér ændrer ikke eventyrets fremgang. `AdventureView` tegner de nye spil oven på scenen; `PuzzleView` håndterer de bevarede oprindelige handlinger. Forskelsgåden bruger ét fælles, stillestående motiv med præcis fem ændringslag.
 
-Scenegenstande, overlays og input bruger samme `art_rect` eller eksplicitte `closeup_rect`. En trækhandling har tryk-på-ting/tryk-på-mål som alternativ. Labyrinten bruger kun de 11 kanter i `maze-1`. De tre L-formede render har synlige åbne ender og faktisk orientering; vandet standser ved første brud. G01's lige render accepterer begge vandrette orienteringer.
+Replikker skrives frem bogstav for bogstav. Første tryk viser hele replikken, næste går videre. Korte replikker får smallere felter; lange passager placeres nederst. Tekstfelterne har farvede, gennemsigtige slør. Anvisninger ligger under spilområdet. Store bogstaver kan rulles inden i feltet.
 
-Forskelsgåden er ét deterministisk nært diagram med fem separate ændringslag inden for de originale normaliserede mål. Alt andet i sammenligningsfeltet er identisk og uden animation. Skift mellem plan og ankomst er eksplicit, og fund markeres i begge visninger.
+Input og layout bruger CSS-pixels, mens Godot tegner med enhedens fulde pixeltæthed. `orientation: any` og sensororientering tillader både stående og liggende spil. Kontroller bygges igen ved rotation; løst indhold, valgte genstande, drejninger og gemt fremgang bevares. Træk har et tryk/vælg/placer-alternativ. Labyrinten har også retningsknapper, og gryden kan omrøres med en cirkel eller et tryk.
 
-`WorldView` giver lokalt støv, lys, ildfluer, vandringe og succespartikler. `PuzzleView` viser objekters tilstand og flytning. Mos har seks særskilte stillinger og blink, små bevægelser samt naturpust på farmen. Rolig bevægelse slukker bevægelse og partikler; løsninger og statisk feedback består.
+De mindste mål i sporjagten er bevidst små og skal findes med luppens faktiske 3× skærmforstørrelse. Puslespilsfelter følger brikkernes geometri. Almindelige knapper har mindst 48 pixels i højden. På meget små skærme er stående format mest rummeligt til pakning og læsning.
 
-Farmen har en separat baggrund og selvstændige objekter. Den gemte grund er altid `house_01.position = [0.18, 0.30]`. `FarmView.ART_ANCHORS` er den faste projektion til det nye skrå oversigtsbillede, hvis malede geometri afviger fra det konceptuelle kort. Projektionen ændres aldrig af spillerens valg. Den valgte have, rede, pynt, gave, redningsdetalje og blomster tilhører samme grund.
+Farmen har separate baggrunde til stående og liggende format, genstande og Mos ovenpå. Gemningen bruger altid den kanoniske grund `[0.18, 0.30]`; `FarmView.anchor()` giver dens visuelle placering i hver komposition. Havevalget, rede, pynt, rutegave og blomster tilhører samme hus.
 
-## Gemning og genbesøg
+## Gemning og lyd
 
-Hvert deltrin gemmes, inden reaktionen afspilles. En versioneret JSON-envelope indeholder `data` og en eventuel separat `replay`. Native gemning skriver en midlertidig fil, validerer den, beholder backup og erstatter hovedfilen. På web er det synkrone localStorage-journal autoritativt, fordi Godots IndexedDB-filsynkronisering kan være forsinket ved en øjeblikkelig genindlæsning. Fil og backup er fallback.
+Version 2 gemmer hvert fysisk deltrin, før dets effekt vises. Den eksisterende webnøgle `liv-hjemveje-v1` beholdes for at finde version 1-gemninger. Migrering bevarer belønninger og afsluttede scener; kun ændrede, ufærdige opgaver nulstiller deres gamle trin. Et ikke påbegyndt eventyr får dragebogen som ny åbning.
 
-Importer valideres før tilstanden ændres: version, node-ID'er, scenetrin, tal, koordinater, valg, hus, album og havetilstand. Eksport/import findes i indstillinger. En blokeret lagerplads giver en synlig besked med mulighed for eksport.
+Native gemning bruger midlertidig fil, validering, backup og erstatning. På web er localStorage-journalen autoritativ; IndexedDB/filen er fallback. Import validerer version, noder, scenetrin, endelige tal, koordinater, pakkeformer, valg og have/hus. Genbesøg bruger en separat `replay`-tilstand og ændrer ikke hovedfarmen uden spillerens udtrykkelige valg efter afslutning.
 
-Genbesøg starter med en ny kapiteltilstand og egne delmål. Hovedfarmen ændres ikke. Efter et afsluttet genbesøg kan spilleren udtrykkeligt vælge den nye have/gave eller vende hjem til sin oprindelige farm.
-
-G01 gemmer frø og rør efter hvert input. De tre niveauer er 3 felter, 6 felter og et frit 4 × 4-bed. Tre arrangementspladser kan gemmes og vælges som varig pynt. Ingen plante visner ved fravær.
-
-## Lyd
-
-Lyd afbrydes, når spillet mister fokus, og musik genoptages efter spillerens indstillinger. Sceneskift har en kort billedovergang; berøringer har ringe og handlinger har selvstændig feedback. Rolig bevægelse fjerner disse effekter.
-
-Musik og effekter kan indstilles hver for sig. Musikken looper; den starter efter første brugerhandling. Valgfri dansk oplæsning bruger browserens/enhedens danske stemme. Hvis ingen dansk stemme er installeret, fortæller spillet det og bevarer den samme læseoplevelse. Ingen gåde afhænger af lyd, vibration eller timing.
+Fire musiksløjfer følger stemningen med krydsfade. Rune-melodier har egne toner. Musik/effekter kan slås fra hver for sig, og lyd pauses ved appskift. Valgfri oplæsning bruger enhedens danske systemstemme; den er ikke nødvendig for at spille.
 
 ## Byg og kontrollér
-
-`tools/prepare_pwa.py` tilføjer manifest, Mos-ikon og en versionsbestemt service worker. Hele eksporten lægges i én cache, før offline-udgaven aktiveres. Installationen genhenter filerne fra nettet, så browserens almindelige HTTP-cache ikke kan indsætte en ældre fil i den nye udgave. Ændringer i selve service workeren indgår også i versionsnøglen. Nye versioner venter, til åbne spilvinduer er lukket, så motor og indhold ikke blandes. Spillerens gemmefil ligger separat og slettes aldrig af cacheopdatering. Installation er en hjemmeskærmsapp, ikke en udgivelse i App Store/Google Play. Safari/iOS' installations- og lageradfærd skal stadig prøves på fysisk enhed.
-
-`tests/test_layouts.gd` kontrollerer alle sceners trykpunkter i otte formater: centrum skal ligge på skærmen, være fri af tekstfeltet og vælge det rigtige objekt. `tests/orientation.cjs` bruger berøringer på 568 × 320, 844 × 390 og 1180 × 820 og drejer hvert format begge veje midt i gåder og haveleg. Prøven bevarer både delmål, en valgt genstand, blomster og gemning efter genåbning.
-
-Den kompakte have bruger hele den ledige bredde og en separat vandret opsætning på lave skærme. Alle 16 jordfelter og hver frøtype kontrolleres med berøringshændelser i `tests/mobile.cjs`; prøven slår derefter nettet fra og genåbner spillet med det gemte bed.
-
-Den offentlige udgave ligger på `gh-pages`. Repositoryets Pages-kilde er GitHub Actions; `deploy-pages.yml` udgiver den færdige eksport ved push til denne gren. Workflowet findes også på udgivelsesgrenen. Kildekode og tunge originalpakker indgår ikke på spilsiden. Ved opdatering bygges og kontrolleres spillet med `export_web.sh`, hvorefter eksportfilerne erstattes på `gh-pages`, mens `.github/workflows/deploy-pages.yml` bevares.
 
 ```bash
 godot --headless --editor --import --quit
 mkdir -p test-results
 godot --headless --script tests/test_chapter.gd
 godot --headless --script tests/test_layouts.gd
+godot --headless --script tests/test_adventure.gd
 ./tools/export_web.sh
-python3 -m http.server 8080 --directory builds/web
+python3 -m http.server 8765 --directory builds/web
 ```
 
-Web-export templates skal være installeret til Godot 4.6.3. Browserprøver køres mod en **debug-eksport**; kun den har `window.__livQA`, et skrivebeskyttet udsnit af tilstand og kontrolkoordinater. Der er ingen spring-over- eller løs-gåden-funktion i diagnosefladen. Browserprøverne bruger rigtige mus-/touchhændelser.
+`test_chapter.gd` gennemfører AA, AB, BA og BB og genindlæser efter hvert deltrin. Den kontrollerer permanente belønninger, genbesøg, alle haveniveauer og ugyldig import. Den skriver checkpoints til de følgende browserprøver. `test_adventure.gd` prøver blandt andet fejl i pakning, nøgler, sekvenser, timing, rute og migrering. `test_layouts.gd` kontrollerer alle sceners trykpunkter i otte formater fra 568 × 320 og 320 × 568 til iPad.
+
+En debug-eksport har `window.__livQA`: kun læsning af tilstand, inputkoordinater og animationsfase. Ingen funktion kan springe over eller løse en gåde. Browserprøverne bruger almindelige touch-, træk- og musehændelser.
 
 ```bash
-godot --headless --export-debug Web builds/web/index.html
-python3 tools/prepare_pwa.py
-GAME_URL=http://127.0.0.1:8080 ROUTE=BB node tests/browser.cjs
-GAME_URL=http://127.0.0.1:8080 ROUTE=AA MOBILE=1 node tests/browser.cjs
-GAME_URL=http://127.0.0.1:8080 node tests/mobile.cjs
-GAME_URL=http://127.0.0.1:8080 node tests/orientation.cjs
+mkdir -p builds/qa
+godot --headless --export-debug Web builds/qa/index.html
+python3 -m http.server 8766 --directory builds/qa
+# I en anden terminal med Playwright og Chromium installeret:
+ROUTE=AA node tests/adventure-play.cjs
+ROUTE=BB node tests/adventure-play.cjs
+node tests/adventure-mobile.cjs
+node tests/adventure-visual.cjs
 ```
 
-Efter `./tools/export_web.sh` kontrollerer `node tests/release.cjs` den faktiske release-udgave med berøringer, gemning midt i første gåde og en fuld offline-genstart. Den sikrer også, at diagnosefladen er fjernet. `tests/release-controls.json` indeholder de registrerede trykpunkter til den faste 390 × 844-prøve. `RELEASE_ORIENTATION=landscape node tests/release.cjs` prøver 844 × 390 med `tests/release-controls-landscape.json`. Begge kræver et manifest, der tillader fri orientering.
+Mobilprøven drejer enheden med en valgt brik, bevarer pakkerotation, bruger luppen, bladrer ved 150 % tekst og planter i samtlige 16 jordfelter. Visuelle prøver gemmer skærmbilleder til gennemgang. `PLAYWRIGHT_PATH` kan angive et eksisterende Playwright-modul. `browser.cjs`, `mobile.cjs` og `orientation.cjs` er kompatible indgange til de opdaterede prøver.
 
-`node tests/pwa-update.cjs` prøver den eksporterede service worker mod en HTTP-server med frisk langtids-cache: den nye udgave skal hente nye filer, den åbne gamle udgave skal beholde sine filer, og gemning samt offline-genstart skal overleve skiftet. Små erstatningsfiler isolerer opdateringsforløbet fra spillets rendering.
+`tests/release.cjs` bruger registrerede trykpunkter mod den faktiske release, som ikke indeholder diagnosefladen. Den kontrollerer berøring, en delvist læst bog, manifest, installationshjælp og fuld offline-genstart. `RELEASE_ORIENTATION=landscape` vælger den liggende prøve. Koordinaterne opdateres fra debug-eksporten med `CAPTURE_CONTROLS=1 GAME_URL=http://127.0.0.1:8766`.
 
-Installér Playwright lokalt, eller sæt `PLAYWRIGHT_PATH` til dets modul. `CHROMIUM_PATH` kan angive en installeret Chromium. Slutleverancen er en release-eksport uden diagnosefladen.
+## Hjemmeskærm og udgivelse
+
+`prepare_pwa.py` tilføjer manifest, ikon og en versionsbestemt service worker. Hele eksporten hentes til én cache, før den aktiveres. Opdatering bruger netværksgenhentning og venter, til gamle spilvinduer er lukket. Motor og indhold blandes derfor ikke, og spillerens gemning ligger separat. `tests/pwa-update.cjs` kontrollerer dette forløb med varm HTTP-cache og offline-genstart.
+
+Den offentlige version ligger på `gh-pages`. `deploy-pages.yml` udgiver de færdige eksportfiler gennem GitHub Actions. Kildekode, tests og original-PDF indgår ikke på spilsiden. Nye ZIP-pakker gemmes også i udgivelsesgrenens `downloads/`. Installeret hjemmeskærmsapp kræver Safari/Chrome-installation; der er ingen App Store/Google Play-pakke.

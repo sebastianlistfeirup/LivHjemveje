@@ -36,21 +36,20 @@ func setup(rt: StoryRuntime, rect: Rect2, canvas_size: Vector2):
 	art_rect = rect
 	size = canvas_size
 	reduced = runtime.state().settings.reduced_motion
-	var direct = runtime.page().runtime.coordinate_space == "art_rect"
-	board = art_rect if direct else Rect2(art_rect.position + art_rect.size*Vector2(.045,.28),art_rect.size*Vector2(.91,.64))
-	if runtime.config().kind in ["maze", "difference", "pipes", "choice", "album"]:
-		board = Rect2(art_rect.position+art_rect.size*Vector2(.035,.30), art_rect.size*Vector2(.93,.61))
-	if not direct and art_rect.size.x<290:
-		var portrait=canvas_size.y>=canvas_size.x
-		var width=canvas_size.x-28 if portrait else canvas_size.x*.52-28
-		var height=art_rect.size.y-20
-		var left=(canvas_size.x-width)/2 if portrait else 14.0
-		board=Rect2(left,art_rect.position.y+10,width,height)
-	point_size = clampf(board.size.x * 0.17, 48, 72)
+	board = rect
+	point_size = clampf(minf(board.size.x * .17,board.size.y*.24), 48, 72)
 	build_hits()
 	queue_redraw()
 
 func p(uv: Array) -> Vector2:
+	# Short landscape screens use two spacious rows for loose pieces and sockets.
+	# The underlying saved positions keep their original story coordinates.
+	if size.x>size.y and board.size.y<260 and runtime.config().kind=="place":
+		var c=runtime.config()
+		for i in c.items.size():
+			if c.items[i].pos==uv:return board.position+Vector2((i+1.0)/(c.items.size()+1),.78)*board.size
+		for i in c.targets.size():
+			if c.targets[i].pos==uv:return board.position+Vector2((i+1.0)/(c.targets.size()+1),.25)*board.size
 	return board.position + Vector2(uv[0],uv[1])*board.size
 
 func hit(id: String, at: Vector2, label_text: String, hit_size: Vector2 = Vector2.ZERO):
@@ -100,9 +99,12 @@ func build_hits():
 					hit(item.id,p(item.pos),item.label)
 
 func at_point(point: Vector2) -> String:
-	for i in range(hits.size()-1,-1,-1):
-		if hits[i].rect.has_point(point): return hits[i].id
-	return ""
+	var closest="";var distance=INF
+	for h in hits:
+		if h.rect.has_point(point):
+			var d=point.distance_squared_to(h.rect.get_center())
+			if d<distance:closest=h.id;distance=d
+	return closest
 
 func normalized(point: Vector2) -> Vector2:
 	return (point-board.position)/board.size
@@ -146,7 +148,7 @@ func _process(delta):
 func sprite(name: String, at: Vector2, side: float, rotation_angle: float = 0.0, tint: Color = Color.WHITE):
 	var actual = name
 	if name == "gift": actual = "leaf" if runtime.state().choices.get("k01_rute","A") == "A" else "cup"
-	if name in ["bag", "water", "paw", "lift"]: actual = {"bag":"book","water":"bowl","paw":"hand","lift":"plank"}[name]
+	if name in ["paw", "lift"]: actual = {"paw":"hand","lift":"plank"}[name]
 	draw_set_transform(at,rotation_angle)
 	draw_texture_rect(UI.icon(actual),Rect2(Vector2(-side/2,-side/2),Vector2(side,side)),false,tint)
 	draw_set_transform(Vector2.ZERO)
@@ -161,7 +163,7 @@ func _draw():
 	var sp = runtime.stage_progress()
 	var solved = runtime.progress().solved
 	var direct = runtime.page().runtime.coordinate_space == "art_rect"
-	if not direct:
+	if c.kind=="difference":
 		draw_style_box(UI.box(Color(.035,.075,.055,1.0 if c.kind=="difference" else .90),18,Color("baa16b"),1),board.grow(8))
 		# Fine engraved grain, static so comparison diagrams remain pixel-stable.
 		for i in 14:
