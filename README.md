@@ -1,4 +1,50 @@
-# LivHjemveje
+# Liv og de ti hjemveje · Kapitel 1
+
+**[Spil kapitel 1 i browseren](https://sebastianlistfeirup.github.io/LivHjemveje/)**
+
+Et dansk, illustreret eventyr til Liv: Find kompasset, udforsk lunden med Noor, befri skovdragen Mos og byg hans hjem. Når kapitlet er slut, kan I blive på farmen, indrette Rodhytten og lege i Mos’ levende have.
+
+Kapitel 1 indeholder 40 scener, fire mulige gennemløb, 30 originale illustrationer, interaktive gåder, musik, animationer, automatisk gemning, en vedvarende farm og en haveleg med tre niveauer. De oprindelige replikker og valg er bevaret. Der er ingen pointquiz, tidsfrist, køb eller konto.
+
+<p><img src="docs/screenshots/titel.png" width="220" alt="Spillets titelskærm på telefon"><img src="docs/screenshots/broen.png" width="220" alt="Byg en bro med planker"><img src="docs/screenshots/farmen.png" width="220" alt="Mos hjemme på Livs dragefarm"><img src="docs/screenshots/haven.png" width="220" alt="Et blomstrende bed med 16 felter"></p>
+
+## Spil
+
+Tryk på tingene i billedet. Genstande kan enten trækkes til et mål eller vælges med ét tryk og placeres med det næste. Læs i dit eget tempo. Kompasset åbner rejsekortet, dagbogen gemmer fund og replikker, og menuen har tekststørrelse, rolig bevægelse, lyd og sikkerhedskopier.
+
+Fremgangen gemmes på den enhed og i den browser, du spiller i. Brug **Indstillinger → Eksportér mit eventyr** for at flytte den eller bevare en ekstra kopi. Genbesøg overskriver ikke farmen.
+
+På telefonen: Åbn **Indstillinger → Føj spillet til hjemmeskærmen**. På iPhone/iPad bruges Safari → Del → Føj til hjemmeskærm; på Android bruges browserens installation. Spillet åbner med sit eget Mos-ikon og uden browserens adresselinje. Efter første fulde indlæsning gemmes hele kapitel 1 til spil uden net. Lad spillet hente færdigt, før du går offline. Brug sikkerhedskopien, hvis enheden skifter lagerområde ved installation.
+
+## Kør projektet
+
+Installér **Godot 4.6.3 stable** (standardudgaven, ikke .NET), og åbn `project.godot`. Tryk F6/F5, eller kør:
+
+```bash
+godot --path .
+```
+
+Byg webversionen med de tilhørende export templates installeret:
+
+```bash
+./tools/export_web.sh
+python3 -m http.server 8080 --directory builds/web
+```
+
+Åbn `http://localhost:8080`. Webeksporten kræver WebGL 2 og bruger ingen backend. Den skal serveres over HTTP(S), ikke åbnes som `file://`.
+
+## Udvikling og kvalitet
+
+- [Teknisk opbygning, gemning og testkommandoer](docs/TEKNIK.md)
+- [Færdige dele og konkrete afgrænsninger](docs/STATUS.md)
+- [Grafik, lyd og skrifternes oprindelse](assets/PROVENANCE.md)
+- [Den oprindelige produktionsbibel](docs/Produktionsbibel-original.md)
+
+`content/source/Spildata.json` er den uændrede fortællingskilde. Runtime-data og præcise handlinger genereres af `tools/make_runtime.py`. `tests/test_chapter.gd` gennemfører alle fire ruter med genindlæsning efter hvert deltrin og kontrollerer farm, genbesøg og alle haveniveauer. `tests/browser.cjs` spiller med rigtige mus-/touchhændelser i en debug-webeksport.
+
+De 30 sceneillustrationer ligger i projektet som WebP. De store originalfiler og produktionsmaterialet kan fortsat hentes fra udviklingspakken nedenfor. Kapitel 2–10 er ikke spilbare i denne udgave.
+
+---
 
 ## Start her: Liv og de ti hjemveje
 

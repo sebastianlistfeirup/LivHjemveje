@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=contain,user-scalable=no">
+<meta name="theme-color" content="#102b25">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Livs hjemveje">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="app-icon.png">
+<meta name="description" content="Et levende eventyr til Liv. Find kompasset, red skovdragen Mos, og byg et hjem, der bliver ved med at være dit.">
+<title>Liv og de ti hjemveje · Kapitel 1</title>
+$GODOT_HEAD_INCLUDE
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0a1917;color:#f4e6cb;font-family:Georgia,serif}canvas{display:block;width:100%;height:100%;outline:none;touch-action:none}#loading{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 35%,#284f3d,#0b1e1a 70%);z-index:5;text-align:center;padding:32px}#loading h1{font-weight:400;font-size:clamp(32px,6vw,62px);margin:12px}#loading p{color:#c5bba3;font:14px/1.7 system-ui;max-width:340px}#loading .leaf{font-size:64px;color:#dcb778;animation:breathe 3s ease-in-out infinite}progress{width:min(270px,75vw);height:3px;border:0;background:#425347;accent-color:#e1bc79;margin:24px}progress::-webkit-progress-bar{background:#425347}progress::-webkit-progress-value{background:#e1bc79}.small{letter-spacing:4px;font-size:11px;color:#d8bb82}#error{display:none;white-space:pre-wrap;font:15px/1.7 system-ui;max-width:500px}#retry{display:none;padding:14px 30px;background:#e2bf80;border:none;border-radius:30px;color:#14281e;font-size:16px;cursor:pointer}@keyframes breathe{50%{transform:translateY(-8px);opacity:.6}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<style>
+html,body{overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}dialog{width:min(440px,calc(100% - 40px));border:1px solid #b99b64;border-radius:24px;padding:28px;background:#14392c;color:#f4e6cb;box-shadow:0 20px 90px #000a}dialog::backdrop{background:#03140de8}dialog h2{font-weight:400;font-size:28px;margin:0 0 18px}dialog p{font:16px/1.7 system-ui}dialog button{min-height:48px;width:100%;border:0;border-radius:14px;background:#dbb877;color:#172e23;font:bold 16px system-ui;margin-top:12px;padding:14px}#install-status{color:#d1c7aa;font-size:13px}
+</style>
+</head>
+<body>
+<canvas id="canvas" role="application" aria-label="Liv og de ti hjemveje. Brug mus, berøring eller Tab og Enter.">Din browser skal understøtte WebGL 2 for at vise spillet.</canvas>
+<div id="loading"><div class="leaf">✧</div><div class="small">ET EVENTYR TIL LIV</div><h1>De ti hjemveje</h1><p id="status">Lunden vågner. Dit eventyr er på vej …</p><progress id="progress" value="0" max="1"></progress><p id="error"></p><button id="retry" onclick="location.reload()">Prøv igen</button></div>
+<dialog id="install-help"><h2>Dit eventyr, lige ved hånden</h2><p id="install-copy"></p><p id="install-status"></p><button id="install-close">Tilbage til eventyret</button></dialog>
+<script src="$GODOT_URL"></script>
+<script>
+const engine=new Engine($GODOT_CONFIG);
+const loading=document.getElementById('loading');
+engine.startGame({onProgress:(current,total)=>{if(total>0&&document.getElementById('progress'))document.getElementById('progress').value=current/total;}}).then(()=>{loading.remove();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});}).catch(error=>{document.getElementById('status').textContent='Eventyret kunne ikke åbnes.';document.getElementById('error').style.display='block';document.getElementById('error').textContent='Prøv en opdateret Chrome, Safari eller Firefox med WebGL slået til.\n'+error.message;document.getElementById('retry').style.display='block';});
+let installPrompt=null;
+window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;});
+window.livInstall=async function(){
+  if(installPrompt){await installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;return;}
+  const installed=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  const apple=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  document.getElementById('install-copy').textContent=installed?'Eventyret ligger allerede på din hjemmeskærm. Velkommen hjem.':apple?'Åbn spillet i Safari. Tryk på Del, vælg Føj til hjemmeskærm, og tryk Tilføj. Åbn derefter Livs hjemveje fra det nye ikon.':'Åbn browserens menu, og vælg Installér app eller Føj til startskærm. Åbn derefter Livs hjemveje fra det nye ikon.';
+  const ready='serviceWorker' in navigator&&!!navigator.serviceWorker.controller;
+  document.getElementById('install-status').textContent=ready?'Hele kapitel 1 er gemt til spil uden net. Dit eventyr gemmes på denne enhed.':'Lad spillet stå åbent, mens kapitel 1 gemmes til spil uden net. Dit eventyr gemmes automatisk.';
+  document.getElementById('install-help').showModal();
+};
+document.getElementById('install-close').onclick=()=>document.getElementById('install-help').close();
+window.livFullscreen=function(){const element=document.documentElement;if(document.fullscreenElement)document.exitFullscreen?.();else element.requestFullscreen?.().catch(()=>{});};
+window.livExport=function(text){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'application/json'}));a.download='Livs-hjemveje.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
+window.livImport=function(){const i=document.createElement('input');i.type='file';i.accept='.json,application/json';i.onchange=async()=>{if(i.files[0]&&i.files[0].size<2000000)window.livImported=await i.files[0].text();};i.click();};
+window.livSpeak=function(text){if(!('speechSynthesis' in window))return false;const voices=speechSynthesis.getVoices();const voice=voices.find(v=>v.lang.toLowerCase().startsWith('da'));if(!voice)return false;speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.voice=voice;utterance.lang='da-DK';utterance.rate=.88;speechSynthesis.speak(utterance);return true;};
+if('speechSynthesis' in window)speechSynthesis.getVoices();
+</script>
+</body></html>
