@@ -1,0 +1,10 @@
+.godot/
+builds/
+liv_kilder/
+*.pdf
+*.tpz
+*.zip
+.DS_Store
+test-results/
+node_modules/
+*.log

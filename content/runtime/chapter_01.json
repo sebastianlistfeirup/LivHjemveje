@@ -1,0 +1,4188 @@
+{
+  "chapter": {
+    "n": 1,
+    "title": "Mos og brønden, der holdt vejret",
+    "dragon": "Mos",
+    "place": "Den stille lund",
+    "house": "Rodhytten",
+    "color": "#497C68",
+    "palette": "dyb mosgrøn, ravgyldne øjne, turkis vand og varm bark",
+    "design": "Lav, smidig skovdrage på størrelse med en stor hund; barkbrune små skæl, mosryg, to bladformede ører og korte bladårer i vingerne. Fire ben, to vinger, én hale. Gyldne øjne, nysgerrigt skævt blik.",
+    "need": "En vinge er fanget i rødder, fordi en sluse har tørret brønden ud. Mos bliver for at få tre frøkapsler med.",
+    "ability": "Naturpust bøjer levende rødder eller får et allerede plantet frø til at spire. Kan ikke flytte sten eller dyrke færdige boller.",
+    "emotion": "Liv opdager, at hjælp begynder med at standse og se efter. Mos inviteres og vælger selv at følge med.",
+    "clue": "En hånd med en stjerne er overstreget med blåt kridt. Den første af ti hjemveje tænder.",
+    "gifts": [
+      "vindblad",
+      "dugkop"
+    ],
+    "rescue": [
+      "reb og løft",
+      "klodser og støtte"
+    ],
+    "callback": [
+      "Et lille rebmærke ved Rodhytten; Mos strækker vingen under en blid vind.",
+      "De tre støtteklodser bliver til en bænk ved Rodhytten."
+    ],
+    "variants": [
+      "piledam",
+      "moslund"
+    ],
+    "lot": [
+      0.18,
+      0.3
+    ],
+    "game": "G01",
+    "pages": [
+      {
+        "id": "K01_S01",
+        "chapter": 1,
+        "page": 1,
+        "title": "En lyd under gulvet",
+        "narrator": "Jeg havde forestillet mig en sommer med dyr, helst en kat med plads til mine hemmeligheder. Så bankede noget under køkkengulvet. Katte banker da ikke på nedefra?",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Edda? Dit hus har hikke."
+          },
+          {
+            "speaker": "Edda",
+            "text": "Så håber jeg, det får et glas vand."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Der ligger noget og blinker!"
+        },
+        "image_id": "K01_B01",
+        "base_page": 1,
+        "new_composition": true,
+        "art": "Farmens køkken i morgenlys. Liv knæler ved et løst gulvbræt. Edda står ved en kop. Tre støvringe viser, hvor det banker. Kontinuitet: 0 færdige dragehuse før byggeriet; grund 01 er ledig. Tidligere huse: ingen.",
+        "interaction": {
+          "type": "undersøg",
+          "solution": "Tryk på de tre støvringe. De lyser i tur. Løft derefter brættets synlige ring; et kompas kommer frem.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Støv driver; koppen dirrer; solstribe flytter sig langsomt.",
+        "next": {
+          "success": "K01_S02"
+        },
+        "state_commit": {
+          "completed_page": "K01_S01",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Hvor kommer lyden fra? Undersøg de tre støvringe.",
+              "items": [
+                {
+                  "id": "ring_1",
+                  "label": "Den første støvring",
+                  "icon": "ring",
+                  "pos": [
+                    0.27,
+                    0.75
+                  ]
+                },
+                {
+                  "id": "ring_2",
+                  "label": "Den anden støvring",
+                  "icon": "ring",
+                  "pos": [
+                    0.53,
+                    0.8
+                  ]
+                },
+                {
+                  "id": "ring_3",
+                  "label": "Den tredje støvring",
+                  "icon": "ring",
+                  "pos": [
+                    0.77,
+                    0.7
+                  ]
+                }
+              ],
+              "targets": []
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Der er noget under brættet. Løft ringen.",
+              "items": [
+                {
+                  "id": "lift",
+                  "label": "Løft gulvbrættet",
+                  "icon": "lift",
+                  "pos": [
+                    0.53,
+                    0.76
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S02",
+        "chapter": 1,
+        "page": 2,
+        "title": "Kompasset, der pegede ned",
+        "narrator": "Kompasset lignede noget, der havde ventet længe på at blive fundet. Pilen drejede to gange og pegede lige på mine sko, som om jeg var en adresse.",
+        "dialogue": [
+          {
+            "speaker": "Edda",
+            "text": "Det tilhørte en, der fandt veje hjem."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Kunne hun ikke bare bruge et kort?"
+          }
+        ],
+        "success_text": {
+          "speaker": "Edda",
+          "text": "Nogen i lunden har brug for dig."
+        },
+        "image_id": "K01_B02",
+        "base_page": 2,
+        "new_composition": true,
+        "art": "Nærbillede af et rundt kompas på køkkenbordet. Ti tomme felter om en kerne. Et blad lyser. Livs hænder nederst.",
+        "interaction": {
+          "type": "drej",
+          "solution": "Drej kompasringen, så bladmærket møder den lysende revne. Tre andre symboler er tydelige, men inaktive. Pilen viser døren.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Ringlys pulserer; pilen vipper; boblen folder sig ud.",
+        "next": {
+          "success": "K01_S03"
+        },
+        "state_commit": {
+          "completed_page": "K01_S02",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "rotate",
+              "prompt": "Drej kompasringen, så bladet møder lysstriben.",
+              "items": [
+                {
+                  "id": "dial",
+                  "label": "Drej kompasringen",
+                  "icon": "compass",
+                  "pos": [
+                    0.5,
+                    0.53
+                  ]
+                }
+              ],
+              "targets": [],
+              "initial": [
+                2
+              ],
+              "goal": [
+                0
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S03",
+        "chapter": 1,
+        "page": 3,
+        "title": "En taske til næsten alt",
+        "narrator": "Noor stod i døren med en tom taske og en liste, der næsten nåede gulvet. Hun havde forberedt sig på alt, undtagen at tasken skulle kunne lukkes.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Vi skal være klar til alt."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Også en meget lille frokost?"
+          }
+        ],
+        "success_text": {
+          "speaker": "Noor",
+          "text": "Tre ting. Og plads til en bolle."
+        },
+        "image_id": "K01_B03",
+        "base_page": 3,
+        "new_composition": true,
+        "art": "Værkstedsbord med reb, træske og lanterne. Tekop, sko og en stor pude ligger ved siden af. Åben taske nederst.",
+        "interaction": {
+          "type": "find",
+          "solution": "Saml reb, træske og lanterne ved tryk eller drag til tasken. Tekop, sko og pude bliver liggende. Ingen straf ved at undersøge dem.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Taskerem svinger; lanternens lys tænder ved opsamling.",
+        "next": {
+          "success": "K01_S04"
+        },
+        "state_commit": {
+          "completed_page": "K01_S03",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Pak reb, træske og lanterne. Tryk en ting, og derefter tasken.",
+              "items": [
+                {
+                  "id": "rope",
+                  "label": "Reb",
+                  "icon": "rope",
+                  "pos": [
+                    0.2,
+                    0.35
+                  ],
+                  "target": "bag"
+                },
+                {
+                  "id": "spoon",
+                  "label": "Træske",
+                  "icon": "spoon",
+                  "pos": [
+                    0.5,
+                    0.35
+                  ],
+                  "target": "bag"
+                },
+                {
+                  "id": "lantern",
+                  "label": "Lanterne",
+                  "icon": "lantern",
+                  "pos": [
+                    0.8,
+                    0.35
+                  ],
+                  "target": "bag"
+                },
+                {
+                  "id": "shoe",
+                  "label": "Noor: Vi har allerede sko på.",
+                  "icon": "stone",
+                  "pos": [
+                    0.2,
+                    0.72
+                  ],
+                  "decoy": true
+                },
+                {
+                  "id": "pillow",
+                  "label": "Liv: Den pude vil have hele tasken.",
+                  "icon": "moss",
+                  "pos": [
+                    0.8,
+                    0.72
+                  ],
+                  "decoy": true
+                },
+                {
+                  "id": "teacup",
+                  "label": "Noor: Edda skal nok savne sin tekop.",
+                  "icon": "cup",
+                  "pos": [
+                    0.5,
+                    0.55
+                  ],
+                  "decoy": true
+                }
+              ],
+              "targets": [
+                {
+                  "id": "bag",
+                  "label": "Tasken",
+                  "icon": "bag",
+                  "pos": [
+                    0.5,
+                    0.78
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S04",
+        "chapter": 1,
+        "page": 4,
+        "title": "Porten i hækken",
+        "narrator": "Bag laden fandt vi en port, som jeg aldrig havde lagt mærke til. På skiltet stod der Hjem, men pilen pegede væk fra huset. Det virkede bagvendt.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Det skilt er da vendt forkert."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Måske er hjem ikke det samme for alle."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Okay. Vi kigger. Bare lidt."
+        },
+        "image_id": "K01_B04",
+        "base_page": 4,
+        "new_composition": true,
+        "art": "Lav træport i en tæt hæk. Skilt, hængsel og et bladformet hul. Lunden anes bagved. Kompas i Livs hånd.",
+        "interaction": {
+          "type": "brug",
+          "solution": "Vælg kompasset i taskelinjen og tryk på bladformet hul. Det fungerer som nøgle uden at blive brugt op.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Blade skiller sig; dybde i tre lag; lys strømmer gennem sprækken.",
+        "next": {
+          "success": "K01_S05"
+        },
+        "state_commit": {
+          "completed_page": "K01_S04",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Læg kompasset i portens bladformede hul.",
+              "items": [
+                {
+                  "id": "compass",
+                  "label": "Kompasset",
+                  "icon": "compass",
+                  "pos": [
+                    0.26,
+                    0.75
+                  ],
+                  "target": "lock"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "lock",
+                  "label": "Bladets nøglehul",
+                  "icon": "leaf",
+                  "pos": [
+                    0.7,
+                    0.46
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S05",
+        "chapter": 1,
+        "page": 5,
+        "title": "Lunden holder vejret",
+        "narrator": "Inde i lunden var stilheden så tæt, at jeg kunne høre min egen jakke rasle. Et lille pust kom mellem træerne, forsigtigt som nogen, der ikke ville forstyrre.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Kan du høre det?"
+          },
+          {
+            "speaker": "Liv",
+            "text": "Ja. Og jeg kan ikke lide, at det er alene."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Sporet går ned til vandet. Eller der, hvor det var."
+        },
+        "image_id": "K01_B05",
+        "base_page": 5,
+        "new_composition": true,
+        "art": "Bred skovscene med tør bæk, hult træ og rodflettet brønd. Fem store spor: skæl, mos, aftryk, revne og fjer.",
+        "interaction": {
+          "type": "spor",
+          "solution": "Undersøg mos, skæl og aftryk. Vis en kort detaljeboble ved hvert fund. Tre fund åbner den tørre bæk; fjeren er valgfri. Kompasset gemmer automatisk et diagram over ankomsttilstanden til senere sammenligning; endnu ikke en synlig gåde.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Let tåge glider; et blad falder; pust ses ved brønden.",
+        "next": {
+          "success": "K01_S06"
+        },
+        "state_commit": {
+          "completed_page": "K01_S05",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Kig efter spor efter nogen, der er alene.",
+              "items": [
+                {
+                  "id": "moss",
+                  "label": "Mosset er trykket fladt.",
+                  "icon": "moss",
+                  "pos": [
+                    0.26,
+                    0.6
+                  ]
+                },
+                {
+                  "id": "scale",
+                  "label": "Et skæl. Det er stadig varmt.",
+                  "icon": "leaf",
+                  "pos": [
+                    0.55,
+                    0.72
+                  ]
+                },
+                {
+                  "id": "footprint",
+                  "label": "Et lille aftryk går mod brønden.",
+                  "icon": "paw",
+                  "pos": [
+                    0.79,
+                    0.58
+                  ]
+                },
+                {
+                  "id": "feather",
+                  "label": "En fjer. Fuglene har også været her.",
+                  "icon": "feather",
+                  "pos": [
+                    0.2,
+                    0.85
+                  ],
+                  "decoy": true
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S06",
+        "chapter": 1,
+        "page": 6,
+        "title": "En frø med en klage",
+        "narrator": "Frøen sad i en tom vandkande med et meget utilfreds ansigt. Den så ud, som om vi var kommet for sent til et møde, vi ikke vidste fandtes.",
+        "dialogue": [
+          {
+            "speaker": "Frø",
+            "text": "Kilden er lukket. Det er meget upraktisk at være frø her."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Vi skal nok se på det."
+          }
+        ],
+        "success_text": {
+          "speaker": "Frø",
+          "text": "Jeg havde helst set på en sø."
+        },
+        "image_id": "K01_B06",
+        "base_page": 6,
+        "new_composition": true,
+        "art": "Frø på tud af rusten vandkande. Tre tørre render og en træprop ses bag den. Ingen skjulte små mål.",
+        "interaction": {
+          "type": "undersøg",
+          "solution": "Vip vandkanden ved dens håndtag. Et vådt bladmærke bliver synligt under bunden. Gem fundet vaadt_blad i journalen.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Frø blinker; en sidste dråbe falder; kanden vipper om bundpunkt.",
+        "next": {
+          "success": "K01_S07"
+        },
+        "state_commit": {
+          "completed_page": "K01_S06",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "sequence",
+              "prompt": "Tag i håndtaget og vip vandkanden.",
+              "items": [
+                {
+                  "id": "can",
+                  "label": "Vip vandkanden",
+                  "icon": "cup",
+                  "pos": [
+                    0.48,
+                    0.62
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S07",
+        "chapter": 1,
+        "page": 7,
+        "title": "Broen med en mangel",
+        "narrator": "To planker lå ved bækken, mens den tredje sad fast i sivene. Noor prøvede at måle hullet med sin sko. Jeg besluttede at redde både broen og hendes strømper.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Vi bygger, før vi hopper."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Mine sko takker dig."
+          }
+        ],
+        "success_text": {
+          "speaker": "Noor",
+          "text": "Nu kan vi gå over uden at øve flyvning."
+        },
+        "image_id": "K01_B07",
+        "base_page": 7,
+        "new_composition": true,
+        "art": "Tør bæk set skråt oppefra. Tre planker med forskellige længder og tre matchende mellemrum. Den sidste planke ligger løst i siv.",
+        "interaction": {
+          "type": "byg",
+          "solution": "Træk kort, mellem og lang planke til hul med samme længde. Vis silhuetter. En forkert planke hviler løst og kan flyttes igen.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Planker vipper under placering; støv puffer ved sidste bræt.",
+        "next": {
+          "success": "K01_S08"
+        },
+        "state_commit": {
+          "completed_page": "K01_S07",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Byg broen. Hver planke passer til et hul med samme længde.",
+              "items": [
+                {
+                  "id": "short",
+                  "label": "Kort planke",
+                  "icon": "plank",
+                  "pos": [
+                    0.2,
+                    0.79
+                  ],
+                  "target": "short_gap"
+                },
+                {
+                  "id": "medium",
+                  "label": "Mellem planke",
+                  "icon": "plank",
+                  "pos": [
+                    0.5,
+                    0.79
+                  ],
+                  "target": "medium_gap"
+                },
+                {
+                  "id": "long",
+                  "label": "Lang planke",
+                  "icon": "plank",
+                  "pos": [
+                    0.8,
+                    0.79
+                  ],
+                  "target": "long_gap"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "short_gap",
+                  "label": "Kort hul",
+                  "icon": "plank",
+                  "pos": [
+                    0.24,
+                    0.26
+                  ]
+                },
+                {
+                  "id": "medium_gap",
+                  "label": "Mellem hul",
+                  "icon": "plank",
+                  "pos": [
+                    0.5,
+                    0.43
+                  ]
+                },
+                {
+                  "id": "long_gap",
+                  "label": "Langt hul",
+                  "icon": "plank",
+                  "pos": [
+                    0.73,
+                    0.59
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S08",
+        "chapter": 1,
+        "page": 8,
+        "title": "To veje til samme pust",
+        "narrator": "Træstien fortsatte op mod lyset, mens en anden vej forsvandt mellem rødderne. Lyden kom fra samme sted. Vi kunne vælge, hvilken slags opdagelse vi ville begynde med.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Udsigt eller læ?"
+          },
+          {
+            "speaker": "Liv",
+            "text": "Du vælger. Jeg tager den forreste myg."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Så går vi den vej."
+        },
+        "image_id": "K01_B08",
+        "base_page": 8,
+        "new_composition": true,
+        "art": "Stideling. Til venstre lys træsti med vindhjul; til højre lav rodgang med lysende svampe. Begge mål tydelige i billedet.",
+        "interaction": {
+          "type": "valg",
+          "solution": "A: Tag træstien ; B: Gå gennem rodgangen. A giver vindblad; B giver dugkop. Begge hjælper senere på farmen og vises før valget.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Begge stier har egen rolig lysstrøm; valgt sti får kameratur.",
+        "next": {
+          "A": "K01_S09",
+          "B": "K01_S11"
+        },
+        "state_commit": {
+          "completed_page": "K01_S08",
+          "save_after_each_subgoal": true,
+          "k01_rute": "selected_A_or_B"
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "choices": {
+          "A": "Tag træstien",
+          "B": "Gå gennem rodgangen"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "choice",
+              "prompt": "To veje til den samme ven. Hvilken vil du udforske?",
+              "items": [
+                {
+                  "id": "A",
+                  "label": "Træstien · et vindblad",
+                  "icon": "leaf",
+                  "pos": [
+                    0.28,
+                    0.55
+                  ]
+                },
+                {
+                  "id": "B",
+                  "label": "Rodgangen · en dugkop",
+                  "icon": "cup",
+                  "pos": [
+                    0.72,
+                    0.55
+                  ]
+                }
+              ],
+              "targets": [],
+              "key": "k01_rute"
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S09",
+        "chapter": 1,
+        "page": 9,
+        "title": "Træstien",
+        "narrator": "Mellem grenene stod et vindhjul, der burde have drejet. Et blad af tyndt metal sad klemt i kanten, som en glemt besked med alt for skarpe hjørner.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "En maskine i et træ?"
+          },
+          {
+            "speaker": "Liv",
+            "text": "Den har vist fået noget galt i halsen."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Det ligner et blad. Men det dufter af regn."
+        },
+        "image_id": "K01_B09",
+        "base_page": 9,
+        "new_composition": true,
+        "art": "Træplatform med vindhjul og metalblad klemt mellem to eger. Fjer, kvist og nød er tydelige sideobjekter.",
+        "interaction": {
+          "type": "værktøj",
+          "solution": "Vælg træskeen og skub metalbladet fri fra siden. Hånd alene vises som for kort; reb er en undersøgelig mulighed uden tab.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Hjulet begynder at dreje; løv får svag bevægelse.",
+        "next": {
+          "success": "K01_S10"
+        },
+        "state_commit": {
+          "completed_page": "K01_S09",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Hjulet sidder fast. Skub metalbladet fri fra siden.",
+              "items": [
+                {
+                  "id": "spoon",
+                  "label": "Træske",
+                  "icon": "spoon",
+                  "pos": [
+                    0.22,
+                    0.8
+                  ],
+                  "target": "wheel"
+                },
+                {
+                  "id": "rope",
+                  "label": "Rebet kan ikke skubbe bladet fri.",
+                  "icon": "rope",
+                  "pos": [
+                    0.75,
+                    0.8
+                  ],
+                  "decoy": true
+                }
+              ],
+              "targets": [
+                {
+                  "id": "wheel",
+                  "label": "Bladet mellem egerne",
+                  "icon": "wheel",
+                  "pos": [
+                    0.5,
+                    0.35
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S10",
+        "chapter": 1,
+        "page": 10,
+        "title": "Et blad i vinden",
+        "narrator": "Da hjulet begyndte at dreje, strømmede luften ned mellem træerne. Pustet fra brønden blev en smule roligere. Jeg gemte metalbladet, forsigtigt nok til at Noor nikkede anerkendende.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Vi kan få vind med hjem."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Bare den ikke spiser vores boller."
+          }
+        ],
+        "success_text": {
+          "speaker": "Noor",
+          "text": "Der er brønden. Lige under os."
+        },
+        "image_id": "K01_B09",
+        "base_page": 9,
+        "new_composition": false,
+        "art": "Samme træplatform i tæt udsnit. Vindblad ligger nu frit i Livs hånd; rebtrappe ned anes til højre.",
+        "interaction": {
+          "type": "saml",
+          "solution": "Tag vindblad. Sæt k01_rute=A og vindblad=true. Tryk på rebtrappen for at vende mod brønden. Gå derfra til side 13.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Vindspor tegnes kort i luften; genstand flyver roligt til tasken.",
+        "next": {
+          "success": "K01_S13"
+        },
+        "state_commit": {
+          "completed_page": "K01_S10",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Tag vindbladet med. Det kan blive en gave til Mos.",
+              "items": [
+                {
+                  "id": "windleaf",
+                  "label": "Vindblad",
+                  "icon": "leaf",
+                  "pos": [
+                    0.5,
+                    0.43
+                  ]
+                }
+              ],
+              "targets": []
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Brønden er lige nedenunder. Find rebtrappen.",
+              "items": [
+                {
+                  "id": "ladder",
+                  "label": "Gå ned ad rebtrappen",
+                  "icon": "rope",
+                  "pos": [
+                    0.72,
+                    0.75
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S11",
+        "chapter": 1,
+        "page": 11,
+        "title": "Rodgangen",
+        "narrator": "Rødderne dannede et lavt loft med små lysende svampe langs kanten. I en niche stod en bladformet kop, og duggen i den spejlede en himmel, vi ikke kunne se.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Naturen har dækket bord."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Så må vi hellere spørge, før vi tager noget."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Koppen løfter sig. Jeg tror, det var et ja."
+        },
+        "image_id": "K01_B10",
+        "base_page": 11,
+        "new_composition": true,
+        "art": "Rodgang i profil. Dugkop i en niche. Tre sten danner sti mellem tørre felter; blå pytter er bløde stopzoner. De tolv spilpunkter og alle åbne passager følger præcis maze-1; de lægges som kontrollerede lag over miljøet.",
+        "interaction": {
+          "type": "labyrint",
+          "solution": "Før lyskuglen gennem maze-1 fra indgang til bladniche. Vælg tørre knudepunkter. Afprøvning stopper ved væg og bevarer sikker position.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Dug glitrer; små svampe lyser i rækkefølge langs valgt vej.",
+        "next": {
+          "success": "K01_S12"
+        },
+        "state_commit": {
+          "completed_page": "K01_S11",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "puzzle_spec": {
+          "kind": "graph_maze",
+          "graph_id": "maze-1",
+          "spec_file": "Spildata.json#mazes",
+          "solution": [
+            "I",
+            "E",
+            "F",
+            "B",
+            "C",
+            "G",
+            "H",
+            "D"
+          ]
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "maze",
+              "prompt": "Følg de tørre rødder til dugkoppen. Du kan altid gå tilbage.",
+              "items": [],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S12",
+        "chapter": 1,
+        "page": 12,
+        "title": "En kop fuld af sky",
+        "narrator": "Duggen blev i koppen, selv da jeg vippede den helt på skrå. Noor undersøgte den meget alvorligt og prøvede så at vande sin støvle. Forskning kan se mærkelig ud.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Den er vandtæt."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Det var ikke støvlen, vi testede."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Kom. Nogen venter på os."
+        },
+        "image_id": "K01_B10",
+        "base_page": 11,
+        "new_composition": false,
+        "art": "Samme rodniche i nærbillede. Liv holder koppen; Noor løfter en våd støvle. Udgangen ses bag en lav rod.",
+        "interaction": {
+          "type": "saml",
+          "solution": "Tag dugkop. Sæt k01_rute=B og dugkop=true. Åbn rodtæppet med et langt tryk eller en enkelt åbn-knap. Fortsæt til side 13.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Dug hænger som perler; støvle drypper; rod løftes i to trin.",
+        "next": {
+          "success": "K01_S13"
+        },
+        "state_commit": {
+          "completed_page": "K01_S12",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Løft dugkoppen fra nichen.",
+              "items": [
+                {
+                  "id": "dewcup",
+                  "label": "Dugkop",
+                  "icon": "cup",
+                  "pos": [
+                    0.58,
+                    0.38
+                  ]
+                }
+              ],
+              "targets": []
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Åbn rodtæppet, så I kan komme ud.",
+              "items": [
+                {
+                  "id": "curtain",
+                  "label": "Løft rodtæppet",
+                  "icon": "root",
+                  "pos": [
+                    0.46,
+                    0.72
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S13",
+        "chapter": 1,
+        "page": 13,
+        "title": "Brønden uden vand",
+        "narrator": "Brønden var næsten skjult af rødder, og på kanten lå noget grønt og sammenkrøllet. Jeg troede, det var mos, indtil to gyldne øjne åbnede sig og så direkte på mig.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Det er ikke en frø."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Det er heller ikke en særlig stor kat."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Det er en drage."
+        },
+        "image_id": "K01_B11",
+        "base_page": 13,
+        "new_composition": true,
+        "art": "Brøndens kant med to øjne i mørket. Liv og Noor står lidt tilbage. En væltet spand og lukket sluse ved siden af.",
+        "interaction": {
+          "type": "lys",
+          "solution": "Flyt lanternens lyskegle ned langs kanten. Find hale, pote og lille vinge. Hvert fund gør hele silhuetten mere tydelig.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Lys følger finger; mosåndedræt; to øjne følger lampen.",
+        "next": {
+          "success": "K01_S14"
+        },
+        "state_commit": {
+          "completed_page": "K01_S13",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Lys med lanternen. Find en hale, en pote og en vinge.",
+              "items": [
+                {
+                  "id": "tail",
+                  "label": "En hale bevæger sig.",
+                  "icon": "root",
+                  "pos": [
+                    0.72,
+                    0.8
+                  ]
+                },
+                {
+                  "id": "paw",
+                  "label": "En lille pote.",
+                  "icon": "paw",
+                  "pos": [
+                    0.4,
+                    0.7
+                  ]
+                },
+                {
+                  "id": "wing",
+                  "label": "En vinge af blade.",
+                  "icon": "leaf",
+                  "pos": [
+                    0.62,
+                    0.51
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S14",
+        "chapter": 1,
+        "page": 14,
+        "title": "Den knude, ingen bandt",
+        "narrator": "En rod havde snoet sig omkring dragens vinge og strammede, hver gang den trak. Jeg kendte problemet fra mine høretelefoner, men dette var ikke noget, man kunne ryste fri.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Vi må løsne dem fra den anden side."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Så skal vi finde, hvor de starter."
+          }
+        ],
+        "success_text": {
+          "speaker": "Noor",
+          "text": "Rødderne søger vand. De holder ikke vagt."
+        },
+        "image_id": "K01_B12",
+        "base_page": 14,
+        "new_composition": true,
+        "art": "Brønd set ovenfra med rodnet på tre niveauer. En bred rod fører til den lukkede vandrende. Vingen ses fri for skader.",
+        "interaction": {
+          "type": "følg",
+          "solution": "Følg hovedroden fra vingens løkke til slusen med finger eller punkter. Kun denne rod har bladpar hele vejen; de øvrige ender i jord.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Valgt rod gløder diskret; kamera følger langsomt uden at dreje.",
+        "next": {
+          "success": "K01_S15"
+        },
+        "state_commit": {
+          "completed_page": "K01_S14",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "sequence",
+              "prompt": "Følg roden med bladpar fra vingen til slusen.",
+              "items": [
+                {
+                  "id": "root_1",
+                  "label": "Ved vingen",
+                  "icon": "leaf",
+                  "pos": [
+                    0.25,
+                    0.78
+                  ]
+                },
+                {
+                  "id": "root_2",
+                  "label": "Det første bladpar",
+                  "icon": "leaf",
+                  "pos": [
+                    0.43,
+                    0.58
+                  ]
+                },
+                {
+                  "id": "root_3",
+                  "label": "Det næste bladpar",
+                  "icon": "leaf",
+                  "pos": [
+                    0.64,
+                    0.45
+                  ]
+                },
+                {
+                  "id": "root_4",
+                  "label": "Ved slusen",
+                  "icon": "leaf",
+                  "pos": [
+                    0.78,
+                    0.23
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S15",
+        "chapter": 1,
+        "page": 15,
+        "title": "Vand på den forkerte side",
+        "narrator": "Bag slusen lå en blank lille sø, mens brønden på den anden side var tør. Vandet manglede ikke. Nogen havde bare bestemt, at det ikke måtte komme videre.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Her er jo vand nok."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Det er bare låst inde."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Sådan. Nu kan rødderne drikke."
+        },
+        "image_id": "K01_B13",
+        "base_page": 15,
+        "new_composition": true,
+        "art": "Slusefront med tre brede trærender og flytbare samlinger. Kilde øverst, brønd nederst. Vandet står bag en synlig stopklods.",
+        "interaction": {
+          "type": "forbind",
+          "solution": "Forbind kilde til samling A, A til B og B til brønd. Brug tre buede render; frie ender markeres. Løft stopklods først efter lukket rute.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Vand fylder render sekventielt; små reflekser følger strømmen.",
+        "next": {
+          "success": "K01_S16"
+        },
+        "state_commit": {
+          "completed_page": "K01_S15",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "pipes",
+              "prompt": "Drej renderne, så de åbne ender mødes. Følg vandets vej.",
+              "items": [
+                {
+                  "id": "pipe_0",
+                  "label": "Den første rende",
+                  "icon": "root",
+                  "pos": [
+                    0.28,
+                    0.27
+                  ]
+                },
+                {
+                  "id": "pipe_1",
+                  "label": "Den anden rende",
+                  "icon": "root",
+                  "pos": [
+                    0.28,
+                    0.67
+                  ]
+                },
+                {
+                  "id": "pipe_2",
+                  "label": "Den tredje rende",
+                  "icon": "root",
+                  "pos": [
+                    0.68,
+                    0.67
+                  ]
+                }
+              ],
+              "targets": [],
+              "initial": [
+                1,
+                3,
+                2
+              ],
+              "goal": [
+                0,
+                2,
+                1
+              ]
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Vandvejen er samlet. Løft stopklodsen.",
+              "items": [
+                {
+                  "id": "stop",
+                  "label": "Løft stopklodsen",
+                  "icon": "plank",
+                  "pos": [
+                    0.5,
+                    0.6
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S16",
+        "chapter": 1,
+        "page": 16,
+        "title": "Mit bedste dragenavn",
+        "narrator": "Dragen trak vejret lidt lettere, mens Noor fandt sin liste med navne frem. Jeg havde også et forslag, men pludselig virkede det vigtigt at spørge, før vi bestemte noget.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Hvad med Sir Grønspids den Tredje?"
+          },
+          {
+            "speaker": "Liv",
+            "text": "Vi kunne også spørge den først."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Du må gerne sige nej til lange navne."
+        },
+        "image_id": "K01_B14",
+        "base_page": 16,
+        "new_composition": true,
+        "art": "Liv og Noor på kanten med notatbog. Dragen titter op i nederste panel; et langt navneforslag fylder Noors papir.",
+        "interaction": {
+          "type": "samtale",
+          "solution": "Vælg boblen Spørg dragen eller Vent lidt. Begge giver pause og samme trygge fremgang; gem samtaletone. Ingen tillidspoint mistes.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Papir ruller ud; drageøre løfter sig; kompas får en svag tone.",
+        "next": {
+          "success": "K01_S17"
+        },
+        "state_commit": {
+          "completed_page": "K01_S16",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "choice",
+              "prompt": "Lad dragen få plads til at svare.",
+              "items": [
+                {
+                  "id": "ask",
+                  "label": "Spørg dragen",
+                  "icon": "hand",
+                  "pos": [
+                    0.28,
+                    0.55
+                  ]
+                },
+                {
+                  "id": "wait",
+                  "label": "Vent lidt sammen",
+                  "icon": "leaf",
+                  "pos": [
+                    0.72,
+                    0.55
+                  ]
+                }
+              ],
+              "targets": [],
+              "key": "samtaletone"
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S17",
+        "chapter": 1,
+        "page": 17,
+        "title": "Mos siger noget",
+        "narrator": "Kompasset blev varmt, og en grøn glød samlede sig mellem os og dragen. Det føltes som at høre et ord gennem vand. Så blev ordet helt tydeligt.",
+        "dialogue": [
+          {
+            "speaker": "Mos",
+            "text": "Mos."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Hej, Mos. Jeg hedder Liv. Det er lidt nemmere at råbe."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Liv. Lugter af bolle."
+        },
+        "image_id": "K01_B15",
+        "base_page": 17,
+        "new_composition": true,
+        "art": "Første hele portræt af en lille mosgrøn drage med bladformede ører og ét lyst skæl ved venstre øje. Vingen er stadig i rodsløjfen.",
+        "interaction": {
+          "type": "kontakt",
+          "solution": "Placér kompasset ved kanten, væk fra Mos. Tryk på Livs åbne hånd for at lade Mos vælge at snuse. Gem forstå_drager=true.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Kompaslys glider mellem figurer; Mos blinker og sænker hovedet.",
+        "next": {
+          "success": "K01_S18"
+        },
+        "state_commit": {
+          "completed_page": "K01_S17",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Læg kompasset på kanten, et stykke fra Mos.",
+              "items": [
+                {
+                  "id": "compass",
+                  "label": "Kompasset",
+                  "icon": "compass",
+                  "pos": [
+                    0.25,
+                    0.75
+                  ],
+                  "target": "edge"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "edge",
+                  "label": "En rolig plads på kanten",
+                  "icon": "stone",
+                  "pos": [
+                    0.68,
+                    0.35
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Hold hånden åben. Mos vælger selv at komme nærmere.",
+              "items": [
+                {
+                  "id": "hand",
+                  "label": "Giv Mos tid til at snuse",
+                  "icon": "hand",
+                  "pos": [
+                    0.43,
+                    0.65
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S18",
+        "chapter": 1,
+        "page": 18,
+        "title": "En vinge er ikke et håndtag",
+        "narrator": "Jeg ville hjælpe så hurtigt, at min hånd allerede var på vej mod vingen. Dragen foldede sig sammen. Jeg standsede og prøvede at se problemet fra dens side af brønden.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Okay. Vi trækker ikke i dig."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Vi får det, der holder dig, til at flytte sig."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Rod først. Mos bagefter."
+        },
+        "image_id": "K01_B16",
+        "base_page": 18,
+        "new_composition": true,
+        "art": "Brøndside med Livs hånd standset i luften. Mos viser poten mod roden. Vandet nærmer sig langs den nye rende.",
+        "interaction": {
+          "type": "undersøg",
+          "solution": "Tryk på rod, pote og vinge for at se tre reaktioner. Rør derefter kun den løse rodløkke. Gem behov=vinge_fri.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Vingen går roligt ind; vandrefleks stiger; boblen kommer ved håndens stop.",
+        "next": {
+          "success": "K01_S19"
+        },
+        "state_commit": {
+          "completed_page": "K01_S18",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Se, hvad Mos prøver at vise jer.",
+              "items": [
+                {
+                  "id": "root",
+                  "label": "Roden strammer om vingen.",
+                  "icon": "root",
+                  "pos": [
+                    0.7,
+                    0.62
+                  ]
+                },
+                {
+                  "id": "paw",
+                  "label": "Mos peger på roden.",
+                  "icon": "paw",
+                  "pos": [
+                    0.39,
+                    0.7
+                  ]
+                },
+                {
+                  "id": "wing",
+                  "label": "Vingen skal have mere plads.",
+                  "icon": "leaf",
+                  "pos": [
+                    0.67,
+                    0.36
+                  ]
+                }
+              ],
+              "targets": []
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Rør den løse rodløkke, så Mos kan se planen.",
+              "items": [
+                {
+                  "id": "loop",
+                  "label": "Den løse rodløkke",
+                  "icon": "root",
+                  "pos": [
+                    0.5,
+                    0.64
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S19",
+        "chapter": 1,
+        "page": 19,
+        "title": "Noget med et langt skaft",
+        "narrator": "På en gammel bænk lå redskaber i alle størrelser. Jeg valgte først den største rive, fordi stor plejer at føles nyttig. Noor pegede på den smalle krog ved siden af.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Skal vi redde en drage eller rede et træ?"
+          },
+          {
+            "speaker": "Liv",
+            "text": "Jeg prøver lige noget mindre."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Den her kan nå uden at klemme."
+        },
+        "image_id": "K01_B17",
+        "base_page": 19,
+        "new_composition": true,
+        "art": "Bænk med stump trækrog, rive, spand og kost. Trækrogen har samme buede form som den løse rod. Alle ting store og fritlagte.",
+        "interaction": {
+          "type": "find",
+          "solution": "Find trækrog ved at undersøge fire redskaber. Krogen kan nå løkken uden at ramme vingen. Læg den i tasken; de andre giver korte kommentarer.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Kosthår svajer; krog får kontur ved valg.",
+        "next": {
+          "success": "K01_S20"
+        },
+        "state_commit": {
+          "completed_page": "K01_S19",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Undersøg redskaberne. Hvad kan nå ind uden at klemme?",
+              "items": [
+                {
+                  "id": "hook",
+                  "label": "Trækrogen kan nå rundt om roden.",
+                  "icon": "hook",
+                  "pos": [
+                    0.37,
+                    0.45
+                  ]
+                },
+                {
+                  "id": "rake",
+                  "label": "Noor: Vi skal ikke rede et helt træ.",
+                  "icon": "root",
+                  "pos": [
+                    0.73,
+                    0.42
+                  ],
+                  "decoy": true
+                },
+                {
+                  "id": "bucket",
+                  "label": "Liv: En spand kan bære vand, men ikke løsne løkken.",
+                  "icon": "bowl",
+                  "pos": [
+                    0.23,
+                    0.78
+                  ],
+                  "decoy": true
+                },
+                {
+                  "id": "broom",
+                  "label": "Noor: Den kan feje, når Mos er fri.",
+                  "icon": "spoon",
+                  "pos": [
+                    0.77,
+                    0.78
+                  ],
+                  "decoy": true
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S20",
+        "chapter": 1,
+        "page": 20,
+        "title": "Mærket på slusen",
+        "narrator": "Under mosset fandt vi en plade med en hånd, der holdt en stjerne. Nogen havde streget hen over hånden med blåt kridt, næsten som om billedet skulle tie stille.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Det samme mærke er på dit kompas."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Men her ser det lukket ud."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Nogen har været her før os."
+        },
+        "image_id": "K01_B18",
+        "base_page": 20,
+        "new_composition": true,
+        "art": "Makro af metalplade ved slusen. Åben hånd med stjerne, overstreget af nyere blå kridtstreg. Fem nitter, kun én løs.",
+        "interaction": {
+          "type": "gnid",
+          "solution": "Gnid mos væk i tre brede felter eller tryk Rens. Gem mærke_01 og blå_kridt. Journalen får før- og efterudsnit.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Mos fnug glider bort; metal får kort glimt.",
+        "next": {
+          "success": "K01_S21"
+        },
+        "state_commit": {
+          "completed_page": "K01_S20",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "wipe",
+              "prompt": "Gnid mosset væk, eller tryk på de tre grønne felter.",
+              "items": [
+                {
+                  "id": "wipe_1",
+                  "label": "Rens venstre side",
+                  "icon": "moss",
+                  "pos": [
+                    0.3,
+                    0.48
+                  ]
+                },
+                {
+                  "id": "wipe_2",
+                  "label": "Rens midten",
+                  "icon": "moss",
+                  "pos": [
+                    0.5,
+                    0.6
+                  ]
+                },
+                {
+                  "id": "wipe_3",
+                  "label": "Rens højre side",
+                  "icon": "moss",
+                  "pos": [
+                    0.72,
+                    0.43
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S21",
+        "chapter": 1,
+        "page": 21,
+        "title": "Fem ting, der er ændret",
+        "narrator": "Den gamle tegning viste en lys og levende brønd. Vi lagde den ved siden af journalens billede fra vores ankomst. Fem forandringer forklarede, hvorfor så meget var gået galt.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Der er fem ting, som ikke passer."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Måske viser de, hvad vi kan gøre."
+          }
+        ],
+        "success_text": {
+          "speaker": "Noor",
+          "text": "Vi kan enten løfte roden eller give den støtte."
+        },
+        "image_id": "K01_B19",
+        "base_page": 21,
+        "new_composition": true,
+        "art": "Splitvisning: gammel brøndplan og identisk nutidsudsnit. Puslefelter store; tekst holdes uden for sammenligningen. De to diagrammer viser arkivets før-tilstand og journalens fastfrosne ankomsttilstand, ikke den allerede delvist reparerede livescene. Samme perspektiv i begge.",
+        "interaction": {
+          "type": "forskel",
+          "solution": "Find fem ændringer: lukket sluse, manglende træstøtte, snoet rod, væltet spand, slukket lampesten. Placér hver ændring som separat overlay; præcis fem mål.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Markerede ændringer får en rolig ring; femte fund viser rodens to støtter.",
+        "next": {
+          "success": "K01_S22"
+        },
+        "state_commit": {
+          "completed_page": "K01_S21",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "puzzle_spec": {
+          "kind": "exact_five_differences",
+          "base_image": "K01_B19",
+          "required_count": 5,
+          "animated_comparison": false,
+          "targets": [
+            {
+              "id": "diff_1",
+              "label": "lukket sluse",
+              "rect_xywh": [
+                0.12,
+                0.13,
+                0.18,
+                0.18
+              ]
+            },
+            {
+              "id": "diff_2",
+              "label": "manglende træstøtte",
+              "rect_xywh": [
+                0.67,
+                0.14,
+                0.18,
+                0.18
+              ]
+            },
+            {
+              "id": "diff_3",
+              "label": "snoet rod",
+              "rect_xywh": [
+                0.4,
+                0.4,
+                0.18,
+                0.18
+              ]
+            },
+            {
+              "id": "diff_4",
+              "label": "væltet spand",
+              "rect_xywh": [
+                0.13,
+                0.68,
+                0.18,
+                0.18
+              ]
+            },
+            {
+              "id": "diff_5",
+              "label": "slukket lampesten",
+              "rect_xywh": [
+                0.69,
+                0.67,
+                0.18,
+                0.18
+              ]
+            }
+          ],
+          "single_master": true,
+          "other_pixels_identical": true,
+          "found_ids_persist": true,
+          "state_source": "archive_vs_frozen_arrival"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "difference",
+              "prompt": "Sammenlign den gamle plan med jeres ankomst. Find fem ændringer.",
+              "items": [],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S22",
+        "chapter": 1,
+        "page": 22,
+        "title": "To måder at hjælpe Mos",
+        "narrator": "Vi kunne løfte roden med rebet eller støtte den nedefra med klodser. Mos fulgte vores hænder med blikket. Det vigtigste var, at den kunne se, hvad vi ville gøre.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Hvilken plan tager vi?"
+          },
+          {
+            "speaker": "Noor",
+            "text": "Begge kan give vingen plads."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Langsomt. Tak."
+        },
+        "image_id": "K01_B20",
+        "base_page": 22,
+        "new_composition": true,
+        "art": "Samme brønd i ny oversigt med to tydelige løsninger: reb over gren til venstre, tre støtteklodser ved siden af til højre.",
+        "interaction": {
+          "type": "valg",
+          "solution": "A: Løft roden med rebet ; B: Byg støtte under roden. Begge redder Mos. Vis materialer og forskel; ingen løsning vurderes som mere modig.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "To korte stregpreviews viser bevægelsen; valgte plan bliver i scenen.",
+        "next": {
+          "A": "K01_S23",
+          "B": "K01_S25"
+        },
+        "state_commit": {
+          "completed_page": "K01_S22",
+          "save_after_each_subgoal": true,
+          "k01_redning": "selected_A_or_B"
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "choices": {
+          "A": "Løft roden med rebet",
+          "B": "Byg støtte under roden"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "choice",
+              "prompt": "Vis Mos, hvordan I vil give vingen plads.",
+              "items": [
+                {
+                  "id": "A",
+                  "label": "Løft roden med rebet",
+                  "icon": "rope",
+                  "pos": [
+                    0.28,
+                    0.55
+                  ]
+                },
+                {
+                  "id": "B",
+                  "label": "Byg støtte under roden",
+                  "icon": "plank",
+                  "pos": [
+                    0.72,
+                    0.55
+                  ]
+                }
+              ],
+              "targets": [],
+              "key": "k01_redning"
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S23",
+        "chapter": 1,
+        "page": 23,
+        "title": "Løft uden ryk",
+        "narrator": "Rebet gled over den tykke gren, og vi prøvede bevægelsen uden at løfte. Mos så fra mine hænder til Noor. Først da den nikkede, trak vi forsigtigt.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Først løfter vi lidt. Så holder vi pause."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Jeg er god til pauser."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Vingen kan flytte sig nu."
+        },
+        "image_id": "K01_B21",
+        "base_page": 23,
+        "new_composition": true,
+        "art": "Brøndkant med reb ført over gren. Tre markerede trækringe langs rebet og bred sikker zone. Mos ses under løkken.",
+        "interaction": {
+          "type": "træk",
+          "solution": "Træk rebet til første og anden markering med pauser ved låsepunkter. Alternativ: to tryk på Løft lidt. Ingen styrke- eller tidstest.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Rod løfter sig i to trin; reb bliver stramt; mos falder af.",
+        "next": {
+          "success": "K01_S24"
+        },
+        "state_commit": {
+          "completed_page": "K01_S23",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "sequence",
+              "prompt": "Løft roden lidt ad gangen. Mos får en pause mellem hvert løft.",
+              "items": [
+                {
+                  "id": "lift_1",
+                  "label": "Løft til første mærke",
+                  "icon": "rope",
+                  "pos": [
+                    0.35,
+                    0.62
+                  ]
+                },
+                {
+                  "id": "lift_2",
+                  "label": "Løft til andet mærke",
+                  "icon": "rope",
+                  "pos": [
+                    0.67,
+                    0.37
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S24",
+        "chapter": 1,
+        "page": 24,
+        "title": "Hold den dér",
+        "narrator": "Mos fik vingen fri, men roden hang stadig i vores hænder. Jeg havde aldrig været så glad for at se en almindelig træpæl med en stor, solid ring.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Mine arme er ved at blive lange."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Den pæl ser stærk ud."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Du må gerne slippe nu."
+        },
+        "image_id": "K01_B21",
+        "base_page": 23,
+        "new_composition": false,
+        "art": "Tæt udsnit af samme rebscene. Fast pæl nederst, løs gren ved siden af som tydelig decoy. Mos står frit på en tør sten.",
+        "interaction": {
+          "type": "fastgør",
+          "solution": "Før rebets ende til den faste pæl og gennem dens store ring. Bekræft, når rodpreview bliver stående uden hænder. Gå til side 27.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Reb slår let; pæl står fast; Mos folder vinge én gang.",
+        "next": {
+          "success": "K01_S27"
+        },
+        "state_commit": {
+          "completed_page": "K01_S24",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Fastgør rebet i den solide pæls ring.",
+              "items": [
+                {
+                  "id": "rope",
+                  "label": "Rebets ende",
+                  "icon": "rope",
+                  "pos": [
+                    0.23,
+                    0.78
+                  ],
+                  "target": "stake"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "stake",
+                  "label": "Den faste pæl",
+                  "icon": "plank",
+                  "pos": [
+                    0.68,
+                    0.42
+                  ]
+                },
+                {
+                  "id": "branch",
+                  "label": "Den løse gren kan ikke holde roden.",
+                  "icon": "root",
+                  "pos": [
+                    0.77,
+                    0.78
+                  ],
+                  "decoy": true
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S25",
+        "chapter": 1,
+        "page": 25,
+        "title": "En lille bro under roden",
+        "narrator": "Den første klods væltede, da Noor rørte den med en finger. Vi begyndte igen med den brede bund, og denne gang så konstruktionen ud, som om den selv troede på planen.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Sådan ville jeg ikke bygge min seng."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Vi laver en bred bund."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Mere plads. Mindre rod."
+        },
+        "image_id": "K01_B22",
+        "base_page": 25,
+        "new_composition": true,
+        "art": "Tre støtteklodser foran brønd. En bred bund, en kile og et blødt topstykke. Rodens underside er synlig i sideprofil.",
+        "interaction": {
+          "type": "byg",
+          "solution": "Placér bred bund nederst, kile i midten og topstykke mod rod. Delene har matchende flader; afprøv med let tryk på konstruktionen.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Klodser vipper, til de passer; rod hviler roligt ved korrekt samling.",
+        "next": {
+          "success": "K01_S26"
+        },
+        "state_commit": {
+          "completed_page": "K01_S25",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Byg en bred bund. Læg kilen i midten og det bløde stykke øverst.",
+              "items": [
+                {
+                  "id": "base",
+                  "label": "Bred bund",
+                  "icon": "plank",
+                  "pos": [
+                    0.16,
+                    0.75
+                  ],
+                  "target": "base_slot"
+                },
+                {
+                  "id": "wedge",
+                  "label": "Kile",
+                  "icon": "stone",
+                  "pos": [
+                    0.5,
+                    0.8
+                  ],
+                  "target": "wedge_slot",
+                  "requires": "base"
+                },
+                {
+                  "id": "top",
+                  "label": "Blødt topstykke",
+                  "icon": "moss",
+                  "pos": [
+                    0.84,
+                    0.75
+                  ],
+                  "target": "top_slot",
+                  "requires": "wedge"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "base_slot",
+                  "label": "Bunden",
+                  "icon": "plank",
+                  "pos": [
+                    0.5,
+                    0.58
+                  ]
+                },
+                {
+                  "id": "wedge_slot",
+                  "label": "Midten",
+                  "icon": "stone",
+                  "pos": [
+                    0.5,
+                    0.4
+                  ]
+                },
+                {
+                  "id": "top_slot",
+                  "label": "Mod roden",
+                  "icon": "moss",
+                  "pos": [
+                    0.5,
+                    0.22
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Tryk let på støtten. Står den fast?",
+              "items": [
+                {
+                  "id": "test",
+                  "label": "Afprøv støtten",
+                  "icon": "hand",
+                  "pos": [
+                    0.5,
+                    0.51
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S26",
+        "chapter": 1,
+        "page": 26,
+        "title": "Vingen fri",
+        "narrator": "Jeg skubbede kilen mod mærket, mens Noor holdt øje med vingen. Roden løftede sig langsomt. Mos trak sig fri og kvitterede med et nys, der ramte os begge.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Det tager jeg som et tak."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Jeg tager lige mit ærme."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Tak. Og undskyld for næsen."
+        },
+        "image_id": "K01_B22",
+        "base_page": 25,
+        "new_composition": false,
+        "art": "Nært udsnit af samme støtte. Kilens håndtag og et bredt stopmærke ses. Mos står på sten med fri vinge.",
+        "interaction": {
+          "type": "skub",
+          "solution": "Skub kile til stopmærke eller vælg Skub lidt to gange. Stopper automatisk før overtryk. Gem støttebygget=true. Gå til side 27.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Rod stiger; lille grøn nysesky; Livs hår vipper.",
+        "next": {
+          "success": "K01_S27"
+        },
+        "state_commit": {
+          "completed_page": "K01_S26",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "sequence",
+              "prompt": "Skub kilen forsigtigt ind til stopmærket.",
+              "items": [
+                {
+                  "id": "push_1",
+                  "label": "Skub lidt",
+                  "icon": "stone",
+                  "pos": [
+                    0.32,
+                    0.61
+                  ]
+                },
+                {
+                  "id": "push_2",
+                  "label": "Skub til stopmærket",
+                  "icon": "stone",
+                  "pos": [
+                    0.69,
+                    0.61
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S27",
+        "chapter": 1,
+        "page": 27,
+        "title": "En fri drage bliver",
+        "narrator": "Mos kunne være fløjet sin vej med det samme, men blev siddende på kanten. Den pegede ned i mørket. Der var åbenbart nogen, som havde brug for hjælp endnu.",
+        "dialogue": [
+          {
+            "speaker": "Mos",
+            "text": "Frøene. De er også fanget."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Så er vi ikke færdige."
+          }
+        ],
+        "success_text": {
+          "speaker": "Noor",
+          "text": "Du har din helt egen havekraft."
+        },
+        "image_id": "K01_B23",
+        "base_page": 27,
+        "new_composition": true,
+        "art": "Mos på brøndkant med fri vinge. Tre gyldne frøkapsler ligger på en afsats nede i brønden. Begge redningsresultater kan vises i siden.",
+        "interaction": {
+          "type": "lys",
+          "solution": "Lys på tre frøkapsler. Gem frø_set. Mos viser, at rødder kan flyttes med en lille pustesky; evnen demonstreres uden krav om at læse.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Mos puster grøn tåge; én rod bøjer sig mod vandet.",
+        "next": {
+          "success": "K01_S28"
+        },
+        "state_commit": {
+          "completed_page": "K01_S27",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "inspect",
+              "prompt": "Mos har fået øje på noget. Lys på de tre frøkapsler.",
+              "items": [
+                {
+                  "id": "seed_1",
+                  "label": "Et frø på den nederste hylde.",
+                  "icon": "seed",
+                  "pos": [
+                    0.25,
+                    0.8
+                  ]
+                },
+                {
+                  "id": "seed_2",
+                  "label": "Et frø mellem rødderne.",
+                  "icon": "seed",
+                  "pos": [
+                    0.54,
+                    0.65
+                  ]
+                },
+                {
+                  "id": "seed_3",
+                  "label": "Et frø på den høje afsats.",
+                  "icon": "seed",
+                  "pos": [
+                    0.77,
+                    0.48
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S28",
+        "chapter": 1,
+        "page": 28,
+        "title": "Frøenes vej op",
+        "narrator": "Frøene lå på små hylder langt under os. Mos kunne bøje rødderne, men havde svært ved at se hele vejen. Fra vores plads kunne vi hjælpe med at forbinde dem.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Den her rod skal til den der sten."
+          },
+          {
+            "speaker": "Mos",
+            "text": "Du peger. Jeg puster."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Vi er et ret godt træ."
+        },
+        "image_id": "K01_B24",
+        "base_page": 28,
+        "new_composition": true,
+        "art": "Brøndens indre som bred sidebane. Tre rodarme, tre stenhylder og frøkapsler. Ingen dybe fald med farebilleder.",
+        "interaction": {
+          "type": "forbind",
+          "solution": "Forbind nederste rod til hylde A, midterrod til B og øverste til kant C. Mos flytter rødderne efter bekræftelse. Frø løftes sekventielt.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Rodarme bøjer som hele lag; frø hopper blødt mellem hylder.",
+        "next": {
+          "success": "K01_S29"
+        },
+        "state_commit": {
+          "completed_page": "K01_S28",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Forbind rødderne til hylderne. Mos bøjer dem for dig.",
+              "items": [
+                {
+                  "id": "low",
+                  "label": "Nederste rod",
+                  "icon": "root",
+                  "pos": [
+                    0.19,
+                    0.78
+                  ],
+                  "target": "A"
+                },
+                {
+                  "id": "mid",
+                  "label": "Midterste rod",
+                  "icon": "root",
+                  "pos": [
+                    0.22,
+                    0.51
+                  ],
+                  "target": "B"
+                },
+                {
+                  "id": "high",
+                  "label": "Øverste rod",
+                  "icon": "root",
+                  "pos": [
+                    0.26,
+                    0.25
+                  ],
+                  "target": "C"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "A",
+                  "label": "Hylde A",
+                  "icon": "stone",
+                  "pos": [
+                    0.71,
+                    0.75
+                  ]
+                },
+                {
+                  "id": "B",
+                  "label": "Hylde B",
+                  "icon": "stone",
+                  "pos": [
+                    0.73,
+                    0.48
+                  ]
+                },
+                {
+                  "id": "C",
+                  "label": "Brøndkant C",
+                  "icon": "stone",
+                  "pos": [
+                    0.77,
+                    0.21
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S29",
+        "chapter": 1,
+        "page": 29,
+        "title": "Det sidste frø",
+        "narrator": "Det sidste frø sad under en sten, der var tungere, end den så ud. Noor fandt en rund klods til krogen. Pludselig havde vores to små ting en stor virkning.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Et vippebræt. Bare til sten."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Og uden nogen på den anden ende."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Nu, Mos!"
+        },
+        "image_id": "K01_B25",
+        "base_page": 29,
+        "new_composition": true,
+        "art": "Brøndkant i dramatisk nærbillede. Krog, rund klods og flad sten. Frøkapsel under stenens frie side; Mos klar bagved.",
+        "interaction": {
+          "type": "vægtstang",
+          "solution": "Placér klods under krogen mellem håndtag og sten. Tryk håndtag ned. Fri åbning giver Mos plads til at rulle frøet ud; ingen realistisk fysiksimulation kræves.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Kamera går 3 procent ind; sten vipper; gyldent støv svæver.",
+        "next": {
+          "success": "K01_S30"
+        },
+        "state_commit": {
+          "completed_page": "K01_S29",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Lav en vippe. Sæt den runde klods mellem håndtaget og stenen.",
+              "items": [
+                {
+                  "id": "fulcrum",
+                  "label": "Rund klods",
+                  "icon": "stone",
+                  "pos": [
+                    0.22,
+                    0.8
+                  ],
+                  "target": "under_hook"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "under_hook",
+                  "label": "Under krogen",
+                  "icon": "hook",
+                  "pos": [
+                    0.55,
+                    0.51
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Tryk håndtaget ned. Mos tager det sidste frø.",
+              "items": [
+                {
+                  "id": "lever",
+                  "label": "Tryk håndtaget ned",
+                  "icon": "hook",
+                  "pos": [
+                    0.32,
+                    0.54
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S30",
+        "chapter": 1,
+        "page": 30,
+        "title": "Vandet vender hjem",
+        "narrator": "Vandet fulgte den åbne vej rundt om brønden, og lunden begyndte at bevæge sig igen. Jeg havde ikke lagt mærke til, hvor meget jeg savnede fuglene, før de kom tilbage.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Den holdt vist vejret."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Det gjorde jeg også."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Vand har fundet hjem."
+        },
+        "image_id": "K01_B26",
+        "base_page": 30,
+        "new_composition": true,
+        "art": "Stor lundscene med rindende bæk og grønne rødder. Liv, Noor og Mos står på sikker kant. Frøene lyser i en åben kurv.",
+        "interaction": {
+          "type": "sluse",
+          "solution": "Åbn tre små slusehåndtag fra kilde mod bæk. Hvert åbnet håndtag viser vand frem til næste. Alle tre giver levende lund.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Vandstrøm i lag; solstråler bryder frem; blade får bevægelse.",
+        "next": {
+          "success": "K01_S31"
+        },
+        "state_commit": {
+          "completed_page": "K01_S30",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "sequence",
+              "prompt": "Åbn sluserne fra kilden mod bækken. Lad vandet vise vejen.",
+              "items": [
+                {
+                  "id": "sluice_1",
+                  "label": "Ved kilden",
+                  "icon": "wheel",
+                  "pos": [
+                    0.25,
+                    0.27
+                  ]
+                },
+                {
+                  "id": "sluice_2",
+                  "label": "Ved brønden",
+                  "icon": "wheel",
+                  "pos": [
+                    0.52,
+                    0.51
+                  ]
+                },
+                {
+                  "id": "sluice_3",
+                  "label": "Ved bækken",
+                  "icon": "wheel",
+                  "pos": [
+                    0.74,
+                    0.75
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S31",
+        "chapter": 1,
+        "page": 31,
+        "title": "Du skylder os ikke noget",
+        "narrator": "Mos lagde hovedet i min hånd, varmt og ru som en sten i solen. Alle mine spørgsmål pressede sig på, men der var ét, jeg gerne ville have et rigtigt svar på.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Har du et sted at sove?"
+          },
+          {
+            "speaker": "Mos",
+            "text": "Havde. Døren forsvandt."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Du må komme med os, hvis du vil."
+        },
+        "image_id": "K01_B25",
+        "base_page": 29,
+        "new_composition": false,
+        "art": "Genbrug redningsnærbillede med varm farve. Mos lægger hovedet mod Livs hånd. Krog og sten er rykket ud af fokus.",
+        "interaction": {
+          "type": "kontakt",
+          "solution": "Hold åben hånd frem via tryk. Mos nærmer sig selv efter kort pause. Berøring kan springes over; samme venneflag sættes.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Blød vejrtrækning; håndskygge; kompasfelt tænder grønt.",
+        "next": {
+          "success": "K01_S32"
+        },
+        "state_commit": {
+          "completed_page": "K01_S31",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "choice",
+              "prompt": "Lad Mos vælge afstanden.",
+              "items": [
+                {
+                  "id": "hand",
+                  "label": "Hold hånden frem",
+                  "icon": "hand",
+                  "pos": [
+                    0.28,
+                    0.55
+                  ]
+                },
+                {
+                  "id": "space",
+                  "label": "Bliv ved hans side",
+                  "icon": "leaf",
+                  "pos": [
+                    0.72,
+                    0.55
+                  ]
+                }
+              ],
+              "targets": [],
+              "key": "kontakt"
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S32",
+        "chapter": 1,
+        "page": 32,
+        "title": "Den første vej",
+        "narrator": "En grøn streg i kompasset viste tilbage til farmen. Mos kunne se den, men frøen så bare sin nye sø. Måske viste en hjemvej sig kun for den, der havde brug for den.",
+        "dialogue": [
+          {
+            "speaker": "Frø",
+            "text": "Endelig ordentlig service."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Vi sender ikke en regning."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Jeg vil gerne se jeres hjem."
+        },
+        "image_id": "K01_B26",
+        "base_page": 30,
+        "new_composition": false,
+        "art": "Genbrug den våde lund i roligt totalbillede. Grøn hjemvej som overlay mod porten; frø i vandkande med vand.",
+        "interaction": {
+          "type": "følg",
+          "solution": "Før kompaslyset langs hjemvejens tre ankre. Mos følger frivilligt. Gem mos_reddet og hjemvej_01. Ruten har ingen forkert udgang.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Lyssti tegnes; vandkande gynger; Mos løftes som samlet figur.",
+        "next": {
+          "success": "K01_S33"
+        },
+        "state_commit": {
+          "completed_page": "K01_S32",
+          "save_after_each_subgoal": true,
+          "dragon_01_rescued": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "runtime": {
+          "stages": [
+            {
+              "kind": "sequence",
+              "prompt": "Følg kompaslyset hjem. Mos kommer med af egen lyst.",
+              "items": [
+                {
+                  "id": "anchor_1",
+                  "label": "Det første hjemanker",
+                  "icon": "compass",
+                  "pos": [
+                    0.25,
+                    0.76
+                  ]
+                },
+                {
+                  "id": "anchor_2",
+                  "label": "Lyset gennem lunden",
+                  "icon": "leaf",
+                  "pos": [
+                    0.5,
+                    0.5
+                  ]
+                },
+                {
+                  "id": "anchor_3",
+                  "label": "Porten hjem",
+                  "icon": "house",
+                  "pos": [
+                    0.76,
+                    0.25
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "art_rect"
+        }
+      },
+      {
+        "id": "K01_S33",
+        "chapter": 1,
+        "page": 33,
+        "title": "En gæst med blade på",
+        "narrator": "Edda ventede ved hækken og så først på Mos, så på vores mudrede bukser. Hun stillede ingen spørgsmål med det samme. Hun fandt bare en meget større vandskål.",
+        "dialogue": [
+          {
+            "speaker": "Edda",
+            "text": "Jeg sagde, du måtte tage en ven med."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Du sagde ikke noget om vinger."
+          }
+        ],
+        "success_text": {
+          "speaker": "Edda",
+          "text": "Velkommen. Her er plads til at være sær."
+        },
+        "image_id": "K01_B27",
+        "base_page": 33,
+        "new_composition": true,
+        "art": "Farmport i eftermiddagslys. Edda med skål, Liv og Noor med mudder, Mos på tærsklen. Porten står åben bag dem. Kontinuitet: 0 færdige dragehuse før byggeriet; grund 01 er ledig. Tidligere huse: ingen.",
+        "interaction": {
+          "type": "ankomst",
+          "solution": "Træk velkomstskålen hen til en fri plet inden for porten. Mos vælger at gå ind. Ingen luk-port handling findes.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Port svinger; Mos snuser; bladører vipper.",
+        "next": {
+          "success": "K01_S34"
+        },
+        "state_commit": {
+          "completed_page": "K01_S33",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_state": {
+          "houses_before": 0,
+          "houses_after": 0,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Sæt velkomstskålen inden for den åbne port.",
+              "items": [
+                {
+                  "id": "bowl",
+                  "label": "Vandskålen",
+                  "icon": "bowl",
+                  "pos": [
+                    0.22,
+                    0.77
+                  ],
+                  "target": "inside"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "inside",
+                  "label": "En fri plads inden for porten",
+                  "icon": "water",
+                  "pos": [
+                    0.69,
+                    0.6
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S34",
+        "chapter": 1,
+        "page": 34,
+        "title": "Noget mangler på kortet",
+        "narrator": "Vi lagde dagens spor på bordet, så ingen af dem kunne blive væk i min hukommelse. Det blå kridt lignede stadig en besked, som nogen havde glemt at forklare.",
+        "dialogue": [
+          {
+            "speaker": "Edda",
+            "text": "Iben tegnede de gamle veje. Hun ville holde alle trygge."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Hvorfor er de så lukket?"
+          }
+        ],
+        "success_text": {
+          "speaker": "Edda",
+          "text": "Det må vi finde ud af sammen."
+        },
+        "image_id": "K01_B27",
+        "base_page": 33,
+        "new_composition": false,
+        "art": "Genbrug farmport med tættere udsnit af Edda og kompas. Lille kortmappe med samme håndmærke hænger ved døren.",
+        "interaction": {
+          "type": "journal",
+          "solution": "Placér fundet fra slusen ved kortmappens mærke. Gem iben_nævnt. Sammenfald vises som to linjer, uden spørgsmål eller korrekt-svar lyd.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Kort foldes ud; Eddas blik skifter via pose; skygge bliver længere.",
+        "next": {
+          "success": "K01_S35"
+        },
+        "state_commit": {
+          "completed_page": "K01_S34",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_state": {
+          "houses_before": 0,
+          "houses_after": 0,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Læg mærket fra slusen ved mærket på Eddas kortmappe.",
+              "items": [
+                {
+                  "id": "clue",
+                  "label": "Hånden med stjernen",
+                  "icon": "hand",
+                  "pos": [
+                    0.25,
+                    0.72
+                  ],
+                  "target": "folder"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "folder",
+                  "label": "Kortmappen",
+                  "icon": "book",
+                  "pos": [
+                    0.7,
+                    0.44
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S35",
+        "chapter": 1,
+        "page": 35,
+        "title": "Rodhytten får en grund",
+        "narrator": "Mos skulle have et lille hus med en dør, som ingen låste. Vi kunne bygge Rodhytten ved piledammen eller give den en have fuld af mos tæt ved laden.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Vi kan bygge her eller her."
+          },
+          {
+            "speaker": "Mos",
+            "text": "Med en dør, som ikke låser?"
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Den dør bliver altid åben."
+        },
+        "image_id": "K01_B28",
+        "base_page": 35,
+        "new_composition": true,
+        "art": "Et lille hus af buede levende rødder, træ og mos. To varianter på samme nordlige grund: piledam ved husets side eller moslund omkring huset. Stor åben dør, rede og vandskål. Kontinuitet: 0 færdige dragehuse før byggeriet; grund 01 er ledig. Tidligere huse: ingen.",
+        "interaction": {
+          "type": "indret",
+          "solution": "Vælg piledam eller moslund som havevariant. Placér fundament, Rodhytten og åben dør; placér derefter rede og vandskål. Gem k01_hjem og hus_01_bygget. Huset og haven er varige farmobjekter.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Byggede dele popper roligt på plads; skygge og siv bevæger sig.",
+        "next": {
+          "success": "K01_S36"
+        },
+        "state_commit": {
+          "completed_page": "K01_S35",
+          "save_after_each_subgoal": true,
+          "house_01.built": true,
+          "house_01.variant": "selected_house_variant"
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_state": {
+          "houses_before": 0,
+          "houses_after": 1,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "house_build": {
+          "id": "house_01",
+          "name": "Rodhytten",
+          "variants": [
+            "piledam",
+            "moslund"
+          ],
+          "anchor": [
+            0.18,
+            0.3
+          ],
+          "required": [
+            "foundation",
+            "roof",
+            "open_door",
+            "rest_place"
+          ],
+          "cost": 0
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "choice",
+              "prompt": "Et hjem til Mos. Hvilken have skal Rodhytten have?",
+              "items": [
+                {
+                  "id": "piledam",
+                  "label": "Ved piledammen",
+                  "icon": "cup",
+                  "pos": [
+                    0.28,
+                    0.55
+                  ]
+                },
+                {
+                  "id": "moslund",
+                  "label": "I en blød moslund",
+                  "icon": "moss",
+                  "pos": [
+                    0.72,
+                    0.55
+                  ]
+                }
+              ],
+              "targets": [],
+              "key": "k01_hjem"
+            },
+            {
+              "kind": "place",
+              "prompt": "Byg et hus med en dør, der altid er åben.",
+              "items": [
+                {
+                  "id": "foundation",
+                  "label": "Fundament",
+                  "icon": "stone",
+                  "pos": [
+                    0.16,
+                    0.8
+                  ],
+                  "target": "base"
+                },
+                {
+                  "id": "house",
+                  "label": "Rodhytten",
+                  "icon": "house",
+                  "pos": [
+                    0.5,
+                    0.81
+                  ],
+                  "target": "home",
+                  "requires": "foundation"
+                },
+                {
+                  "id": "door",
+                  "label": "Den åbne dør",
+                  "icon": "plank",
+                  "pos": [
+                    0.84,
+                    0.8
+                  ],
+                  "target": "doorway",
+                  "requires": "house"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "base",
+                  "label": "Husets grund",
+                  "icon": "stone",
+                  "pos": [
+                    0.24,
+                    0.48
+                  ]
+                },
+                {
+                  "id": "home",
+                  "label": "Huset",
+                  "icon": "house",
+                  "pos": [
+                    0.5,
+                    0.27
+                  ]
+                },
+                {
+                  "id": "doorway",
+                  "label": "Den åbne indgang",
+                  "icon": "plank",
+                  "pos": [
+                    0.77,
+                    0.49
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "place",
+              "prompt": "Gør det rart at flytte ind. Sæt rede og vand frem.",
+              "items": [
+                {
+                  "id": "nest",
+                  "label": "Reden",
+                  "icon": "moss",
+                  "pos": [
+                    0.2,
+                    0.8
+                  ],
+                  "target": "bed"
+                },
+                {
+                  "id": "bowl",
+                  "label": "Vandskålen",
+                  "icon": "bowl",
+                  "pos": [
+                    0.8,
+                    0.8
+                  ],
+                  "target": "water"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "bed",
+                  "label": "Inde i hytten",
+                  "icon": "moss",
+                  "pos": [
+                    0.4,
+                    0.52
+                  ]
+                },
+                {
+                  "id": "water",
+                  "label": "Ved døren",
+                  "icon": "bowl",
+                  "pos": [
+                    0.72,
+                    0.56
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S36",
+        "chapter": 1,
+        "page": 36,
+        "title": "Den bedste pude",
+        "narrator": "Da Rodhytten stod klar, lagde vi bløde mosstykker i reden. Mos flyttede straks det hele lidt til venstre. Man kunne godt være ny beboer og allerede have stærke meninger om indretning.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "En ekspert."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Vi har tydeligvis hyret den rette."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Nu ligner den mig."
+        },
+        "image_id": "K01_B28",
+        "base_page": 35,
+        "new_composition": false,
+        "art": "Genbrug K01_B28, Rodhytten, nu færdigbygget. Vis åben front og de konkrete indretningsdele. Genbrug valgt farmzone med tre rededele og Mos i hvilestilling. Plads til en lille dekoration ved siden af, ikke på stien. Kontinuitet efter byggeri: præcis 1 færdige dragehuse. Kendte beboere og deres valgte husvarianter bevares i scenens farmbaggrund.",
+        "interaction": {
+          "type": "indret",
+          "solution": "Fordel tre bløde rededele i fri redezone. Vælg sten eller bladskilt som pynt. Gem placeringer; alle placeringer inden for zonen er gyldige. Bevar husets fundament, tag, åbne indgang og tidligere farmhuse. Gem alle valg i husets permanente indretning.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Mos skubber puden som lag; blade daler; rede får blød skygge.",
+        "next": {
+          "success": "K01_S37"
+        },
+        "state_commit": {
+          "completed_page": "K01_S36",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_state": {
+          "houses_before": 1,
+          "houses_after": 1,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "decorate",
+              "prompt": "Læg tre bløde mosstykker, hvor du vil i reden.",
+              "items": [
+                {
+                  "id": "cushion_1",
+                  "label": "Første mosstykke",
+                  "icon": "moss",
+                  "pos": [
+                    0.2,
+                    0.82
+                  ]
+                },
+                {
+                  "id": "cushion_2",
+                  "label": "Andet mosstykke",
+                  "icon": "moss",
+                  "pos": [
+                    0.5,
+                    0.82
+                  ]
+                },
+                {
+                  "id": "cushion_3",
+                  "label": "Tredje mosstykke",
+                  "icon": "moss",
+                  "pos": [
+                    0.8,
+                    0.82
+                  ]
+                }
+              ],
+              "targets": [],
+              "zone": [
+                0.18,
+                0.18,
+                0.64,
+                0.44
+              ]
+            },
+            {
+              "kind": "choice",
+              "prompt": "Vælg en lille ting ved døren.",
+              "items": [
+                {
+                  "id": "stone",
+                  "label": "En glat sten",
+                  "icon": "stone",
+                  "pos": [
+                    0.28,
+                    0.55
+                  ]
+                },
+                {
+                  "id": "leaf",
+                  "label": "Et bladskilt",
+                  "icon": "leaf",
+                  "pos": [
+                    0.72,
+                    0.55
+                  ]
+                }
+              ],
+              "targets": [],
+              "key": "decoration"
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S37",
+        "chapter": 1,
+        "page": 37,
+        "title": "Farmens første trick",
+        "narrator": "Mos pustede på en vissen gren, og et grønt blad foldede sig ud. Noor rakte straks sin madpakke frem med et udtryk, som om hun havde fundet løsningen på frokost for altid.",
+        "dialogue": [
+          {
+            "speaker": "Noor",
+            "text": "Kan du også få en bolle til at gro?"
+          },
+          {
+            "speaker": "Mos",
+            "text": "Den er død dej."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Så må vi selv bage dem."
+        },
+        "image_id": "K01_B29",
+        "base_page": 37,
+        "new_composition": true,
+        "art": "Farmhave med vissen gren, tomt bed og Noor med madpakke. Mos ved et lyst aktivitetsmærke. Baggrunden viser valgt hjem. Kontinuitet efter byggeri: præcis 1 færdige dragehuse. Kendte beboere og deres valgte husvarianter bevares i scenens farmbaggrund.",
+        "interaction": {
+          "type": "drageevne",
+          "solution": "Vælg Mos-ikon og derefter det tomme bed. Tre frø fra lunden plantes automatisk. Gem bed_01 og lås naturpust op til senere kapitler.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Grøn pustesky; spirer skaleres op; Noor sænker langsomt madpakken.",
+        "next": {
+          "success": "K01_S38"
+        },
+        "state_commit": {
+          "completed_page": "K01_S37",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_state": {
+          "houses_before": 1,
+          "houses_after": 1,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Vælg Mos, og lad ham puste på det tomme bed.",
+              "items": [
+                {
+                  "id": "mos",
+                  "label": "Mos’ naturpust",
+                  "icon": "mos",
+                  "pos": [
+                    0.22,
+                    0.73
+                  ],
+                  "target": "garden"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "garden",
+                  "label": "Det tomme bed",
+                  "icon": "seed",
+                  "pos": [
+                    0.69,
+                    0.52
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S38",
+        "chapter": 1,
+        "page": 38,
+        "title": "Det, vi tog med",
+        "narrator": "Vores fund fra stien fik plads ved Rodhyttens indgang, hvor Mos selv kunne bruge det. Det var en lille ting, men nu kunne man se, hvilken vej vi havde taget sammen.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Det var godt, vi gik den vej."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Jeg vil også se den anden en dag."
+          }
+        ],
+        "success_text": {
+          "speaker": "Mos",
+          "text": "Vores ting. Vores sted."
+        },
+        "image_id": "K01_B29",
+        "base_page": 37,
+        "new_composition": false,
+        "art": "Genbrug farmhave. Ved rute A ses vindblad som lille ventilator; ved B dugkop som drikkested. Kun valgt variant vises. Kontinuitet efter byggeri: præcis 1 færdige dragehuse. Kendte beboere og deres valgte husvarianter bevares i scenens farmbaggrund.",
+        "interaction": {
+          "type": "følgevalg",
+          "solution": "Hvis k01_rute=A, placér vindblad ved reden og aktivér vind. Ellers placér dugkop ved bedet og vand det. Gem første rutegevinst; vis kun tilgængelig ting.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "A: blid vind i løv. B: dugdråber ruller. Mos nyser et blad.",
+        "next": {
+          "success": "K01_S39"
+        },
+        "state_commit": {
+          "completed_page": "K01_S38",
+          "save_after_each_subgoal": true,
+          "house_01.gift": "gift_for_saved_route_only"
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_callback": {
+          "A": "Et lille rebmærke ved Rodhytten; Mos strækker vingen under en blid vind.",
+          "B": "De tre støtteklodser bliver til en bænk ved Rodhytten."
+        },
+        "farm_state": {
+          "houses_before": 1,
+          "houses_after": 1,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Giv jeres fund en plads ved Rodhytten.",
+              "items": [
+                {
+                  "id": "gift",
+                  "label": "Jeres gave",
+                  "icon": "gift",
+                  "pos": [
+                    0.24,
+                    0.75
+                  ],
+                  "target": "gift_spot"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "gift_spot",
+                  "label": "Ved Mos’ hjem",
+                  "icon": "house",
+                  "pos": [
+                    0.67,
+                    0.43
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "sequence",
+              "prompt": "Prøv gaven sammen med Mos.",
+              "items": [
+                {
+                  "id": "activate",
+                  "label": "Brug jeres gave",
+                  "icon": "gift",
+                  "pos": [
+                    0.5,
+                    0.56
+                  ]
+                }
+              ],
+              "targets": []
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S39",
+        "chapter": 1,
+        "page": 39,
+        "title": "Kære dagbog: Ikke en kat",
+        "narrator": "Jeg satte Mos' billede ind på den første side i albummet. Resten af siderne var tomme, men de føltes allerede anderledes. Måske var tomme sider også en slags invitation.",
+        "dialogue": [
+          {
+            "speaker": "Liv",
+            "text": "Jeg tror, jeg vil huske det her."
+          },
+          {
+            "speaker": "Noor",
+            "text": "Især min gode bro."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "I morgen vil jeg bare lave noget helt normalt."
+        },
+        "image_id": "K01_B29",
+        "base_page": 37,
+        "new_composition": false,
+        "art": "Genbrug farmhave som aftenpanel. Åben dagbog som UI med plads til foto, blad og redningsmærke. Ingen håndskrevet tekst i selve billedfilen. Kontinuitet efter byggeri: præcis 1 færdige dragehuse. Kendte beboere og deres valgte husvarianter bevares i scenens farmbaggrund.",
+        "interaction": {
+          "type": "album",
+          "solution": "Vælg et af tre allerede besøgte øjeblikke til dagbogen. Placér bladstempel hvor som helst i rammen. Gem album_01; ingen pointvurdering.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Siden folder sig; stemplet lander; stjerner tændes langsomt.",
+        "next": {
+          "success": "K01_S40"
+        },
+        "state_commit": {
+          "completed_page": "K01_S39",
+          "save_after_each_subgoal": true
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_state": {
+          "houses_before": 1,
+          "houses_after": 1,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "album",
+              "prompt": "Vælg det øjeblik, du vil huske i dagbogen.",
+              "items": [],
+              "targets": []
+            },
+            {
+              "kind": "decorate",
+              "prompt": "Sæt dit bladstempel, hvor du vil på siden.",
+              "items": [
+                {
+                  "id": "stamp",
+                  "label": "Bladstempel",
+                  "icon": "leaf",
+                  "pos": [
+                    0.5,
+                    0.86
+                  ]
+                }
+              ],
+              "targets": [],
+              "zone": [
+                0.12,
+                0.12,
+                0.76,
+                0.58
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      },
+      {
+        "id": "K01_S40",
+        "chapter": 1,
+        "page": 40,
+        "title": "Lyset på havet",
+        "narrator": "Ude på havet stod et fyr uden lys, mens en varm gnist landede i Mos' vandskål. Kompasset blinkede rødt. Vores første hjem var færdigt, men en anden drage ventede stadig.",
+        "dialogue": [
+          {
+            "speaker": "Mos",
+            "text": "En ven fryser."
+          },
+          {
+            "speaker": "Liv",
+            "text": "Selvfølgelig. Det normale må vente."
+          }
+        ],
+        "success_text": {
+          "speaker": "Liv",
+          "text": "Vi kommer. Bare hold fast."
+        },
+        "image_id": "K01_B30",
+        "base_page": 40,
+        "new_composition": true,
+        "art": "Farmen set mod mørkt hav og et fjernt fyr. Rød gnist i skål. Kompassets andet felt lyser; Mos og Liv i silhuet. Kontinuitet efter byggeri: præcis 1 færdige dragehuse. Kendte beboere og deres valgte husvarianter bevares i scenens farmbaggrund.",
+        "interaction": {
+          "type": "åbn",
+          "solution": "Tryk på gnisten og læg den i journalens næste felt. Lås kapitel 2 op. Kapitel slutter på roligt billede, hvor Farm og Næste eventyr er tilgængelige. Gem chapter_complete og farmtilstand efter afslutning. Kameraet bliver på farmen; næste kapitel kræver et særskilt valg ved rejsekortet.",
+          "failure": "Ingen nulstilling af løste delmål. Forkert objekt giver en kort fysisk reaktion eller preview og kan flyttes tilbage.",
+          "hints": [
+            "Vis området med næste uløste objekt.",
+            "Vis objektets forbindelse til målet.",
+            "Liv demonstrerer det næste uløste deltrin; resten spilles videre."
+          ],
+          "input_alternative": "Tryk på objekt og derefter mål; langt tryk kan altid erstattes af én almindelig handling."
+        },
+        "motion": "Gnist damper i vand; fyrblink mangler; rød lyssti viser næste mål.",
+        "next": {
+          "success": "FARM_FREE"
+        },
+        "state_commit": {
+          "completed_page": "K01_S40",
+          "save_after_each_subgoal": true,
+          "chapter_01_complete": true,
+          "chapter_02_unlocked": true,
+          "mode": "FARM_FREE"
+        },
+        "text_is_live_overlay": true,
+        "autosave": true,
+        "farm_state": {
+          "houses_before": 1,
+          "houses_after": 1,
+          "rescued_dragons": 1,
+          "preserve_previous_variants": true,
+          "current_house": "Rodhytten"
+        },
+        "runtime": {
+          "stages": [
+            {
+              "kind": "place",
+              "prompt": "Gem den varme gnist i journalens næste felt.",
+              "items": [
+                {
+                  "id": "spark",
+                  "label": "Gnisten fra fyret",
+                  "icon": "spark",
+                  "pos": [
+                    0.28,
+                    0.68
+                  ],
+                  "target": "next_page"
+                }
+              ],
+              "targets": [
+                {
+                  "id": "next_page",
+                  "label": "En ny side i journalen",
+                  "icon": "book",
+                  "pos": [
+                    0.7,
+                    0.39
+                  ]
+                }
+              ]
+            }
+          ],
+          "overlay_status": "implemented",
+          "coordinate_space": "closeup_rect"
+        }
+      }
+    ],
+    "reading_stats": {
+      "chapter": 1,
+      "dragon": "Mos",
+      "narrator": {
+        "words": 1159,
+        "sentences": 102,
+        "long_words": 168,
+        "lix": 25.9
+      },
+      "full_reading": {
+        "words": 1878,
+        "sentences": 254,
+        "long_words": 208,
+        "lix": 18.5
+      },
+      "major_choice_words": 13
+    }
+  },
+  "maze": {
+    "start": "I",
+    "goal": "D",
+    "edges": [
+      [
+        "I",
+        "E"
+      ],
+      [
+        "E",
+        "F"
+      ],
+      [
+        "F",
+        "B"
+      ],
+      [
+        "B",
+        "C"
+      ],
+      [
+        "C",
+        "G"
+      ],
+      [
+        "G",
+        "H"
+      ],
+      [
+        "H",
+        "D"
+      ],
+      [
+        "E",
+        "A"
+      ],
+      [
+        "F",
+        "J"
+      ],
+      [
+        "G",
+        "K"
+      ],
+      [
+        "K",
+        "L"
+      ]
+    ],
+    "solution": [
+      "I",
+      "E",
+      "F",
+      "B",
+      "C",
+      "G",
+      "H",
+      "D"
+    ],
+    "nodes": {
+      "A": [
+        0.12,
+        0.18
+      ],
+      "B": [
+        0.37,
+        0.18
+      ],
+      "C": [
+        0.62,
+        0.18
+      ],
+      "D": [
+        0.87,
+        0.18
+      ],
+      "E": [
+        0.12,
+        0.5
+      ],
+      "F": [
+        0.37,
+        0.5
+      ],
+      "G": [
+        0.62,
+        0.5
+      ],
+      "H": [
+        0.87,
+        0.5
+      ],
+      "I": [
+        0.12,
+        0.82
+      ],
+      "J": [
+        0.37,
+        0.82
+      ],
+      "K": [
+        0.62,
+        0.82
+      ],
+      "L": [
+        0.87,
+        0.82
+      ]
+    },
+    "control": "Tryk på tilstødende knude eller træk langs åben kant; tilbagetrækning tilladt. Ingen tidsfrist.",
+    "obstacle_rule": "Kun de opregnede kanter er åbne. Alle øvrige forbindelser er lukkede. Illustrationens pynt må ikke ligne ekstra åbne passager."
+  },
+  "farm": {
+    "persistent": true,
+    "lots": [
+      {
+        "id": "house_01",
+        "owner": "Mos",
+        "name": "Rodhytten",
+        "anchor": [
+          0.18,
+          0.3
+        ],
+        "variants": [
+          "piledam",
+          "moslund"
+        ]
+      },
+      {
+        "id": "house_02",
+        "owner": "Glød",
+        "name": "Glødehuset",
+        "anchor": [
+          0.3,
+          0.77
+        ],
+        "variants": [
+          "solterrasse",
+          "ovngård"
+        ]
+      },
+      {
+        "id": "house_03",
+        "owner": "Perle",
+        "name": "Muslingehuset",
+        "anchor": [
+          0.17,
+          0.63
+        ],
+        "variants": [
+          "klippebugt",
+          "havekanal"
+        ]
+      },
+      {
+        "id": "house_04",
+        "owner": "Jamaica",
+        "name": "Palmehuset",
+        "anchor": [
+          0.4,
+          0.54
+        ],
+        "variants": [
+          "palmescene",
+          "grøn gård"
+        ]
+      },
+      {
+        "id": "house_05",
+        "owner": "Rainbow",
+        "name": "Prismehuset",
+        "anchor": [
+          0.65,
+          0.31
+        ],
+        "variants": [
+          "krystalhave",
+          "glashus"
+        ]
+      },
+      {
+        "id": "house_06",
+        "owner": "Fnug",
+        "name": "Snehytten",
+        "anchor": [
+          0.78,
+          0.47
+        ],
+        "variants": [
+          "skyggegrotte",
+          "sneeng"
+        ]
+      },
+      {
+        "id": "house_07",
+        "owner": "Bris",
+        "name": "Skyhuset",
+        "anchor": [
+          0.73,
+          0.15
+        ],
+        "variants": [
+          "klippeplads",
+          "vindhave"
+        ]
+      },
+      {
+        "id": "house_08",
+        "owner": "Blæk",
+        "name": "Boghytten",
+        "anchor": [
+          0.47,
+          0.18
+        ],
+        "variants": [
+          "trærodshus",
+          "teglhytte"
+        ]
+      },
+      {
+        "id": "house_09",
+        "owner": "Tikke",
+        "name": "Urhytten",
+        "anchor": [
+          0.56,
+          0.75
+        ],
+        "variants": [
+          "rund træhytte",
+          "skæv stenhytte"
+        ]
+      },
+      {
+        "id": "house_10",
+        "owner": "Nova",
+        "name": "Stjernehuset",
+        "anchor": [
+          0.84,
+          0.72
+        ],
+        "variants": [
+          "kuppelhytte",
+          "stjernetræhus"
+        ]
+      }
+    ],
+    "after_chapter": "FARM_FREE",
+    "next_chapter_auto_start": false,
+    "replay_uses_separate_save": true,
+    "shared_anchors": {
+      "workshop": [
+        0.12,
+        0.46
+      ],
+      "dock": [
+        0.08,
+        0.79
+      ],
+      "table": [
+        0.48,
+        0.43
+      ],
+      "entry": [
+        0.45,
+        0.94
+      ]
+    },
+    "finale": {
+      "festival_select_games": 3,
+      "available_games": 10,
+      "permanent_free_play": true
+    }
+  },
+  "minigame": {
+    "id": "G01",
+    "name": "Mos’ levende have",
+    "dragons": [
+      "Mos"
+    ],
+    "loop": "Vælg tre frø, læg dem i bedet, og før en rodsti fra vandkrukken til planterne. Brug Mos’ naturpust og vælg selv, hvilke blomster der får plads.",
+    "input": "Tryk frø, tryk jordfelt; drej de tre rodstykker eller brug træk. Et synligt vandpreview viser, hvor forbindelsen brydes.",
+    "levels": "Først et bed med tre felter; derefter to sammenhængende bede og til sidst fri blomstertegning på et 4×4 felt.",
+    "reward": "Gem ét af tre blomsterarrangementer som pynt ved Rodhytten. Planterne visner aldrig, mens spillet er lukket.",
+    "feedback": "Uforbundne rødder lyser ved åbne ender. En forkert placering kan flyttes. Naturpust giver spirer i spillerens valgte rækkefølge."
+  }
+}
