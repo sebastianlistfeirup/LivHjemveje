@@ -32,6 +32,9 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
   const cdp=await context.newCDPSession(page);
   const installability=await cdp.send('Page.getInstallabilityErrors');
   assert.deepEqual(installability.installabilityErrors,[],'Home-screen manifest must be installable');
+  // iPhone Safari offers the home-screen route when document fullscreen is absent.
+  await page.evaluate(()=>{document.documentElement.requestFullscreen=undefined;document.documentElement.webkitRequestFullscreen=undefined;window.livFullscreen();});
+  await page.locator('#install-help').waitFor({state:'visible'});await page.locator('#install-close').click();
   await page.screenshot({path:'test-results/release-mobile.png'});
   await context.setOffline(true);await page.reload({waitUntil:'networkidle'});
   await page.waitForFunction(()=>!document.getElementById('loading'),null,{timeout:60000});await page.waitForTimeout(800);await tap(c.begin);
