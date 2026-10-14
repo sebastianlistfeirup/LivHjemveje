@@ -6,7 +6,7 @@ const source=Object.fromEntries(pages.map(p=>[p.id,p]));
 const route=process.env.ROUTE||'BB';const mobile=process.env.MOBILE==='1';
 (async()=>{
 const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader','--disable-dev-shm-usage']});
-const context=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:900},deviceScaleFactor:1,hasTouch:mobile,isMobile:mobile,acceptDownloads:true});
+const context=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:900},deviceScaleFactor:mobile?3:1,hasTouch:mobile,isMobile:mobile,acceptDownloads:true});
 const page=await context.newPage();const errors=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon')){errors.push(m.text());console.log('CONSOLE',m.text())}});
 await page.goto(process.env.GAME_URL||'http://127.0.0.1:8765',{waitUntil:'networkidle'});

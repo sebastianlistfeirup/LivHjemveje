@@ -16,6 +16,8 @@ S08 og S22 gemmer A/B før overgangen. Begge grene samles ved henholdsvis S13 og
 
 De oprindelige illustrationer vises ubeskåret i 2:3. Brede skærme får tekst ved siden af billedet; telefoner får et tekstfelt, som tilpasses den aktuelle replik. Ved 125/150 % tekst kan feltet rulles. Alle nødvendige mål har mindst 48 logiske pixels. På meget små eller lave skærme udvides de præcise gådeudsnit, så genstandene fortsat kan betjenes.
 
+Webversionen tegner ved skærmens fulde pixeltæthed, men bruger CSS-pixels til layout og input via Godots canvas-skalering. Derfor har en iPhone med DPR 3 samme 390-pixel brede betjening som en 390-pixel browserprøve, samtidig med at billeder og tekst tegnes skarpt. Skift af orientering genberegner størrelsen. Portrættilstand afhænger også af forholdet mellem højde og bredde, så en stående 820-pixel iPad beholder portrætlayoutet. Prøverne omfatter DPR 1, 2 og 3 samt rotation med et gemt bed åbent.
+
 Scenegenstande, overlays og input bruger samme `art_rect` eller eksplicitte `closeup_rect`. En trækhandling har tryk-på-ting/tryk-på-mål som alternativ. Labyrinten bruger kun de 11 kanter i `maze-1`. De tre L-formede render har synlige åbne ender og faktisk orientering; vandet standser ved første brud. G01's lige render accepterer begge vandrette orienteringer.
 
 Forskelsgåden er ét deterministisk nært diagram med fem separate ændringslag inden for de originale normaliserede mål. Alt andet i sammenligningsfeltet er identisk og uden animation. Skift mellem plan og ankomst er eksplicit, og fund markeres i begge visninger.

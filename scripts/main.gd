@@ -29,8 +29,11 @@ var animated_node = ""
 var animated_at = 0
 var previous_beat = ""
 var dialogue_tween: Tween
+var display_css_size = Vector2i.ZERO
 
 func _ready():
+	sync_display_scale()
+	get_window().size_changed.connect(sync_display_scale)
 	UI.init_fonts()
 	store=SaveStore.new()
 	runtime=StoryRuntime.new(store)
@@ -43,6 +46,19 @@ func _ready():
 		if bool(reduce):store.active().settings.reduced_motion=true
 	refresh()
 
+func sync_display_scale():
+	if not OS.has_feature("web"):return
+	# Render at the device's full pixel density, but lay out and hit-test in CSS
+	# pixels. Without this, a 390px iPhone at DPR 3 selects the 1170px desktop UI.
+	var dimensions=JSON.parse_string(JavaScriptBridge.eval("JSON.stringify([window.innerWidth,window.innerHeight])",true))
+	if not dimensions is Array or dimensions.size()!=2:return
+	var logical_size=Vector2i(int(dimensions[0]),int(dimensions[1]))
+	if logical_size==display_css_size or logical_size.x<=0 or logical_size.y<=0:return
+	display_css_size=logical_size
+	get_window().content_scale_mode=Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+	get_window().content_scale_aspect=Window.CONTENT_SCALE_ASPECT_IGNORE
+	get_window().content_scale_size=logical_size
+
 func schedule_refresh():
 	if rebuilding:return
 	rebuilding=true
@@ -50,7 +66,7 @@ func schedule_refresh():
 
 func viewport_layout():
 	var s=size
-	portrait=s.x<790
+	portrait=s.x<790 or s.y>s.x*1.15
 	if portrait:
 		if screen=="garden" and s.y<700:
 			art_rect=Rect2(14,67,s.x-28,s.y-231)
@@ -629,6 +645,7 @@ func _process(delta):
 		import_check+=delta;qa_timer+=delta
 		if import_check>.5:
 			import_check=0
+			sync_display_scale()
 			var imported=JavaScriptBridge.eval("window.livImported || ''",true)
 			if imported is String and not imported.is_empty():
 				JavaScriptBridge.eval("window.livImported=''",true);finish_import(imported)

@@ -9,7 +9,7 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
   launch.proxy={server:proxy.protocol+'//'+proxy.host,username:decodeURIComponent(proxy.username),password:decodeURIComponent(proxy.password)};
  }
  const profile=fs.mkdtempSync('/tmp/liv-release-');
- const context=await chromium.launchPersistentContext(profile,{...launch,viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:1});
+ const context=await chromium.launchPersistentContext(profile,{...launch,viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:3});
  const page=await context.newPage();const errors=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.goto(url,{waitUntil:'networkidle',timeout:120000});
