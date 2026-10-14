@@ -28,7 +28,7 @@ html,body{overscroll-behavior:none;-webkit-user-select:none;user-select:none;-we
 <dialog id="install-help"><h2>Dit eventyr, lige ved hånden</h2><p id="install-copy"></p><p id="install-status"></p><button id="install-close">Tilbage til eventyret</button></dialog>
 <script src="index.js"></script>
 <script>
-const engine=new Engine({"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":24986076,"index.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4});
+const engine=new Engine({"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":37376192,"index.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4});
 const loading=document.getElementById('loading');
 engine.startGame({onProgress:(current,total)=>{if(total>0&&document.getElementById('progress'))document.getElementById('progress').value=current/total;}}).then(()=>{loading.remove();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});}).catch(error=>{document.getElementById('status').textContent='Eventyret kunne ikke åbnes.';document.getElementById('error').style.display='block';document.getElementById('error').textContent='Prøv en opdateret Chrome, Safari eller Firefox med WebGL slået til.\n'+error.message;document.getElementById('retry').style.display='block';});
 let installPrompt=null;
