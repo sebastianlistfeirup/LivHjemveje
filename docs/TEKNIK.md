@@ -46,6 +46,8 @@ Musik og effekter kan indstilles hver for sig. Musikken looper; den starter efte
 
 Den kompakte have bruger hele den ledige bredde og en separat vandret opsætning på lave skærme. Alle 16 jordfelter og hver frøtype kontrolleres med berøringshændelser i `tests/mobile.cjs`; prøven slår derefter nettet fra og genåbner spillet med det gemte bed.
 
+Den offentlige udgave ligger på `gh-pages`. Repositoryets Pages-kilde er GitHub Actions; `deploy-pages.yml` udgiver den færdige eksport ved push til denne gren. Workflowet findes også på udgivelsesgrenen. Kildekode og tunge originalpakker indgår ikke på spilsiden. Ved opdatering bygges og kontrolleres spillet med `export_web.sh`, hvorefter eksportfilerne erstattes på `gh-pages`, mens `.github/workflows/deploy-pages.yml` bevares.
+
 ```bash
 godot --headless --editor --import --quit
 mkdir -p test-results
