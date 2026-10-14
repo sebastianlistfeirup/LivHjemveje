@@ -3,13 +3,15 @@ const {chromium}=require(process.env.PLAYWRIGHT_PATH||'playwright');
 const fs=require('node:fs');const assert=require('node:assert/strict');
 (async()=>{
  const url=process.env.GAME_URL||'http://127.0.0.1:8765';
+ const landscape=process.env.RELEASE_ORIENTATION==='landscape';
+ const controlsFile=landscape?'tests/release-controls-landscape.json':'tests/release-controls.json';
  const launch={headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader','--disable-dev-shm-usage']};
  if(url.startsWith('https:')&&(process.env.HTTPS_PROXY||process.env.HTTP_PROXY)){
   const proxy=new URL(process.env.HTTPS_PROXY||process.env.HTTP_PROXY);
   launch.proxy={server:proxy.protocol+'//'+proxy.host,username:decodeURIComponent(proxy.username),password:decodeURIComponent(proxy.password)};
  }
  const profile=fs.mkdtempSync('/tmp/liv-release-');
- const context=await chromium.launchPersistentContext(profile,{...launch,viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:3});
+ const context=await chromium.launchPersistentContext(profile,{...launch,viewport:landscape?{width:844,height:390}:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:3});
  const page=await context.newPage();const errors=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.goto(url,{waitUntil:'networkidle',timeout:120000});
@@ -21,15 +23,16 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
   controls.read=[];
   for(let i=0;i<3;i++){const r=(await q()).buttons.find(b=>b.text.includes('Læs videre')||b.text.includes('Se, hvad')).rect;controls.read.push(r);await tap(r);}
   controls.rings=[1,2].map(i=>null);const state=await q();controls.rings=state.actions.filter(a=>['ring_1','ring_2'].includes(a.id)).map(a=>a.rect);
-  fs.writeFileSync('tests/release-controls.json',JSON.stringify(controls,null,2)+'\n');console.log('Recorded touch controls for release check');
+  fs.writeFileSync(controlsFile,JSON.stringify(controls,null,2)+'\n');console.log('Recorded touch controls for release check');
  }else{
   assert.equal(await page.evaluate(()=>typeof window.__livQA),'undefined','Release must not expose diagnostics');
-  const c=JSON.parse(fs.readFileSync('tests/release-controls.json'));
+  const c=JSON.parse(fs.readFileSync(controlsFile));
   await tap(c.begin);for(const rect of c.read)await tap(rect);for(const rect of c.rings)await tap(rect);
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('liv-hjemveje-v1')));
   assert(saved.data.started);assert.equal(saved.data.node_progress.K01_S01.stages['0'].done.length,2);
   await page.waitForFunction(()=>!!navigator.serviceWorker?.controller,null,{timeout:120000});
   const cdp=await context.newCDPSession(page);
+  assert.equal(await page.evaluate(async()=> (await (await fetch('manifest.webmanifest')).json()).orientation),'any');
   const installability=await cdp.send('Page.getInstallabilityErrors');
   assert.deepEqual(installability.installabilityErrors,[],'Home-screen manifest must be installable');
   // iPhone Safari offers the home-screen route when document fullscreen is absent.

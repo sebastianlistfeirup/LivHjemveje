@@ -12,6 +12,8 @@ Kapitel 1 indeholder 40 scener, fire mulige gennemløb, 30 originale illustratio
 
 Åbn [spillet](https://sebastianlistfeirup.github.io/LivHjemveje/) på telefonen. Den verificerede udgave udgives fra grenen `gh-pages`.
 
+Spillet er indrettet til **liggende telefon og iPad**. Telefonen kan også holdes stående; billeder, gåder og tekst flytter sig automatisk, og du kan dreje skærmen midt i spillet. Hjemmeskærmsudgaven følger enhedens orientering. Slå enhedens rotationslås fra, hvis den skal kunne dreje.
+
 Tryk på tingene i billedet. Genstande kan enten trækkes til et mål eller vælges med ét tryk og placeres med det næste. Læs i dit eget tempo. Kompasset åbner rejsekortet, dagbogen gemmer fund og replikker, og menuen har tekststørrelse, rolig bevægelse, lyd og sikkerhedskopier.
 
 Fremgangen gemmes på den enhed og i den browser, du spiller i. Brug **Indstillinger → Eksportér mit eventyr** for at flytte den eller bevare en ekstra kopi. Genbesøg overskriver ikke farmen.

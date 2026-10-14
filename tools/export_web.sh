@@ -10,6 +10,7 @@ esac
 mkdir -p builds/web test-results
 "$GODOT_BIN" --headless --editor --import --quit
 "$GODOT_BIN" --headless --script tests/test_chapter.gd
+"$GODOT_BIN" --headless --script tests/test_layouts.gd
 "$GODOT_BIN" --headless --export-release Web builds/web/index.html
 python3 tools/prepare_pwa.py
 python3 tools/check_web_export.py

@@ -23,6 +23,7 @@ jobs:
           mkdir -p test-results
           Godot_v4.6.3-stable_linux.x86_64 --headless --editor --import --quit
           timeout 120 Godot_v4.6.3-stable_linux.x86_64 --headless --script tests/test_chapter.gd
+          timeout 120 Godot_v4.6.3-stable_linux.x86_64 --headless --script tests/test_layouts.gd
       - name: Gem ruternes gemmefiler
         uses: actions/upload-artifact@v4
         with:

@@ -14,7 +14,7 @@ manifest = {
     'id': './', 'name': 'Liv og de ti hjemveje', 'short_name': 'Livs hjemveje',
     'description': 'Find kompasset, hjælp Mos hjem og skab din egen dragefarm.',
     'lang': 'da', 'start_url': './', 'scope': './',
-    'display': 'standalone', 'orientation': 'portrait-primary',
+    'display': 'standalone', 'orientation': 'any',
     'background_color': '#0a1917', 'theme_color': '#102b25',
     'categories': ['games'],
     'icons': [{'src': 'app-icon-192.png', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},

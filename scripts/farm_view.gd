@@ -24,9 +24,9 @@ func _has_point(point: Vector2) -> bool:
 func setup(save: SaveStore, area: Rect2, canvas_size: Vector2, is_garden: bool = false):
 	store=save; rect=area; size=canvas_size; garden=is_garden
 	compact_garden=garden and rect.size.y<460
-	wide_garden=compact_garden and canvas_size.x>=790
+	wide_garden=compact_garden and canvas_size.x>canvas_size.y
 	if compact_garden:
-		var width=canvas_size.x-28 if canvas_size.x<790 else canvas_size.x*.52-28
+		var width=canvas_size.x*.52-28 if wide_garden else canvas_size.x-28
 		rect.position.x=14
 		rect.size.x=width
 	model=GardenModel.new(store)

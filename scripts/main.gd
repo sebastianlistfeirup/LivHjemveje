@@ -66,7 +66,7 @@ func schedule_refresh():
 
 func viewport_layout():
 	var s=size
-	portrait=s.x<790 or s.y>s.x*1.15
+	portrait=s.y>=s.x
 	if portrait:
 		if screen=="garden" and s.y<700:
 			art_rect=Rect2(14,67,s.x-28,s.y-231)
@@ -163,9 +163,10 @@ func draw_title():
 	var started=store.active().started
 	UI.button(layer,"Fortsæt dit eventyr  →" if started else "Begynd eventyret  →",Rect2(left,y,minf(width,355),56),begin,true)
 	UI.button(layer,"Indstillinger",Rect2(left,y+70,162,48),func():open_modal("settings"),false,true)
-	if store.data.chapters.get("chapter_01",{}).get("complete",false):
+	if width>=310 and store.data.chapters.get("chapter_01",{}).get("complete",false):
 		UI.button(layer,"Besøg farmen",Rect2(left+174,y+70,minf(181,width-174),48),go_farm,false,true)
 	var bottom_text="Dit eventyr gemmes automatisk på denne enhed."
+	if portrait:bottom_text="Prøv liggende format. Spillet gemmer selv."
 	UI.label(layer,bottom_text,Rect2(left,minf(y+142,size.y-35),width,35),11,Color("b0b69d"))
 	if not portrait:
 		UI.label(layer,"DEN STILLE LUND",Rect2(size.x-240,34,210,22),11,UI.GOLD,UI.bold)
@@ -173,11 +174,12 @@ func draw_title():
 
 func draw_short_title():
 	var x=38.0;var width=size.x*.49
-	UI.label(layer,"ET EVENTYR TIL LIV",Rect2(x,22,width,22),10,UI.GOLD,UI.bold)
-	UI.label(layer,"Liv",Rect2(x,45,width,86),60,UI.CREAM,UI.serif)
-	UI.label(layer,"og de ti hjemveje",Rect2(x,128,width,48),25,UI.CREAM,UI.serif)
-	UI.label(layer,"En lille drage. En glemt vej.\nEt hjem, der begynder med dig.",Rect2(x,185,width,64),14,Color("d2d3b8"))
-	UI.label(layer,"KAPITEL 01 · MOS OG DEN STILLE LUND",Rect2(x,253,width,24),10,UI.GOLD,UI.bold)
+	var short=size.y<360
+	UI.label(layer,"ET EVENTYR TIL LIV",Rect2(x,12 if short else 22,width,22),10,UI.GOLD,UI.bold)
+	UI.label(layer,"Liv",Rect2(x,31 if short else 45,width,80),54 if short else 60,UI.CREAM,UI.serif)
+	UI.label(layer,"og de ti hjemveje",Rect2(x,106 if short else 128,width,42),22 if short else 25,UI.CREAM,UI.serif)
+	UI.label(layer,"En lille drage. En glemt vej.\nEt hjem, der begynder med dig.",Rect2(x,151 if short else 185,width,50),13 if short else 14,Color("d2d3b8"))
+	UI.label(layer,"KAPITEL 01 · MOS OG DEN STILLE LUND",Rect2(x,size.y-108,width,24),10,UI.GOLD,UI.bold)
 	UI.button(layer,"Fortsæt eventyret →" if store.active().started else "Begynd eventyret →",Rect2(x,size.y-75,235,52),begin,true,true)
 	UI.button(layer,"Indstillinger",Rect2(x+247,size.y-75,125,52),func():open_modal("settings"),false,true)
 
@@ -218,7 +220,7 @@ func draw_story():
 		UI.panel(layer,Rect2(art_rect.position.x+6,art_rect.position.y+8,art_rect.size.x-12,37),Color(.035,.10,.07,.84),10)
 		var label=UI.label(layer,label_text,Rect2(art_rect.position.x+14,art_rect.position.y+13,art_rect.size.x-28,26),13,UI.CREAM,UI.serif)
 		label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	else:
+	elif size.y>=620:
 		UI.label(layer,"MOS OG BRØNDEN, DER HOLDT VEJRET",Rect2(text_rect.position.x,text_rect.position.y-39,text_rect.size.x,22),10,UI.GOLD,UI.bold)
 	var r=text_rect
 	var is_action=runtime.ready_for_action()
@@ -371,7 +373,8 @@ func draw_farm(garden: bool):
 		UI.label(layer,"Dit blomsterbed er klar." if GardenModel.new(store).state().grown else "Tre frø · vand · naturpust",Rect2(r.position.x+22,r.position.y+42,r.size.x-44,23),13,UI.INK)
 	if garden:
 		if GardenModel.new(store).state().grown:
-			UI.button(layer,"Gem blomsterne",Rect2(r.position.x+18,r.end.y-66,(r.size.x-48)*.6,48),func():open_modal("arrangements"),true,true)
+			var keep_label="Gem bedet" if r.size.x<280 else "Gem blomsterne"
+			UI.button(layer,keep_label,Rect2(r.position.x+18,r.end.y-66,(r.size.x-48)*.6,48),func():open_modal("arrangements"),true,true)
 			UI.button(layer,"Farm",Rect2(r.position.x+30+(r.size.x-48)*.6,r.end.y-66,(r.size.x-48)*.4,48),leave_garden,false,true)
 		else:
 			UI.button(layer,"Tilbage til farmen",Rect2(r.position.x+20,r.end.y-66,r.size.x-40,48),leave_garden,false,true)
@@ -664,7 +667,7 @@ func publish_qa():
 		for h in puzzle.hits:actions.append({"id":h.id,"label":h.label,"rect":[h.rect.position.x,h.rect.position.y,h.rect.size.x,h.rect.size.y]})
 	if farm_view:
 		for h in farm_view.hits:actions.append({"id":h.id,"rect":[h.rect.position.x,h.rect.position.y,h.rect.size.x,h.rect.size.y]})
-	var payload={"screen":screen,"modal":modal,"node":store.active().current_node,"progress":runtime.progress(),"buttons":buttons,"actions":actions,"size":[size.x,size.y],"state":store.active()}
+	var payload={"screen":screen,"modal":modal,"node":store.active().current_node,"progress":runtime.progress(),"buttons":buttons,"actions":actions,"size":[size.x,size.y],"portrait":portrait,"state":store.active()}
 	JavaScriptBridge.eval("window.__livQA="+JSON.stringify(payload),true)
 
 func _unhandled_key_input(event):

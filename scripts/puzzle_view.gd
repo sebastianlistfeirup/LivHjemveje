@@ -41,9 +41,10 @@ func setup(rt: StoryRuntime, rect: Rect2, canvas_size: Vector2):
 	if runtime.config().kind in ["maze", "difference", "pipes", "choice", "album"]:
 		board = Rect2(art_rect.position+art_rect.size*Vector2(.035,.30), art_rect.size*Vector2(.93,.61))
 	if not direct and art_rect.size.x<290:
-		var width=canvas_size.x-28 if canvas_size.x<790 else canvas_size.x*.52-28
+		var portrait=canvas_size.y>=canvas_size.x
+		var width=canvas_size.x-28 if portrait else canvas_size.x*.52-28
 		var height=art_rect.size.y-20
-		var left=(canvas_size.x-width)/2 if canvas_size.x<790 else 14.0
+		var left=(canvas_size.x-width)/2 if portrait else 14.0
 		board=Rect2(left,art_rect.position.y+10,width,height)
 	point_size = clampf(board.size.x * 0.17, 48, 72)
 	build_hits()

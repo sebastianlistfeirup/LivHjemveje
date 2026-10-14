@@ -14,9 +14,9 @@ S08 og S22 gemmer A/B før overgangen. Begge grene samles ved henholdsvis S13 og
 
 ## Grafik og input
 
-De oprindelige illustrationer vises ubeskåret i 2:3. Brede skærme får tekst ved siden af billedet; telefoner får et tekstfelt, som tilpasses den aktuelle replik. Ved 125/150 % tekst kan feltet rulles. Alle nødvendige mål har mindst 48 logiske pixels. På meget små eller lave skærme udvides de præcise gådeudsnit, så genstandene fortsat kan betjenes.
+De oprindelige illustrationer vises ubeskåret i 2:3. Liggende telefoner og iPads får tekst ved siden af billedet; stående skærme får et tekstfelt under billedet, som tilpasses den aktuelle replik. Ved 125/150 % tekst kan feltet rulles. Alle nødvendige mål har mindst 48 logiske pixels. På meget små eller lave skærme udvides de præcise gådeudsnit, så genstandene fortsat kan betjenes.
 
-Webversionen tegner ved skærmens fulde pixeltæthed, men bruger CSS-pixels til layout og input via Godots canvas-skalering. Derfor har en iPhone med DPR 3 samme 390-pixel brede betjening som en 390-pixel browserprøve, samtidig med at billeder og tekst tegnes skarpt. Skift af orientering genberegner størrelsen. Portrættilstand afhænger også af forholdet mellem højde og bredde, så en stående 820-pixel iPad beholder portrætlayoutet. Prøverne omfatter DPR 1, 2 og 3 samt rotation med et gemt bed åbent.
+Webversionen tegner ved skærmens fulde pixeltæthed, men bruger CSS-pixels til layout og input via Godots canvas-skalering. Derfor har en iPhone med DPR 3 samme 390-pixel brede betjening som en 390-pixel browserprøve, samtidig med at billeder og tekst tegnes skarpt. Skift af orientering genberegner størrelsen. Layoutet følger forholdet mellem højde og bredde, også på en lille liggende telefon på 568 × 320. PWA-manifestet bruger `orientation: any`, og Godot bruger sensororientering: ingen af udgaverne låser spillet til stående format. Liggende format anbefales på titelskærmen, mens stående telefon og iPad fortsat er fuldt betjenelige. Enhedens egen rotationslås respekteres.
 
 Scenegenstande, overlays og input bruger samme `art_rect` eller eksplicitte `closeup_rect`. En trækhandling har tryk-på-ting/tryk-på-mål som alternativ. Labyrinten bruger kun de 11 kanter i `maze-1`. De tre L-formede render har synlige åbne ender og faktisk orientering; vandet standser ved første brud. G01's lige render accepterer begge vandrette orienteringer.
 
@@ -46,6 +46,8 @@ Musik og effekter kan indstilles hver for sig. Musikken looper; den starter efte
 
 `tools/prepare_pwa.py` tilføjer manifest, Mos-ikon og en versionsbestemt service worker. Hele eksporten lægges i én cache, før offline-udgaven aktiveres. Installationen genhenter filerne fra nettet, så browserens almindelige HTTP-cache ikke kan indsætte en ældre fil i den nye udgave. Ændringer i selve service workeren indgår også i versionsnøglen. Nye versioner venter, til åbne spilvinduer er lukket, så motor og indhold ikke blandes. Spillerens gemmefil ligger separat og slettes aldrig af cacheopdatering. Installation er en hjemmeskærmsapp, ikke en udgivelse i App Store/Google Play. Safari/iOS' installations- og lageradfærd skal stadig prøves på fysisk enhed.
 
+`tests/test_layouts.gd` kontrollerer alle sceners trykpunkter i otte formater: centrum skal ligge på skærmen, være fri af tekstfeltet og vælge det rigtige objekt. `tests/orientation.cjs` bruger berøringer på 568 × 320, 844 × 390 og 1180 × 820 og drejer hvert format begge veje midt i gåder og haveleg. Prøven bevarer både delmål, en valgt genstand, blomster og gemning efter genåbning.
+
 Den kompakte have bruger hele den ledige bredde og en separat vandret opsætning på lave skærme. Alle 16 jordfelter og hver frøtype kontrolleres med berøringshændelser i `tests/mobile.cjs`; prøven slår derefter nettet fra og genåbner spillet med det gemte bed.
 
 Den offentlige udgave ligger på `gh-pages`. Repositoryets Pages-kilde er GitHub Actions; `deploy-pages.yml` udgiver den færdige eksport ved push til denne gren. Workflowet findes også på udgivelsesgrenen. Kildekode og tunge originalpakker indgår ikke på spilsiden. Ved opdatering bygges og kontrolleres spillet med `export_web.sh`, hvorefter eksportfilerne erstattes på `gh-pages`, mens `.github/workflows/deploy-pages.yml` bevares.
@@ -54,6 +56,7 @@ Den offentlige udgave ligger på `gh-pages`. Repositoryets Pages-kilde er GitHub
 godot --headless --editor --import --quit
 mkdir -p test-results
 godot --headless --script tests/test_chapter.gd
+godot --headless --script tests/test_layouts.gd
 ./tools/export_web.sh
 python3 -m http.server 8080 --directory builds/web
 ```
@@ -66,9 +69,10 @@ python3 tools/prepare_pwa.py
 GAME_URL=http://127.0.0.1:8080 ROUTE=BB node tests/browser.cjs
 GAME_URL=http://127.0.0.1:8080 ROUTE=AA MOBILE=1 node tests/browser.cjs
 GAME_URL=http://127.0.0.1:8080 node tests/mobile.cjs
+GAME_URL=http://127.0.0.1:8080 node tests/orientation.cjs
 ```
 
-Efter `./tools/export_web.sh` kontrollerer `node tests/release.cjs` den faktiske release-udgave med berøringer, gemning midt i første gåde og en fuld offline-genstart. Den sikrer også, at diagnosefladen er fjernet. `tests/release-controls.json` indeholder de registrerede trykpunkter til den faste 390 × 844-prøve.
+Efter `./tools/export_web.sh` kontrollerer `node tests/release.cjs` den faktiske release-udgave med berøringer, gemning midt i første gåde og en fuld offline-genstart. Den sikrer også, at diagnosefladen er fjernet. `tests/release-controls.json` indeholder de registrerede trykpunkter til den faste 390 × 844-prøve. `RELEASE_ORIENTATION=landscape node tests/release.cjs` prøver 844 × 390 med `tests/release-controls-landscape.json`. Begge kræver et manifest, der tillader fri orientering.
 
 `node tests/pwa-update.cjs` prøver den eksporterede service worker mod en HTTP-server med frisk langtids-cache: den nye udgave skal hente nye filer, den åbne gamle udgave skal beholde sine filer, og gemning samt offline-genstart skal overleve skiftet. Små erstatningsfiler isolerer opdateringsforløbet fra spillets rendering.
 

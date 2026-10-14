@@ -10,6 +10,7 @@
 - Automatisk gemning af deltrin, genoptagelse, backup, eksport/import og genbesøg isoleret fra hovedfarmen.
 - Mus og touch, tryk/tryk-alternativ til træk, tastaturfokus, 100/125/150 % tekst, rolig bevægelse, musik, effekter og valgfri oplæsning/vibration.
 - Selvstændig Godot-webeksport og projekt, som kan køres i Godot 4.6.3.
+- Liggende telefon og iPad som anbefalet format, fuldt stående layout og fri skærmrotation midt i gåder og haveleg.
 - Hjemmeskærmsapp med eget Mos-ikon, hele kapitlet til spil uden net og lydpause ved appskift.
 
 ## Afgrænsninger

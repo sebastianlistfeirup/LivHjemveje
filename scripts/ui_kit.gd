@@ -84,6 +84,11 @@ static func button(parent: Node, text: String, rect: Rect2, callback: Callable, 
 	node.add_theme_stylebox_override("hover", box(bg.lightened(0.12), 12, CREAM))
 	node.add_theme_stylebox_override("pressed", box(bg.darkened(0.1), 12, GOLD))
 	node.add_theme_stylebox_override("focus", box(Color.TRANSPARENT, 12, Color("fff1be"), 3))
+	if small:
+		for state in ["normal", "hover", "pressed", "focus"]:
+			var style=node.get_theme_stylebox(state)
+			style.content_margin_left=12
+			style.content_margin_right=12
 	node.add_theme_color_override("font_color", INK if primary else CREAM)
 	node.add_theme_color_override("font_hover_color", INK if primary else CREAM)
 	node.add_theme_color_override("font_pressed_color", INK if primary else CREAM)
