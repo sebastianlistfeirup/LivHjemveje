@@ -1,4 +1,4 @@
-# Verifikation af kapitel 1 · 2.0.0
+# Verifikation af kapitel 1 · 2.0.1
 
 Kontroller udført 14. oktober 2026 med Godot 4.6.3 og Chromium/Playwright. Den spilbare fortælling har 53 scener, 70 interaktionstrin og ni valgsteder; hvert af de fire hovedforløb besøger 49 scener.
 
@@ -32,10 +32,14 @@ Den faktiske release uden diagnoseflade bestod `tests/release.cjs` både ståend
 
 `tests/pwa-update.cjs` bestod: en ny version hentes trods varm HTTP-cache, det allerede åbne spil beholder sammenhængende gamle filer, og gemningen overlever skiftet til den nye udgave og en offline-genstart.
 
-Den pakkede eksport fylder 73,2 MiB. Service worker-version: `c5bdff41c4828312`.
+Den pakkede eksport fylder 74,3 MiB. Service worker-version: `5ccf4cd43eccfab0`.
 
-- `index.pck` SHA-256: `14496af1e38353d6ef42f02ab8752f9c11a275e6675c5a78e253d6e9d1f9b8c7`.
-- `LivHjemveje-Kapitel-1-v2.0.0-Web.zip`: 47.706.256 bytes; SHA-256 `f617f2501a7a8c8b1c6b1b3f231d649d341119563cfb9ec53ad44a2271369215`. ZIP-kontrollen fandt ingen CRC-fejl; den indeholder samme PCK som den afprøvede release, spillevejledning og tredjepartslicenser.
+- `index.pck` SHA-256: `377f78a516acff6d11c94fd1cba470d8c66f7382249d8b376f7b3d93c7387f95`.
+- `LivHjemveje-Kapitel-1-v2.0.1-Web.zip`: 48.922.204 bytes; SHA-256 `8b9ba2e62d2102dbd773cdf465ad63500db6a2d7dcd233aa630893a8a6d91d4d`. ZIP-kontrollen fandt ingen CRC-fejl; den indeholder samme PCK som den afprøvede release, spillevejledning og tredjepartslicenser.
+
+## Sidste grafiske finpudsning
+
+Udgave 2.0.1 erstatter tre af Mos’ atlasfelter med separate, hele illustrationer. De to fulde browserforløb og de tre mobilprøver blev kørt før denne billedudskiftning. De 8.785 automatiske kontroller og releaseprøven i stående format blev gentaget bagefter; naturpustet er gennemgået i den faktiske release. Ingen regler, inputflader eller gemmeformater blev ændret i denne rettelse.
 
 ## Praktisk afgrænsning
 

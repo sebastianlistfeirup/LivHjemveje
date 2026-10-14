@@ -35,10 +35,14 @@ static func farm_art(name: String) -> Texture2D:
 
 static func dragon(frame: int = 0) -> Texture2D:
 	if not dragon_frames.has(frame):
-		var atlas = AtlasTexture.new()
-		atlas.atlas = load("res://assets/characters/mos-atlas.png")
-		atlas.region = Rect2((frame%3)*512,int(frame/3)*512,512,512)
-		dragon_frames[frame] = atlas
+		if frame>=3:
+			var pose=["mos-stretch","mos-breath","mos-walk"][frame-3]
+			dragon_frames[frame]=load("res://assets/characters/"+pose+".png")
+		else:
+			var atlas = AtlasTexture.new()
+			atlas.atlas = load("res://assets/characters/mos-atlas.png")
+			atlas.region = Rect2(frame*512,0,512,512)
+			dragon_frames[frame] = atlas
 	return dragon_frames[frame]
 
 static func init_fonts():

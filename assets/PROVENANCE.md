@@ -2,6 +2,7 @@
 
 - `chapter_01/K01_B01.webp`–`K01_B30.webp`: alle 30 originale sceneillustrationer fra den indlejrede `Codex_Input.zip` i repositoryets v1.0-PDF. Uændret komposition og 1024 × 1536 pixels, konverteret til WebP ved kvalitet 88. Ingen genereret dansk tekst er tilføjet billederne.
 - `characters/mos-atlas.png`: seks nye, transparente stillinger af Mos, genereret med originalens fælles figurreference. Hvil, se, blink, stræk vinge, naturpust og gå. Atlas: 3 × 2 felter à 512 pixels.
+- `characters/mos-stretch.png`, `mos-breath.png` og `mos-walk.png`: særskilte transparente illustrationer, genereret med Mos-atlasset som reference. De erstatter atlasets nederste tre felter i spillet, så hele vingen, naturpustet og halen får plads uden afskårne detaljer eller rester fra nabofelter.
 - `farm/farm.webp`: ny, separat farmbaggrund uden dragehuse eller beboere, genereret med den originale Rodhytteillustration som stilreference. Vedvarende objekter tegnes ovenpå.
 - `farm/objects.png`: nye transparente lag til Rodhytten, piledammen, moslunden og et tomt bed, baseret på originalens Rodhytteillustration.
 - `ui/*.svg`: originale vektorobjekter til håndtering, værktøjer, spor og præcise gåder. Kilden findes i `tools/make_assets.py`.

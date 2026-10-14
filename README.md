@@ -42,7 +42,7 @@ python3 -m http.server 8080 --directory builds/web
 
 ## Udvikling og kvalitet
 
-- [Kontroller af udgave 2.0.0](docs/VERIFIKATION.md)
+- [Kontroller af udgave 2.0.1](docs/VERIFIKATION.md)
 - [Teknisk opbygning, gemning og testkommandoer](docs/TEKNIK.md)
 - [Færdige dele og konkrete afgrænsninger](docs/STATUS.md)
 - [Grafik, lyd og skrifternes oprindelse](assets/PROVENANCE.md)
